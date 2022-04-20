@@ -1,6 +1,7 @@
 
 public class SinglyLinkedImplementation {    
     private Node head = null;
+    private Node tail = null;
     private int size = 0;
 
     /**
@@ -12,12 +13,34 @@ public class SinglyLinkedImplementation {
      * 
      * @param data The value that the new node will hold
      */
-    public void insert(int data) {
+    public void insertFirst(int data) {
         if (isEmptyList()) {
             this.head = new Node(data);
+            this.tail = this.head;
         } else {
-            Node newHead = new Node(data, head);
+            Node newHead = new Node(data);
+            newHead.nextNode = this.head;
             this.head = newHead;
+        }
+        size++;
+    }
+
+    /**
+     * <pre>
+     * Inserts a new node at the end of the list
+     * 
+     * Runtime: O(1)
+     * </pre>
+     * 
+     * @param data The value that the new node will hold
+     */
+    public void insertLast(int data) {
+        if (isEmptyList()) {
+            this.head = new Node(data);
+            this.tail = this.head;
+        } else {
+            this.tail.nextNode = new Node(data);
+            this.tail = this.tail.nextNode;
         }
         size++;
     }
@@ -121,6 +144,17 @@ public class SinglyLinkedImplementation {
      */
     public Node getHead() {
         return this.head;
+    }
+
+    /**
+     * <pre>
+     * Returns the tail of the Linked List, or null if the list is empty
+     * 
+     * Runtime: O(1)
+     * </pre>
+     */
+    public Node getTail() {
+        return this.tail;
     }
 
     // Utility Methods

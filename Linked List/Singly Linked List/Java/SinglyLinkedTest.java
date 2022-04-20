@@ -1,6 +1,7 @@
 public class SinglyLinkedTest {
     public static void main(String[] args) {
-        testInsertion();
+        testInsertFirst();
+        testInsertLast();
         testGetInvalidNode();
         testGetValidNode();
         testDeleteValidNode();
@@ -8,17 +9,43 @@ public class SinglyLinkedTest {
         testSearch();
     }
 
-    private static void testInsertion() {
-        String funcName = "testInsertion";
+    private static void testInsertFirst() {
+        String funcName = "testInsertFirst";
         SinglyLinkedImplementation linkedList = new SinglyLinkedImplementation();
         
-        linkedList.insert(2);
-        linkedList.insert(9);
+        linkedList.insertFirst(2);
+        linkedList.insertFirst(9);
 
         if (linkedList.getSize() != 2) {
             failTest(funcName);
             return;
         } else if (linkedList.getHead().data != 9) {
+            failTest(funcName);
+            return;
+        }
+
+        passTest(funcName);
+    }
+
+    private static void testInsertLast() {
+        String funcName = "testInsertLast";
+        SinglyLinkedImplementation linkedList = new SinglyLinkedImplementation();
+        
+        linkedList.insertLast(2);
+
+        if (linkedList.getTail().data != 2 ) {
+            failTest(funcName);
+            return;
+        }
+
+        linkedList.insertLast(9);
+
+       if (linkedList.getTail().data != 9 ) {
+            failTest(funcName);
+            return;
+        }
+
+        if (linkedList.getSize() != 2 ) {
             failTest(funcName);
             return;
         }
@@ -38,9 +65,9 @@ public class SinglyLinkedTest {
             return;
         } 
 
-        linkedList.insert(2);
-        linkedList.insert(9);
-        linkedList.insert(3);
+        linkedList.insertFirst(2);
+        linkedList.insertFirst(9);
+        linkedList.insertFirst(3);
 
         if (linkedList.getNodeAtIndex(3) != null) {
             failTest(funcName);
@@ -58,9 +85,9 @@ public class SinglyLinkedTest {
         String funcName = "testGetValidNode";
         SinglyLinkedImplementation linkedList = new SinglyLinkedImplementation();
         
-        linkedList.insert(2);
-        linkedList.insert(9);
-        linkedList.insert(3);
+        linkedList.insertFirst(2);
+        linkedList.insertFirst(9);
+        linkedList.insertFirst(3);
 
         if (linkedList.getHead().data != 3 ) {
             failTest(funcName);
@@ -80,18 +107,18 @@ public class SinglyLinkedTest {
         String funcName = "testDeleteValidNode";
         SinglyLinkedImplementation linkedList = new SinglyLinkedImplementation();
         
-        linkedList.insert(2);
-        linkedList.insert(9);
-        linkedList.insert(3);
+        linkedList.insertFirst(2);
+        linkedList.insertFirst(9);
+        linkedList.insertFirst(3);
 
         linkedList.deleteNodeAtIndex(0);
         linkedList.deleteNodeAtIndex(1);
 
-        linkedList.insert(3);
-        linkedList.insert(10);
-        linkedList.insert(2);
-        linkedList.insert(7);
-        linkedList.insert(1);
+        linkedList.insertFirst(3);
+        linkedList.insertFirst(10);
+        linkedList.insertFirst(2);
+        linkedList.insertFirst(7);
+        linkedList.insertFirst(1);
 
         linkedList.deleteNodeAtIndex(3);
         linkedList.deleteNodeAtIndex(1);
@@ -115,7 +142,7 @@ public class SinglyLinkedTest {
             return;
         }
 
-        linkedList.insert(10);
+        linkedList.insertFirst(10);
         
         if (linkedList.deleteNodeAtIndex(1) || linkedList.deleteNodeAtIndex(-1)) {
             failTest(funcName);
@@ -129,11 +156,11 @@ public class SinglyLinkedTest {
         String funcName = "testSearch";
         SinglyLinkedImplementation linkedList = new SinglyLinkedImplementation();
 
-        linkedList.insert(10);
-        linkedList.insert(4);
-        linkedList.insert(40);
-        linkedList.insert(6);
-        linkedList.insert(33);
+        linkedList.insertFirst(10);
+        linkedList.insertFirst(4);
+        linkedList.insertFirst(40);
+        linkedList.insertFirst(6);
+        linkedList.insertFirst(33);
 
         if (linkedList.search(10) && linkedList.search(4) && linkedList.search(40)) {
             passTest(funcName);
