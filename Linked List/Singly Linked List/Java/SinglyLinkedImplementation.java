@@ -95,6 +95,10 @@ public class SinglyLinkedImplementation {
                 currHead = currHead.nextNode;
             }
             prevHead.nextNode = currHead.nextNode;
+
+            if (index == this.size - 1) {
+                this.tail = prevHead;
+            }
         }
 
         this.size--;
@@ -187,4 +191,16 @@ public class SinglyLinkedImplementation {
         }
         return true;
     }
+
+
+    class Node {
+        int data;
+        Node nextNode = null;
+    
+        public Node(int data) {
+            this.data = data;
+            this.nextNode = null;
+        }
+    }
 }
+

@@ -40,12 +40,7 @@ public class SinglyLinkedTest {
 
         linkedList.insertLast(9);
 
-       if (linkedList.getTail().data != 9 ) {
-            failTest(funcName);
-            return;
-        }
-
-        if (linkedList.getSize() != 2 ) {
+       if (linkedList.getHead().data != 2 || linkedList.getTail().data != 9 ) {
             failTest(funcName);
             return;
         }
@@ -92,7 +87,7 @@ public class SinglyLinkedTest {
         if (linkedList.getHead().data != 3 ) {
             failTest(funcName);
             return;
-        } else if (linkedList.getNodeAtIndex(0).data != 3) {
+        } else if (linkedList.getNodeAtIndex(1).data != 9) {
             failTest(funcName);
             return;
         } else if (linkedList.getNodeAtIndex(2).data != 2) {
@@ -126,7 +121,7 @@ public class SinglyLinkedTest {
         
         if (linkedList.getSize() != 3) {
             failTest(funcName);
-        } else if (linkedList.getNodeAtIndex(0).data != 1 || linkedList.getNodeAtIndex(1).data != 2 || linkedList.getNodeAtIndex(2).data != 3) {
+        } else if (linkedList.getHead().data != 1 || linkedList.getNodeAtIndex(1).data != 2 || linkedList.getTail().data != 3) {
             failTest(funcName);
         } else {
             passTest(funcName);
