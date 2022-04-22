@@ -5,7 +5,7 @@ class Node {
     }
 }
 
-class SinglyLinkedList {
+class Singly {
     constructor(head = null, tail = null, size = 0) {
         this.head = head
         this.tail = tail
@@ -152,4 +152,4 @@ isValidIndex = (index, listSize) => {
     return true
 }
 
-module.exports = SinglyLinkedList
+module.exports = Singly
