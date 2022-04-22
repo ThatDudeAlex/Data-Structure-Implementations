@@ -1,8 +1,8 @@
-const SinglyLinkedList = require('./SinglyLinkedImplementation')
+const Singly = require('./SinglyImplementation')
 
 testInsertFirst = () => {
     const funcName = 'testInsertFirst'
-    const singlyLinkedList = new SinglyLinkedList()
+    const singlyLinkedList = new Singly()
     
     singlyLinkedList.insertFirst(2)
     singlyLinkedList.insertFirst(9)
@@ -17,7 +17,7 @@ testInsertFirst = () => {
 
 testInsertLast = () => {
     const funcName = 'testInsertLast'
-    const singlyLinkedList = new SinglyLinkedList()
+    const singlyLinkedList = new Singly()
     
     singlyLinkedList.insertLast(2)
 
@@ -38,7 +38,7 @@ testInsertLast = () => {
 
 testGetValidNode = () => {
     const funcName = 'testGetValidNode'
-    const singlyLinkedList = new SinglyLinkedList()
+    const singlyLinkedList = new Singly()
 
     singlyLinkedList.insertFirst(2)
     singlyLinkedList.insertFirst(9)
@@ -56,7 +56,7 @@ testGetValidNode = () => {
 
 testGetInvalidNode = () => {
     const funcName = 'testGetInvalidNode'
-    const singlyLinkedList = new SinglyLinkedList()
+    const singlyLinkedList = new Singly()
 
     if (singlyLinkedList.head !== null || singlyLinkedList.getNodeAtIndex(1) !== null) {
         failTest(funcName)
@@ -77,7 +77,7 @@ testGetInvalidNode = () => {
 
 testDeleteValidNode = () => {
     const funcName = 'testDeleteValidNode'
-    const singlyLinkedList = new SinglyLinkedList()
+    const singlyLinkedList = new Singly()
 
     singlyLinkedList.insertFirst(2)
     singlyLinkedList.insertFirst(9)
@@ -106,7 +106,7 @@ testDeleteValidNode = () => {
 
 testDeleteInvalidNode = () => {
     const funcName = 'testDeleteInvalidNode'
-    const singlyLinkedList = new SinglyLinkedList()
+    const singlyLinkedList = new Singly()
 
     if (singlyLinkedList.deleteNodeAtIndex(0) !== false) {
         failTest(funcName)
@@ -123,7 +123,7 @@ testDeleteInvalidNode = () => {
 
 testSearch = () => {
     const funcName = 'testSearch'
-    const singlyLinkedList = new SinglyLinkedList()
+    const singlyLinkedList = new Singly()
 
     singlyLinkedList.insertFirst(10)
     singlyLinkedList.insertFirst(4)

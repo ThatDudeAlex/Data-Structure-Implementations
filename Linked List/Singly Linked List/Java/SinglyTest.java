@@ -1,4 +1,4 @@
-public class SinglyLinkedTest {
+public class SinglyTest {
     public static void main(String[] args) {
         testInsertFirst();
         testInsertLast();
@@ -12,7 +12,7 @@ public class SinglyLinkedTest {
 
     private static void testInsertFirst() {
         String funcName = "testInsertFirst";
-        SinglyLinkedImplementation singly = new SinglyLinkedImplementation();
+        SinglyImplementation singly = new SinglyImplementation();
         
         singly.insertFirst(2);
         singly.insertFirst(9);
@@ -25,7 +25,7 @@ public class SinglyLinkedTest {
 
     private static void testInsertLast() {
         String funcName = "testInsertLast";
-        SinglyLinkedImplementation singly = new SinglyLinkedImplementation();
+        SinglyImplementation singly = new SinglyImplementation();
         
         singly.insertLast(2);
 
@@ -44,7 +44,7 @@ public class SinglyLinkedTest {
     
     private static void testGetValidNode() {
         String funcName = "testGetValidNode";
-        SinglyLinkedImplementation singly = new SinglyLinkedImplementation();
+        SinglyImplementation singly = new SinglyImplementation();
         
         singly.insertFirst(2);
         singly.insertFirst(9);
@@ -58,7 +58,7 @@ public class SinglyLinkedTest {
     
     private static void testGetInvalidNode() {
         String funcName = "testGetInvalidNode";
-        SinglyLinkedImplementation singly = new SinglyLinkedImplementation();
+        SinglyImplementation singly = new SinglyImplementation();
         
         if (singly.getHead() != null || singly.getNodeAtIndex(1) != null) {
             failTest(funcName);
@@ -79,7 +79,7 @@ public class SinglyLinkedTest {
 
     private static void testDeleteValidNodeOnMultiNodeList() {
         String funcName = "testDeleteValidNodeOnMultiNodeList";
-        SinglyLinkedImplementation singly = new SinglyLinkedImplementation();
+        SinglyImplementation singly = new SinglyImplementation();
         
         singly.insertFirst(2);
         singly.insertFirst(9);
@@ -108,7 +108,7 @@ public class SinglyLinkedTest {
 
     private static void testDeleteValidNodeOnSingleNodeList() {
         String funcName = "testDeleteValidNodeOnSingleNodeList";
-        SinglyLinkedImplementation singly = new SinglyLinkedImplementation();
+        SinglyImplementation singly = new SinglyImplementation();
         
         singly.insertFirst(2);
         singly.deleteNodeAtIndex(0);
@@ -121,7 +121,7 @@ public class SinglyLinkedTest {
 
     private static void testDeleteInvalidNode() {
         String funcName = "testDeleteInvalidNode";
-        SinglyLinkedImplementation singly = new SinglyLinkedImplementation();
+        SinglyImplementation singly = new SinglyImplementation();
 
         if (singly.deleteNodeAtIndex(0)) {
             failTest(funcName);
@@ -138,7 +138,7 @@ public class SinglyLinkedTest {
 
     private static void testSearch() {
         String funcName = "testSearch";
-        SinglyLinkedImplementation singly = new SinglyLinkedImplementation();
+        SinglyImplementation singly = new SinglyImplementation();
 
         singly.insertFirst(10);
         singly.insertFirst(4);

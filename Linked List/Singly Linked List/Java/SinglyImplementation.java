@@ -1,5 +1,5 @@
 
-public class SinglyLinkedImplementation {    
+public class SinglyImplementation {    
     private Node head = null;
     private Node tail = null;
     private int size = 0;
