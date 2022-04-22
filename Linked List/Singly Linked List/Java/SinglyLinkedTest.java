@@ -2,166 +2,154 @@ public class SinglyLinkedTest {
     public static void main(String[] args) {
         testInsertFirst();
         testInsertLast();
-        testGetInvalidNode();
         testGetValidNode();
-        testDeleteValidNode();
+        testGetInvalidNode();
+        testDeleteValidNodeOnMultiNodeList();
+        testDeleteValidNodeOnSingleNodeList();
         testDeleteInvalidNode();
         testSearch();
     }
 
     private static void testInsertFirst() {
         String funcName = "testInsertFirst";
-        SinglyLinkedImplementation linkedList = new SinglyLinkedImplementation();
+        SinglyLinkedImplementation singly = new SinglyLinkedImplementation();
         
-        linkedList.insertFirst(2);
-        linkedList.insertFirst(9);
+        singly.insertFirst(2);
+        singly.insertFirst(9);
 
-        if (linkedList.getSize() != 2) {
+        if (singly.getSize() != 2 || singly.getHead().data != 9)
             failTest(funcName);
-            return;
-        } else if (linkedList.getHead().data != 9) {
-            failTest(funcName);
-            return;
-        }
-
-        passTest(funcName);
+        else
+            passTest(funcName);
     }
 
     private static void testInsertLast() {
         String funcName = "testInsertLast";
-        SinglyLinkedImplementation linkedList = new SinglyLinkedImplementation();
+        SinglyLinkedImplementation singly = new SinglyLinkedImplementation();
         
-        linkedList.insertLast(2);
+        singly.insertLast(2);
 
-        if (linkedList.getTail().data != 2 ) {
+        if (singly.getTail().data != 2 ) {
             failTest(funcName);
             return;
         }
 
-        linkedList.insertLast(9);
+        singly.insertLast(9);
 
-       if (linkedList.getHead().data != 2 || linkedList.getTail().data != 9 ) {
+       if (singly.getHead().data != 2 || singly.getTail().data != 9 ) 
             failTest(funcName);
-            return;
-        }
-
-        passTest(funcName);
+        else
+            passTest(funcName);
     }
-
-    private static void testGetInvalidNode() {
-        String funcName = "testGetInvalidNode";
-        SinglyLinkedImplementation linkedList = new SinglyLinkedImplementation();
-        
-        if (linkedList.getHead() != null) {
-            failTest(funcName);
-            return;
-        } else if (linkedList.getNodeAtIndex(1) != null) {
-            failTest(funcName);
-            return;
-        } 
-
-        linkedList.insertFirst(2);
-        linkedList.insertFirst(9);
-        linkedList.insertFirst(3);
-
-        if (linkedList.getNodeAtIndex(3) != null) {
-            failTest(funcName);
-            return;
-        } else if (linkedList.getNodeAtIndex(-1) != null) {
-            failTest(funcName);
-            return;
-        } 
-
-        passTest(funcName);
-    }
-
-
+    
     private static void testGetValidNode() {
         String funcName = "testGetValidNode";
-        SinglyLinkedImplementation linkedList = new SinglyLinkedImplementation();
+        SinglyLinkedImplementation singly = new SinglyLinkedImplementation();
         
-        linkedList.insertFirst(2);
-        linkedList.insertFirst(9);
-        linkedList.insertFirst(3);
+        singly.insertFirst(2);
+        singly.insertFirst(9);
+        singly.insertFirst(3);
 
-        if (linkedList.getHead().data != 3 ) {
+        if (singly.getHead().data != 3 || singly.getNodeAtIndex(1).data != 9 || singly.getNodeAtIndex(2).data != 2)
             failTest(funcName);
-            return;
-        } else if (linkedList.getNodeAtIndex(1).data != 9) {
-            failTest(funcName);
-            return;
-        } else if (linkedList.getNodeAtIndex(2).data != 2) {
+        else
+            passTest(funcName);
+    }
+    
+    private static void testGetInvalidNode() {
+        String funcName = "testGetInvalidNode";
+        SinglyLinkedImplementation singly = new SinglyLinkedImplementation();
+        
+        if (singly.getHead() != null || singly.getNodeAtIndex(1) != null) {
             failTest(funcName);
             return;
         } 
 
-        passTest(funcName);
+        singly.insertFirst(2);
+        singly.insertFirst(9);
+        singly.insertFirst(3);
+
+        if (singly.getNodeAtIndex(3) != null || singly.getNodeAtIndex(-1) != null)
+            failTest(funcName);
+        else
+            passTest(funcName);
     }
 
-    private static void testDeleteValidNode() {
-        String funcName = "testDeleteValidNode";
-        SinglyLinkedImplementation linkedList = new SinglyLinkedImplementation();
+
+
+    private static void testDeleteValidNodeOnMultiNodeList() {
+        String funcName = "testDeleteValidNodeOnMultiNodeList";
+        SinglyLinkedImplementation singly = new SinglyLinkedImplementation();
         
-        linkedList.insertFirst(2);
-        linkedList.insertFirst(9);
-        linkedList.insertFirst(3);
+        singly.insertFirst(2);
+        singly.insertFirst(9);
+        singly.insertFirst(3);
 
-        linkedList.deleteNodeAtIndex(0);
-        linkedList.deleteNodeAtIndex(1);
+        singly.deleteNodeAtIndex(0);
+        singly.deleteNodeAtIndex(1);
 
-        linkedList.insertFirst(3);
-        linkedList.insertFirst(10);
-        linkedList.insertFirst(2);
-        linkedList.insertFirst(7);
-        linkedList.insertFirst(1);
+        singly.insertFirst(3);
+        singly.insertFirst(10);
+        singly.insertFirst(2);
+        singly.insertFirst(7);
+        singly.insertFirst(1);
 
-        linkedList.deleteNodeAtIndex(3);
-        linkedList.deleteNodeAtIndex(1);
-        linkedList.deleteNodeAtIndex(3);
+        singly.deleteNodeAtIndex(3);
+        singly.deleteNodeAtIndex(1);
+        singly.deleteNodeAtIndex(3);
         
-        if (linkedList.getSize() != 3) {
+        if (singly.getSize() != 3)
             failTest(funcName);
-        } else if (linkedList.getHead().data != 1 || linkedList.getNodeAtIndex(1).data != 2 || linkedList.getTail().data != 3) {
+        else if (singly.getHead().data != 1 || singly.getNodeAtIndex(1).data != 2 || singly.getTail().data != 3)
             failTest(funcName);
-        } else {
+        else 
             passTest(funcName);
-        }
+    }
+
+    private static void testDeleteValidNodeOnSingleNodeList() {
+        String funcName = "testDeleteValidNodeOnSingleNodeList";
+        SinglyLinkedImplementation singly = new SinglyLinkedImplementation();
+        
+        singly.insertFirst(2);
+        singly.deleteNodeAtIndex(0);
+        
+        if (singly.getSize() != 0 || singly.getHead() != null || singly.getTail() != null) 
+            failTest(funcName);
+        else 
+            passTest(funcName);
     }
 
     private static void testDeleteInvalidNode() {
         String funcName = "testDeleteInvalidNode";
-        SinglyLinkedImplementation linkedList = new SinglyLinkedImplementation();
+        SinglyLinkedImplementation singly = new SinglyLinkedImplementation();
 
-        if (linkedList.deleteNodeAtIndex(0)) {
+        if (singly.deleteNodeAtIndex(0)) {
             failTest(funcName);
             return;
         }
 
-        linkedList.insertFirst(10);
+        singly.insertFirst(10);
         
-        if (linkedList.deleteNodeAtIndex(1) || linkedList.deleteNodeAtIndex(-1)) {
+        if (singly.deleteNodeAtIndex(1) || singly.deleteNodeAtIndex(-1)) 
             failTest(funcName);
-            return;
-        }
-
-        passTest(funcName);
+       else
+            passTest(funcName);
     }
 
     private static void testSearch() {
         String funcName = "testSearch";
-        SinglyLinkedImplementation linkedList = new SinglyLinkedImplementation();
+        SinglyLinkedImplementation singly = new SinglyLinkedImplementation();
 
-        linkedList.insertFirst(10);
-        linkedList.insertFirst(4);
-        linkedList.insertFirst(40);
-        linkedList.insertFirst(6);
-        linkedList.insertFirst(33);
+        singly.insertFirst(10);
+        singly.insertFirst(4);
+        singly.insertFirst(40);
+        singly.insertFirst(6);
+        singly.insertFirst(33);
 
-        if (linkedList.search(10) && linkedList.search(4) && linkedList.search(40)) {
+        if (singly.search(10) && singly.search(4) && singly.search(40))
             passTest(funcName);
-        } else {
+        else 
             failTest(funcName);
-        }
     }
 
     private static void failTest(String funcName) {

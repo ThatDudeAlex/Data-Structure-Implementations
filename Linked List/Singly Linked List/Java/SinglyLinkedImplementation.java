@@ -14,15 +14,15 @@ public class SinglyLinkedImplementation {
      * @param data The value that the new node will hold
      */
     public void insertFirst(int data) {
-        if (isEmptyList()) {
-            this.head = new Node(data);
-            this.tail = this.head;
-        } else {
-            Node newHead = new Node(data);
-            newHead.nextNode = this.head;
-            this.head = newHead;
-        }
-        size++;
+        Node newNode =  new Node(data);
+        newNode.nextNode = this.head;
+        
+        if (isEmptyList())
+            this.tail = this.head = newNode;
+        else
+            this.head = newNode;
+
+        this.size++;
     }
 
     /**
@@ -35,14 +35,12 @@ public class SinglyLinkedImplementation {
      * @param data The value that the new node will hold
      */
     public void insertLast(int data) {
-        if (isEmptyList()) {
-            this.head = new Node(data);
-            this.tail = this.head;
-        } else {
-            this.tail.nextNode = new Node(data);
-            this.tail = this.tail.nextNode;
-        }
-        size++;
+        if (isEmptyList()) 
+            this.head = this.tail = new Node(data);
+        else 
+            this.tail = this.tail.nextNode = new Node(data);
+
+        this.size++;
     }
 
     /**
@@ -57,15 +55,18 @@ public class SinglyLinkedImplementation {
      * @return The node located at the given index
      */
     public Node getNodeAtIndex(int index) {
-        if (!isValidIndex(index) || isEmptyList()) {
-            return null;
-        }
-
         Node currHead = this.head;
 
-        for (int idx = 0; idx < index; idx++) {
+        if (isOutOfBoundsIndex(index) || isEmptyList()) 
+            return null;
+        else if (index == 0) 
+            return this.head;   // if is head index returns head
+        else if (index == this.size - 1) 
+            return this.tail;   // if is tail index returns tail
+
+        for (int i = 1; i <= index; i++)
             currHead = currHead.nextNode;
-        }
+        
         return currHead;
     }
 
@@ -80,27 +81,28 @@ public class SinglyLinkedImplementation {
      * @return A boolean stating whether or not a node was deleted
      */
     public boolean deleteNodeAtIndex(int index) {
-        if (!isValidIndex(index) || isEmptyList()) {
+        if (isOutOfBoundsIndex(index) || isEmptyList())
             return false;
-        } 
-        
-        if (index == 0) {
-            this.head = this.head.nextNode;
-        } else {
-            Node prevHead = null;
-            Node currHead = this.head;
 
-            for (int idx = 0; idx < index; idx++) {
+        else if (index == 0 && this.size == 1) 
+            this.tail = this.head = this.head.nextNode;
+        
+        else if (index == 0) 
+            this.head = this.head.nextNode;
+        
+        else {
+            Node prevHead = this.head;
+            Node currHead = this.head.nextNode;
+
+            for (int i = 1; i < index; i++) {
                 prevHead = currHead;
                 currHead = currHead.nextNode;
             }
             prevHead.nextNode = currHead.nextNode;
 
-            if (index == this.size - 1) {
+            if (index == this.size - 1) 
                 this.tail = prevHead;
-            }
         }
-
         this.size--;
         return true;
     }
@@ -118,14 +120,10 @@ public class SinglyLinkedImplementation {
     public boolean search(int value) {
         Node currHead = this.head;
 
-        while (currHead != null) {
-            if (currHead.data == value) {
-                return true;
-            }
+        while (currHead != null && currHead.data != value)
             currHead = currHead.nextNode;
-        }
 
-        return false;
+        return (currHead != null && currHead.data == value);
     }
 
     /**
@@ -176,22 +174,16 @@ public class SinglyLinkedImplementation {
             System.out.printf("%d -> ", currHead.data);
             currHead = currHead.nextNode;
         }
-
         System.out.print("NULL\n\n");
     }
 
-
     private boolean isEmptyList() {
-        return getSize() == 0 && getHead() == null ;
+        return this.head == null && this.tail == null;
     }
 
-    private boolean isValidIndex(int index) {
-        if (index >= getSize() || index < 0) { 
-            return false;
-        }
-        return true;
+    private boolean isOutOfBoundsIndex(int index) {
+        return (index >= getSize() || index < 0);
     }
-
 
     class Node {
         int data;
@@ -203,4 +195,3 @@ public class SinglyLinkedImplementation {
         }
     }
 }
-
