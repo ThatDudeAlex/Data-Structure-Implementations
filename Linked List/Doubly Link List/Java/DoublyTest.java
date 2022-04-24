@@ -95,7 +95,7 @@ public class DoublyTest {
             failTest(funcName);
         else if (head.data != 9 || tail.data != 2) 
             failTest(funcName);
-        else if (head.nextNode != tail || head.prevNode != null || tail.nextNode != null)
+        else if (head.nextNode != tail || tail.prevNode != head || head.prevNode != null || tail.nextNode != null)
             failTest(funcName);
         else
             passTest(funcName);
@@ -115,7 +115,7 @@ public class DoublyTest {
             failTest(funcName);
         else if (head.data != 7 || head.nextNode.data != 9 || tail.data != 2) 
             failTest(funcName);
-        else if (head.nextNode.nextNode != tail || head.prevNode != null || tail.nextNode != null)
+        else if (head.nextNode.nextNode != tail || tail.prevNode != head.nextNode || head.prevNode != null || tail.nextNode != null)
             failTest(funcName);
         else
             passTest(funcName);
@@ -221,9 +221,11 @@ public class DoublyTest {
 
         if (!list.insertAtIndex(1, 5) || !list.insertAtIndex(3, 8) || list.getSize() != 5)
             failTest(funcName);
-        else if (list.getFirstNode().nextNode.data != 5)
+        else if (list.getFirstNode().nextNode.data != 5 || list.getFirstNode().nextNode.nextNode.nextNode.data != 8)
             failTest(funcName);
-        else if (list.getFirstNode().nextNode.nextNode.nextNode.data != 8)
+        else if (list.getFirstNode().nextNode.prevNode != list.getFirstNode())
+            failTest(funcName);
+        else if (list.getFirstNode().nextNode.nextNode.nextNode.prevNode != list.getFirstNode().nextNode.nextNode)
             failTest(funcName);
         else 
             passTest(funcName);
@@ -368,10 +370,14 @@ public class DoublyTest {
 
         DoublyImplementation.Node nodeDeleted1 =  list.deleteNodeAtIndex(1);
         DoublyImplementation.Node nodeDeleted2 =  list.deleteNodeAtIndex(1);
+        DoublyImplementation.Node head =  list.getFirstNode();
+        DoublyImplementation.Node tail =  list.getLastNode();
 
-        if (list.getSize() != 2 || list.getFirstNode().data != 2 || list.getLastNode().data != 5)
+        if (list.getSize() != 2 || head.data != 2 || tail.data != 5)
             failTest(funcName);
         else if (nodeDeleted1.data != 3 || nodeDeleted2.data != 4)
+            failTest(funcName);
+        else if (head.nextNode != tail || tail.prevNode != head || head.prevNode != null || tail.nextNode != null)
             failTest(funcName);
         else
             passTest(funcName);

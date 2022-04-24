@@ -86,16 +86,13 @@ public class DoublyImplementation {
         else if (isOutOfBoundsIndex(index))
             return false;
         
-        Node prevHead = null;
-        Node currHead = this.head;
+        Node currNodeAtIndex = getNodeAtIndex(index);
+        Node prevNode = currNodeAtIndex.prevNode;
         Node newNode = new Node(data);
 
-        for (int i = 0; i < index; i++) {
-            prevHead = currHead;
-            currHead = currHead.nextNode;
-        }
-        prevHead.nextNode = newNode;
-        newNode.nextNode = currHead;
+        prevNode.nextNode = currNodeAtIndex.prevNode = newNode;
+        newNode.nextNode = currNodeAtIndex;
+        newNode.prevNode = prevNode;
         
         this.size++;
         return true;
@@ -174,8 +171,8 @@ public class DoublyImplementation {
         Node deletedNode = getNodeAtIndex(index);
         deletedNode.prevNode.nextNode = deletedNode.nextNode;
         deletedNode.nextNode.prevNode = deletedNode.prevNode;
+        deletedNode.prevNode = deletedNode.nextNode = null;
         
-
         this.size--;
         return deletedNode;
     }
