@@ -1,93 +1,142 @@
+/**
+ * An implementation of a standard Circular Singly Linked List.
+ * 
+ * @author Alex Nunez 
+ */
 
 public class CircularSinglyImplementation {
-    private Node head;
+    private Node last;
     private int size;
 
     CircularSinglyImplementation() {
-        this.head = null;
+        this.last = null;
         this.size = 0;
     }
 
     CircularSinglyImplementation(int data) {
         initFirtstNodeInList(data);
-        this.size = 1;
     }
 
     /**
      * <pre>
-     * Inserts a new node at the beginning of the list
+     * Inserts a new {@code Node} at the beginning of the list
      * 
-     * Runtime: O(N) : The enitire list has to be traversed to make sure the last node points back to the beginning
-     * 
+     * Runtime: O(1) : because only rearranging a few pointers is required
      * </pre>
      * 
-     * @param data The value that the new node will hold
+     * @return {@code true} to show the {@code Node} was inserted
      */
     public boolean insertFirst(int data) {
-        if (isEmptyList()) {
-            initFirtstNodeInList(data);
-        } else {
-            Node newHead =  new Node(data);
-            Node lastNode = getLastNode();
+        if (isEmptyList())
+            return initFirtstNodeInList(data);
+        
+        Node newHead =  new Node(data);
+        Node lastNode = this.last;
 
-            newHead.nextNode = this.head;
-            lastNode.nextNode = newHead;
-            this.head = newHead;
-        }
+        newHead.nextNode = lastNode.nextNode;
+        lastNode.nextNode = newHead;
+    
         this.size++;
         return true;
     }
 
     /**
      * <pre>
-     * Inserts a new node at the end of the linked list
+     * Inserts a new {@code Node} at the end of the list
      * 
-     * Runtime: O(N) : The enitire list has to be traversed to make add the new node 
+     * Runtime: O(1) : because only rearranging a few pointers is required
      * </pre>
      * 
-     * @param data The value that the new node will hold
+     * @return {@code true} to show the {@code Node} was inserted
      */
     public boolean insertLast(int data) {
-        if (isEmptyList()) {
-            initFirtstNodeInList(data);
-        } else {
-            Node newNode =  new Node(data);
-            Node lastNode = getLastNode();
+        if (isEmptyList()) 
+            return initFirtstNodeInList(data);
+       
+        Node newLastNode =  new Node(data);
+        Node lastNode = this.last;
 
-            lastNode.nextNode = newNode;
-            newNode.nextNode = this.head;
-        }
+        newLastNode.nextNode = lastNode.nextNode;
+        lastNode.nextNode = newLastNode;
+        this.last = newLastNode;
+        
         this.size++;
         return true;
     }
 
     /**
      * <pre>
-     * Deletes the first node in the linked list
+     * Inserts a new {@code Node} at the given index
      * 
-     * Runtime: O(N) : The enitire list has to be traversed to make sure the last node points back to the new head
+     * Runtime: O(N) : because it needs to iterate through the list
      * </pre>
      * 
-     * @param data The value that the new node will hold
+     * @return {@code true} if the {@code Node} was inserted in a valid index, else
+     *  returns {@code false}
+     */
+    public boolean insertAtIndex(int index, int data) {
+        if (isEmptyList() && index == 0) {
+            return initFirtstNodeInList(data);
+        } 
+        else if (isOutOfBoundsIndex(index)) {
+            return false;
+        }
+        else if (index == 0) {
+            insertFirst(data);
+            return true;
+        }
+        
+        Node prevHead = this.last;
+        Node currHead = this.last.nextNode;
+        Node newNode = new Node(data);
+
+        for (int i = 0; i < index; i++) {
+            prevHead = currHead;
+            currHead = currHead.nextNode;
+        }
+        prevHead.nextNode = newNode;
+        newNode.nextNode = currHead;
+        
+        this.size++;
+        return true;
+    }
+
+    /**
+     * <pre>
+     * Deletes the first {@code Node} in the linked list
+     * 
+     * Runtime: O(1) : because only rearranging a few pointers is required
+     * </pre>
+     * 
+     * @return The first {@code Node} in the list of type {@code CircularSinglyImplementation.Node}
      */
     public Node deleteFirstNode() {
         if (isEmptyList())
             return null;
 
-        Node deletedHead = this.head;
+        Node deletedHead = this.last.nextNode;
 
         if (this.size == 1) {
             deletedHead.nextNode = null;
-            this.head = null;
+            this.last = null;
         } else {
-            Node lastNode = getLastNode();
-            this.head = lastNode.nextNode = deletedHead.nextNode;
+            Node lastNode = this.last;
+            lastNode.nextNode = deletedHead.nextNode;
             deletedHead.nextNode = null;
         }
         this.size--;
         return deletedHead;
     }
 
+    /**
+     * <pre>
+     * Deletes the last {@code Node} in the linked list
+     * 
+     * Runtime: O(N) : because it needs to iterate through the list
+     * </pre>
+     * 
+     * @return The last {@code Node} in the list of type {@code CircularSinglyImplementation.Node}
+     */
     public Node deleteLastNode() {
         if (isEmptyList())
             return null;
@@ -95,14 +144,15 @@ public class CircularSinglyImplementation {
         Node deletedLastNode = null;
 
         if (this.size == 1) {
-            deletedLastNode = this.head;
+            deletedLastNode = this.last;
             deletedLastNode.nextNode = null;
-            this.head = null;
+            this.last = null;
         } else {
             Node newLastNode = getNodeAtIndex(this.size - 2);
-            deletedLastNode = newLastNode.nextNode;
+            deletedLastNode = this.last;
             newLastNode.nextNode = deletedLastNode.nextNode;
             deletedLastNode.nextNode = null;
+            this.last = newLastNode;
         }
         this.size--;
         return deletedLastNode;
@@ -110,13 +160,15 @@ public class CircularSinglyImplementation {
 
     /**
      * <pre>
-     * Deletes the node located at the given index if it exist
+     * Deletes the {@code Node} located at the given index if it exist
      * 
-     * Runtime: O(N)
+     * Runtime: O(N) : because it needs to iterate through the list 
      * </pre>
-     * @param index the location of a node in the linked list
      * 
-     * @return A boolean stating whether or not a node was deleted
+     * @param index the location of a {@code Node} in the linked list
+     * 
+     * @return The {@code Node} located at given index if it exitst else returns null. 
+     * The node will be of type {@code CircularSinglyImplementation.Node}
      */
     public Node deleteNodeAtIndex(int index) {
         if (isOutOfBoundsIndex(index) || isEmptyList())
@@ -126,10 +178,10 @@ public class CircularSinglyImplementation {
         else if (index == this.size - 1)
             return deleteLastNode();
         
-        Node prevHead = this.head;
-        Node currHead = this.head.nextNode;
+        Node prevHead = this.last;
+        Node currHead = this.last.nextNode;
 
-        for (int i = 1; i < index; i++) {
+        for (int i = 0; i < index; i++) {
             prevHead = currHead;
             currHead = currHead.nextNode;
         }
@@ -142,29 +194,44 @@ public class CircularSinglyImplementation {
 
     /**
      * <pre>
-     * Returns the head of the Linked List, or null if the list is empty
+     * Returns the head of the list, or null if the list is empty
      * 
-     * Runtime: O(1)
+     * Runtime: O(1) : because it just returns a pointer that's readily available
      * </pre>
+     * 
+     * @return The first {@code Node} in the list if it exits, else returns null. 
+     * The node will be of type {@code CircularSinglyImplementation.Node}
      */
     public Node getFirstNode() {
-        return this.head;
-    }
-
-    public Node getLastNode() {
-        return getNodeAtIndex(this.size - 1);
+        if (isEmptyList())
+            return null;
+        return this.last.nextNode;
     }
 
     /**
      * <pre>
-     * Returns the node at the given index if it exist, else returns null
+     * Returns the last node of the list, or null if the list is empty
      * 
-     * Runtime: O(N)
+     * Runtime: O(1) : because it just returns a pointer that's readily available
      * </pre>
      * 
-     * @param index the location of a node in the linked list
+     * @return The last {@code Node} in the list if it exits, else returns null. 
+     * The node will be of type {@code CircularSinglyImplementation.Node}
+     */
+    public Node getLastNode() {
+        return this.last;
+    }
+
+    /**
+     * <pre>
+     * Returns the {@code Node} at the given index if it exist, else returns null
      * 
-     * @return The node located at the given index
+     * Runtime: O(N) : because it needs to iterate the list
+     * </pre>
+     * 
+     * @param index the location of a {@code Node} in the list
+     * 
+     * @return The {@code Node} located at the given index
      */
     public Node getNodeAtIndex(int index) {
         if (isOutOfBoundsIndex(index) || isEmptyList()) 
@@ -172,9 +239,10 @@ public class CircularSinglyImplementation {
         else if (index == 0)
             return getFirstNode();
 
-        Node currHead = this.head;
+        Node currHead = this.last;
 
-        for (int i = 0; i < index; i++)
+        // Starts at i = -1 to because we start at the end of the list instead of the beginning
+        for (int i = -1; i < index; i++)
             currHead = currHead.nextNode;
 
         return currHead;
@@ -182,21 +250,23 @@ public class CircularSinglyImplementation {
 
     /**
      * <pre> 
-     * Searches the linked list to see if it contains the given value
+     * Searches the list to see if it contains a {@code Node} with the given value
      * 
-     * Runtime: O(N)
+     * Runtime: O(N) : because it needs to iterate the list
      * </pre>
-     * @param value to search the linked list for
      * 
-     * @return Whether or not the value is found in the linked list
+     * @param value to search the list for
+     * 
+     * @return {@code true} if the list contains a {@code Node} with the given value,
+     * else returns {@code false}
      */
     public boolean search(int value) {
         if (isEmptyList())
             return false;
 
-        Node currHead = this.head;
+        Node currHead = this.last;
 
-        while (currHead.nextNode != this.head && currHead.data != value)
+        while (currHead.nextNode != this.last && currHead.data != value)
             currHead = currHead.nextNode;
 
         return currHead.data == value;
@@ -207,30 +277,45 @@ public class CircularSinglyImplementation {
 
      /**
      * <pre>
-     * Returns the current size of the Linked List
+     * Returns the current size of the List
      * 
-     * Runtime: O(1)
+     * Runtime: O(1) : because it just returns the value of a private variable
      * </pre>
+     * @
+     * @return the number of {@code Nodes} currently in the list
      */
     public int getSize() {
         return this.size;
     }
 
+    /**
+     * <pre>
+     * Returns the current size of the Linked List
+     * 
+     * Runtime: O(1) : because it just does a simple boolean comparison
+     * </pre>
+     * 
+     * @return {@code true} if the list contains no {@code Nodes},
+     * else returns {@code false}
+     */
     public boolean isEmptyList() {
-        return this.head == null && this.size == 0;
+        return this.last == null && this.size == 0;
     }
-
-    private boolean isOutOfBoundsIndex(int index) {
-        return (index >= this.size || index < 0);
-    }
-
+    
+    /**
+     * <pre>
+     * prints the entire list to the console
+     * 
+     * Runtime: O(N) : because it needs to iterate the list
+     * </pre>
+     */
     public void printLinkedList() {
-        if (this.head == null) {
+        if (this.last == null) {
             System.out.println("EMPTY LIST");
             return;
         }
 
-        Node currHead = this.head;
+        Node currHead = this.last;
 
         while (currHead != null) {
             System.out.printf("%d -> ", currHead.data);
@@ -239,11 +324,20 @@ public class CircularSinglyImplementation {
         System.out.print("NULL\n\n");
     }
 
-    private void initFirtstNodeInList(int data) {
-        this.head = new Node(data);
-        this.head.nextNode = this.head;
+    private boolean isOutOfBoundsIndex(int index) {
+        return (index >= this.size || index < 0);
     }
 
+    private boolean initFirtstNodeInList(int data) {
+        this.last = new Node(data);
+        this.last.nextNode = this.last;
+        this.size = 1;
+        return true;
+    }
+
+    /**
+     * A standard {@code Singly Linked List Node}, that holds the value of an int and points to next {@code Node} in the list
+     */
     class Node {
         int data;
         Node nextNode;
