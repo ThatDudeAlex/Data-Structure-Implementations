@@ -1,8 +1,22 @@
-
+/**
+ * An implementation of a standard Doubly Linked List.
+ * 
+ * @author Alex Nunez 
+ */
 public class DoublyImplementation {    
-    private Node head = null;
-    private Node tail = null;
-    private int size = 0;
+    private Node head;
+    private Node tail;
+    private int size;
+
+    DoublyImplementation() {
+        this.head = null;
+        this.tail = null;
+        this.size = 0;
+    }
+
+    DoublyImplementation(int data) {
+        initFirtstNodeInList(data);
+    }
 
     /**
      * <pre>
@@ -13,16 +27,16 @@ public class DoublyImplementation {
      * 
      * @param data The value that the new node will hold
      */
-    public void insertFirst(int data) {
+    public boolean insertFirst(int data) {
+        if (isEmptyList())
+            return initFirtstNodeInList(data);
+
         Node newNode =  new Node(data);
         newNode.nextNode = this.head;
-        
-        if (isEmptyList())
-            this.tail = this.head = newNode;
-        else 
-            this.head = this.head.prevNode = newNode;
-        
+        this.head = head.prevNode = newNode;
+
         this.size++;
+        return true;
     }
 
     /**
@@ -34,28 +48,168 @@ public class DoublyImplementation {
      * 
      * @param data The value that the new node will hold
      */
-    public void insertLast(int data) {
+    public boolean insertLast(int data) {
+        if (isEmptyList()) 
+            return initFirtstNodeInList(data);
+
         Node newNode =  new Node(data);
         newNode.prevNode = tail;
-
-        if (isEmptyList()) 
-            this.head = this.tail = newNode;
-        else 
-            this.tail = this.tail.nextNode = newNode;
+        this.tail = this.tail.nextNode = newNode;
 
         this.size++;
+        return true;
     }
 
     /**
      * <pre>
-     * Returns the node at the given index if it exist, else returns null
+     * Inserts a new {@code Node} at the given index
      * 
-     * Runtime: O(N)
+     * Runtime: O(N) : because it needs to iterate through the list
      * </pre>
      * 
-     * @param index the location of a node in the linked list
+     * @return {@code true} if the {@code Node} was inserted in a valid index, else
+     *  returns {@code false}
+     */
+    public boolean insertAtIndex(int index, int data) {
+        if (isEmptyList() && index == 0)
+            return initFirtstNodeInList(data);
+        else if (index == 0)
+            return insertFirst(data);
+        else if (isOutOfBoundsIndex(index))
+            return false;
+        
+        Node prevHead = null;
+        Node currHead = this.head;
+        Node newNode = new Node(data);
+
+        for (int i = 0; i < index; i++) {
+            prevHead = currHead;
+            currHead = currHead.nextNode;
+        }
+        prevHead.nextNode = newNode;
+        newNode.nextNode = currHead;
+        
+        this.size++;
+        return true;
+    }
+
+    /**
+     * <pre>
+     * Deletes the first {@code Node} in the linked list
      * 
-     * @return The node located at the given index
+     * Runtime: O(1) : because only rearranging a few pointers is required
+     * </pre>
+     * 
+     * @return The first {@code Node} in the list of type {@code CircularSinglyImplementation.Node}
+     */
+    public Node deleteFirstNode() {
+        if (isEmptyList())
+            return null;
+
+        Node deletedHead = this.head;
+
+        if (this.size == 1) {
+            this.head = this.tail = null;
+        } else {
+            this.head = this.head.nextNode;
+            deletedHead.nextNode = null;
+        }
+        this.size--;
+        return deletedHead;
+    }
+
+    /**
+     * <pre>
+     * Deletes the last {@code Node} in the linked list
+     * 
+     * Runtime: O(1) : because only rearranging a few pointers is required
+     * </pre>
+     * 
+     * @return The last {@code Node} in the list of type {@code CircularSinglyImplementation.Node}
+     */
+    public Node deleteLastNode() {
+        if (isEmptyList())
+            return null;
+
+        Node deletedTailNode = this.tail;
+
+        if (this.size == 1) {
+            this.tail = this.head = null;
+        } else {
+            this.tail.prevNode.nextNode = this.tail.nextNode;
+            deletedTailNode.nextNode = null;
+        }
+        this.size--;
+        return deletedTailNode;
+    }
+
+   /**
+     * <pre>
+     * Deletes the {@code Node} located at the given index if it exist
+     * 
+     * Runtime: O(N) : because it needs to iterate through the list 
+     * </pre>
+     * 
+     * @param index the location of a {@code Node} in the linked list
+     * 
+     * @return The {@code Node} located at given index if it exitst else returns null. 
+     * The node will be of type {@code CircularSinglyImplementation.Node}
+     */
+    public Node deleteNodeAtIndex(int index) {
+        if (isOutOfBoundsIndex(index) || isEmptyList())
+            return null;
+        else if (index == 0) 
+            return deleteFirstNode();
+        else if (index == this.size - 1) 
+            return deleteLastNode();
+        
+        Node deletedNode = getNodeAtIndex(index);
+        deletedNode.prevNode.nextNode = deletedNode.nextNode;
+        deletedNode.nextNode.prevNode = deletedNode.prevNode;
+        
+
+        this.size--;
+        return deletedNode;
+    }
+
+    /**
+     * <pre>
+     * Returns the head of the list, or null if the list is empty
+     * 
+     * Runtime: O(1) : because it just returns a pointer that's readily available
+     * </pre>
+     * 
+     * @return The first {@code Node} in the list if it exits, else returns null. 
+     * The node will be of type {@code CircularSinglyImplementation.Node}
+     */
+    public Node getFirstNode() {
+        return this.head;
+    }
+
+   /**
+     * <pre>
+     * Returns the last node of the list, or null if the list is empty
+     * 
+     * Runtime: O(1) : because it just returns a pointer that's readily available
+     * </pre>
+     * 
+     * @return The last {@code Node} in the list if it exits, else returns null. 
+     * The node will be of type {@code CircularSinglyImplementation.Node}
+     */
+    public Node getLastNode() {
+        return this.tail;
+    }
+
+    /**
+     * <pre>
+     * Returns the {@code Node} at the given index if it exist, else returns null
+     * 
+     * Runtime: O(N) : because it needs to iterate the list
+     * </pre>
+     * 
+     * @param index the location of a {@code Node} in the list
+     * 
+     * @return The {@code Node} located at the given index
      */
     public Node getNodeAtIndex(int index) {
         Node currHead = (index <= (this.size / 2)) ? this.head : this.tail;
@@ -69,7 +223,7 @@ public class DoublyImplementation {
         
         // If the input index is is at the lower half of the list, searches the list by starting at the head and 
         // moves forward. If the Input index is at the upper half of the list, searches the list by starting at
-        // the tail and moving backwards. This helps speed up the search given a Runtime of 1/2 O(N) = O(N)
+        // the tail and moving backwards. This helps speed up the search by giving a Runtime of 1/2 O(N) = O(N)
 
         if (currHead == this.head) 
             for (int i = 1; i <= index; i++)
@@ -82,48 +236,16 @@ public class DoublyImplementation {
     }
 
     /**
-     * <pre>
-     * Deletes the node located at the given index if it exist
-     * 
-     * Runtime: O(N)
-     * </pre>
-     * @param index the location of a node in the linked list
-     * 
-     * @return A boolean stating whether or not a node was deleted
-     */
-    public boolean deleteNodeAtIndex(int index) {
-        if (isOutOfBoundsIndex(index) || isEmptyList()){
-            return false;
-        }
-        else if (index == 0 && this.size == 1) {
-            this.tail = this.head = this.head.nextNode;
-        }
-        else if (index == 0) {
-            this.head = this.head.nextNode;
-        }
-        else if (index == this.size - 1) {
-            this.tail = this.tail.prevNode;
-            this.tail.nextNode = null;
-        }
-        else {
-            Node deletedNode = getNodeAtIndex(index);
-            deletedNode.prevNode.nextNode = deletedNode.nextNode;
-            deletedNode.nextNode.prevNode = deletedNode.prevNode;
-        }
-
-        this.size--;
-        return true;
-    }
-
-    /**
      * <pre> 
-     * Searches the linked list to see if it contains the given value
+     * Searches the list to see if it contains a {@code Node} with the given value
      * 
-     * Runtime: O(N)
+     * Runtime: O(N) : because it needs to iterate the list
      * </pre>
-     * @param value to search the linked list for
      * 
-     * @return Whether or not the value is found in the linked list
+     * @param value to search the list for
+     * 
+     * @return {@code true} if the list contains a {@code Node} with the given value,
+     * else returns {@code false}
      */
     public boolean search(int value) {
         if (isEmptyList())
@@ -132,7 +254,7 @@ public class DoublyImplementation {
         Node currHead = this.head;
         Node currTail = this.tail;
 
-        // Searches the list from both sides simultaneously, to speed up the search
+        // Searches the list from both sides simultaneously, helps speed up the search by giving a Runtime of 1/2 O(N) = O(N)
         for (int i = 0; i <= this.size / 2; i++) {
             if (currHead.data == value || currTail.data == value)
                 return true;
@@ -143,12 +265,17 @@ public class DoublyImplementation {
         return false;
     }
 
+    // Utility Methods
+    // =======================
+
     /**
      * <pre>
-     * Returns the current size of the Linked List
+     * Returns the current size of the List
      * 
-     * Runtime: O(1)
+     * Runtime: O(1) : because it just returns the value of a private variable
      * </pre>
+     * @
+     * @return the number of {@code Nodes} currently in the list
      */
     public int getSize() {
         return this.size;
@@ -156,29 +283,25 @@ public class DoublyImplementation {
 
     /**
      * <pre>
-     * Returns the head of the Linked List, or null if the list is empty
+     * Returns the current size of the Linked List
      * 
-     * Runtime: O(1)
+     * Runtime: O(1) : because it just does a simple boolean comparison
      * </pre>
+     * 
+     * @return {@code true} if the list contains no {@code Nodes},
+     * else returns {@code false}
      */
-    public Node getHead() {
-        return this.head;
+    public boolean isEmptyList() {
+        return this.head == null && this.tail == null;
     }
 
     /**
      * <pre>
-     * Returns the tail of the Linked List, or null if the list is empty
+     * prints the entire list to the console
      * 
-     * Runtime: O(1)
+     * Runtime: O(N) : because it needs to iterate the list
      * </pre>
      */
-    public Node getTail() {
-        return this.tail;
-    }
-
-    // Utility Methods
-    // =======================
-
     public void printLinkedList() {
         if (isEmptyList()) {
             System.out.println("EMPTY LIST");
@@ -202,14 +325,21 @@ public class DoublyImplementation {
         return String.format("%d <-> ", currHead.data);
     }
 
-    private boolean isEmptyList() {
-        return this.head == null && this.tail == null;
-    }
-
     private boolean isOutOfBoundsIndex(int index) {
         return (index >= getSize() || index < 0);
     }
 
+    // handles the initialization & configurations of adding the first node into the list
+    private boolean initFirtstNodeInList(int data) {
+        this.head = this.tail = new Node(data);
+        this.size = 1;
+        return true;
+    }
+
+    /**
+     * A standard {@code Doubly Linked List Node}, that holds an integer value and points to 
+     * next & previous {@code Nodes} in the list
+     */
     class Node {
         int data;
         Node nextNode = null;

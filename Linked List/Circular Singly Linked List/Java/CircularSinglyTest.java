@@ -1,8 +1,8 @@
 
 public class CircularSinglyTest {
     public static void main(String[] args) {
-        initListWithoutParams();
-        initListWithParams();
+        testInitListWithoutParams();
+        testInitListWithParams();
         testInsertFirstWithEmptyList();
         testInsertFirstOnListWithSingleNode();
         testInsertFirstOnListWithhMultipleNodes();
@@ -40,7 +40,7 @@ public class CircularSinglyTest {
         testGetSize();
     }
 
-     public static void initListWithoutParams() {
+     public static void testInitListWithoutParams() {
         String funcName = "initListWithoutParams";
         CircularSinglyImplementation  list = new CircularSinglyImplementation();
 
@@ -50,7 +50,7 @@ public class CircularSinglyTest {
             passTest(funcName);
     }
 
-     public static void initListWithParams() {
+     public static void testInitListWithParams() {
         String funcName = "initListWithParams";
         CircularSinglyImplementation  list = new CircularSinglyImplementation(4);
         CircularSinglyImplementation.Node head =  list.getFirstNode();
@@ -557,12 +557,12 @@ public class CircularSinglyTest {
             passTest(funcName);
     }
 
-     public static void failTest(String funcName) {
+     private static void failTest(String funcName) {
         String red = "\u001B[31m";
         System.out.printf("\n%s* %s : FAIL\n", red, funcName);
     }
 
-     public static void passTest(String funcName) {
+     private static void passTest(String funcName) {
         String green = "\u001B[32m";
         System.out.printf("\n%s* %s : PASS\n", green, funcName);
     }

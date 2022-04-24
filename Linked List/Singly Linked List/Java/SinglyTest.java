@@ -10,7 +10,7 @@ public class SinglyTest {
         testSearch();
     }
 
-    private static void testInsertFirst() {
+    public static void testInsertFirst() {
         String funcName = "testInsertFirst";
         SinglyImplementation singly = new SinglyImplementation();
         
@@ -23,7 +23,7 @@ public class SinglyTest {
             passTest(funcName);
     }
 
-    private static void testInsertLast() {
+    public static void testInsertLast() {
         String funcName = "testInsertLast";
         SinglyImplementation singly = new SinglyImplementation();
         
@@ -42,7 +42,7 @@ public class SinglyTest {
             passTest(funcName);
     }
     
-    private static void testGetValidNode() {
+    public static void testGetValidNode() {
         String funcName = "testGetValidNode";
         SinglyImplementation singly = new SinglyImplementation();
         
@@ -56,7 +56,7 @@ public class SinglyTest {
             passTest(funcName);
     }
     
-    private static void testGetInvalidNode() {
+    public static void testGetInvalidNode() {
         String funcName = "testGetInvalidNode";
         SinglyImplementation singly = new SinglyImplementation();
         
@@ -77,7 +77,7 @@ public class SinglyTest {
 
 
 
-    private static void testDeleteValidNodeOnMultiNodeList() {
+    public static void testDeleteValidNodeOnMultiNodeList() {
         String funcName = "testDeleteValidNodeOnMultiNodeList";
         SinglyImplementation singly = new SinglyImplementation();
         
@@ -106,7 +106,7 @@ public class SinglyTest {
             passTest(funcName);
     }
 
-    private static void testDeleteValidNodeOnSingleNodeList() {
+    public static void testDeleteValidNodeOnSingleNodeList() {
         String funcName = "testDeleteValidNodeOnSingleNodeList";
         SinglyImplementation singly = new SinglyImplementation();
         
@@ -119,7 +119,7 @@ public class SinglyTest {
             passTest(funcName);
     }
 
-    private static void testDeleteInvalidNode() {
+    public static void testDeleteInvalidNode() {
         String funcName = "testDeleteInvalidNode";
         SinglyImplementation singly = new SinglyImplementation();
 
@@ -136,7 +136,7 @@ public class SinglyTest {
             passTest(funcName);
     }
 
-    private static void testSearch() {
+    public static void testSearch() {
         String funcName = "testSearch";
         SinglyImplementation singly = new SinglyImplementation();
 
@@ -153,10 +153,12 @@ public class SinglyTest {
     }
 
     private static void failTest(String funcName) {
-        System.out.printf("\n* %s : FAIL\n", funcName);
+        String red = "\u001B[31m";
+        System.out.printf("\n%s* %s : FAIL\n", red, funcName);
     }
 
     private static void passTest(String funcName) {
-        System.out.printf("\n* %s : PASS\n", funcName);
+        String green = "\u001B[32m";
+        System.out.printf("\n%s* %s : PASS\n", green, funcName);
     }
 }

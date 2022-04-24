@@ -78,12 +78,11 @@ public class CircularSinglyImplementation {
         if (isEmptyList() && index == 0) {
             return initFirtstNodeInList(data);
         } 
+        else if (index == 0) {
+            return insertFirst(data);
+        }
         else if (isOutOfBoundsIndex(index)) {
             return false;
-        }
-        else if (index == 0) {
-            insertFirst(data);
-            return true;
         }
         
         Node prevHead = this.last;
@@ -328,6 +327,7 @@ public class CircularSinglyImplementation {
         return (index >= this.size || index < 0);
     }
 
+    // handles the initialization & configurations of adding the first node into the list
     private boolean initFirtstNodeInList(int data) {
         this.last = new Node(data);
         this.last.nextNode = this.last;
@@ -336,7 +336,7 @@ public class CircularSinglyImplementation {
     }
 
     /**
-     * A standard {@code Singly Linked List Node}, that holds the value of an int and points to next {@code Node} in the list
+     * A standard {@code Singly Linked List Node}, that holds an integer value and points to next {@code Node} in the list
      */
     class Node {
         int data;
