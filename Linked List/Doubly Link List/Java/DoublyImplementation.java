@@ -8,12 +8,20 @@ public class DoublyImplementation {
     private Node tail;
     private int size;
 
+    /**
+     * Initializes an empty list
+     */
     DoublyImplementation() {
         this.head = null;
         this.tail = null;
         this.size = 0;
     }
 
+    /**
+     * Initializes a list that with 1 {@code Node} holding the value that was given
+     * 
+     * @param data the value the {@code Node} will hold
+     */
     DoublyImplementation(int data) {
         initFirtstNodeInList(data);
     }

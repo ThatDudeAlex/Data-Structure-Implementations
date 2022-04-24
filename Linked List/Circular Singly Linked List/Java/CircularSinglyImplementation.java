@@ -8,11 +8,19 @@ public class CircularSinglyImplementation {
     private Node last;
     private int size;
 
+    /**
+     * Initializes an empty list
+     */
     CircularSinglyImplementation() {
         this.last = null;
         this.size = 0;
     }
 
+    /**
+     * Initializes a list that with 1 {@code Node} holding the value that was given
+     * 
+     * @param data the value the {@code Node} will hold
+     */
     CircularSinglyImplementation(int data) {
         initFirtstNodeInList(data);
     }
@@ -75,15 +83,12 @@ public class CircularSinglyImplementation {
      *  returns {@code false}
      */
     public boolean insertAtIndex(int index, int data) {
-        if (isEmptyList() && index == 0) {
+        if (isEmptyList() && index == 0) 
             return initFirtstNodeInList(data);
-        } 
-        else if (index == 0) {
+        else if (index == 0) 
             return insertFirst(data);
-        }
-        else if (isOutOfBoundsIndex(index)) {
+        else if (isOutOfBoundsIndex(index))
             return false;
-        }
         
         Node prevHead = this.last;
         Node currHead = this.last.nextNode;
