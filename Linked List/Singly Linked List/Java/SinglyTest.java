@@ -21,133 +21,582 @@ public class SinglyTest {
         }
     }
 
-    public static void testInsertFirst(String funcName, int testNumber) {
-        SinglyImplementation singly = new SinglyImplementation();
+/*
+     * ======================
+     * List Init test
+     * ======================
+     */
 
-        singly.insertFirst(2);
-        singly.insertFirst(9);
+    public static void testInitListWithoutParams(String funcName, int testNumber) {
+        SinglyImplementation list = new SinglyImplementation();
 
-        if (singly.getSize() != 2 || singly.getHead().data != 9)
+        if (list.getSize() != 0 || list.getFirstNode() != null)
             failTest(funcName, testNumber);
         else
             passTest(funcName, testNumber);
     }
 
-    public static void testInsertLast(String funcName, int testNumber) {
-        SinglyImplementation singly = new SinglyImplementation();
+    public static void testInitListWithParams(String funcName, int testNumber) {
+        SinglyImplementation list = new SinglyImplementation(4);
+        SinglyImplementation.Node head = list.getFirstNode();
+        SinglyImplementation.Node tail = list.getLastNode();
 
-        singly.insertLast(2);
-
-        if (singly.getTail().data != 2) {
-            failTest(funcName, testNumber);
-            return;
-        }
-
-        singly.insertLast(9);
-
-        if (singly.getHead().data != 2 || singly.getTail().data != 9)
+        if (list.getSize() != 1 || head == null || tail == null)
             failTest(funcName, testNumber);
         else
             passTest(funcName, testNumber);
     }
 
-    public static void testGetValidNode(String funcName, int testNumber) {
-        SinglyImplementation singly = new SinglyImplementation();
+    /*
+     * ======================
+     * insertFirst() test
+     * ======================
+     */
 
-        singly.insertFirst(2);
-        singly.insertFirst(9);
-        singly.insertFirst(3);
+    public static void testInsertFirstWithEmptyList(String funcName, int testNumber) {
+        SinglyImplementation list = new SinglyImplementation();
 
-        if (singly.getHead().data != 3 || singly.getNodeAtIndex(1).data != 9 || singly.getNodeAtIndex(2).data != 2)
+        list.insertFirst(2);
+
+        SinglyImplementation.Node head = list.getFirstNode();
+        SinglyImplementation.Node tail = list.getLastNode();
+
+        if (list.getSize() != 1 || head.data != 2 || head == null || tail == null || head != tail)
             failTest(funcName, testNumber);
         else
             passTest(funcName, testNumber);
     }
 
-    public static void testGetInvalidNode(String funcName, int testNumber) {
-        SinglyImplementation singly = new SinglyImplementation();
+    public static void testInsertFirstOnListWithSingleNode(String funcName, int testNumber) {
+        SinglyImplementation list = new SinglyImplementation(2);
 
-        if (singly.getHead() != null || singly.getNodeAtIndex(1) != null) {
-            failTest(funcName, testNumber);
-            return;
-        }
+        list.insertFirst(9);
+        
+        SinglyImplementation.Node head = list.getFirstNode();
+        SinglyImplementation.Node tail = list.getLastNode();
 
-        singly.insertFirst(2);
-        singly.insertFirst(9);
-        singly.insertFirst(3);
-
-        if (singly.getNodeAtIndex(3) != null || singly.getNodeAtIndex(-1) != null)
+        if (list.getSize() != 2 || head.data != 9 || tail.data != 2 || head.nextNode != tail)
             failTest(funcName, testNumber);
         else
             passTest(funcName, testNumber);
     }
 
-    public static void testDeleteValidNodeOnMultiNodeList(String funcName, int testNumber) {
-        SinglyImplementation singly = new SinglyImplementation();
+    public static void testInsertFirstOnListWithhMultipleNodes(String funcName, int testNumber) {
+        SinglyImplementation list = new SinglyImplementation(2);
 
-        singly.insertFirst(2);
-        singly.insertFirst(9);
-        singly.insertFirst(3);
+        list.insertFirst(9); list.insertFirst(7);
 
-        singly.deleteNodeAtIndex(0);
-        singly.deleteNodeAtIndex(1);
+        SinglyImplementation.Node head = list.getFirstNode();
+        SinglyImplementation.Node tail = list.getLastNode();
 
-        singly.insertFirst(3);
-        singly.insertFirst(10);
-        singly.insertFirst(2);
-        singly.insertFirst(7);
-        singly.insertFirst(1);
-
-        singly.deleteNodeAtIndex(3);
-        singly.deleteNodeAtIndex(1);
-        singly.deleteNodeAtIndex(3);
-
-        if (singly.getSize() != 3)
-            failTest(funcName, testNumber);
-        else if (singly.getHead().data != 1 || singly.getNodeAtIndex(1).data != 2 || singly.getTail().data != 3)
+        if (list.getSize() != 3 || head.data != 7 || head.nextNode.data != 9 || tail.data != 2)
             failTest(funcName, testNumber);
         else
             passTest(funcName, testNumber);
     }
 
-    public static void testDeleteValidNodeOnSingleNodeList(String funcName, int testNumber) {
-        SinglyImplementation singly = new SinglyImplementation();
+    /*
+     * ======================
+     * insertLast() test
+     * ======================
+     */
 
-        singly.insertFirst(2);
-        singly.deleteNodeAtIndex(0);
+    public static void testInsertLasttWithEmptyList(String funcName, int testNumber) {
+        SinglyImplementation list = new SinglyImplementation();
 
-        if (singly.getSize() != 0 || singly.getHead() != null || singly.getTail() != null)
+        list.insertLast(2);
+
+        SinglyImplementation.Node head = list.getFirstNode();
+        SinglyImplementation.Node tail = list.getLastNode();
+        
+
+        if (list.getSize() != 1 || head.data != 2 || head != tail || head == null || tail == null)
             failTest(funcName, testNumber);
         else
             passTest(funcName, testNumber);
     }
 
-    public static void testDeleteInvalidNode(String funcName, int testNumber) {
-        SinglyImplementation singly = new SinglyImplementation();
+    public static void testInsertLastOnListWithSingleNode(String funcName, int testNumber) {
+        SinglyImplementation list = new SinglyImplementation(2);
 
-        if (singly.deleteNodeAtIndex(0)) {
-            failTest(funcName, testNumber);
-            return;
-        }
+        list.insertLast(9);
 
-        singly.insertFirst(10);
+        SinglyImplementation.Node head = list.getFirstNode();
+        SinglyImplementation.Node tail = list.getLastNode();
 
-        if (singly.deleteNodeAtIndex(1) || singly.deleteNodeAtIndex(-1))
+        if (list.getSize() != 2 || head.data != 2 || tail.data != 9 || head.nextNode != tail)
             failTest(funcName, testNumber);
         else
             passTest(funcName, testNumber);
     }
+
+    public static void testInsertLastOnListWithhMultipleNodes(String funcName, int testNumber) {
+        SinglyImplementation list = new SinglyImplementation(2);
+
+        list.insertLast(9); list.insertLast(7);
+
+        SinglyImplementation.Node head = list.getFirstNode();
+        SinglyImplementation.Node tail = list.getLastNode();
+        SinglyImplementation.Node nodeAtIdx1 = list.getNodeAtIndex(1);
+
+        if (list.getSize() != 3 || head.data != 2 || nodeAtIdx1.data != 9 || tail.data != 7)
+            failTest(funcName, testNumber);
+        else if (head.nextNode != nodeAtIdx1 || nodeAtIdx1.nextNode != tail)
+            failTest(funcName, testNumber);
+        else
+            passTest(funcName, testNumber);
+    }
+
+    /*
+     * ======================
+     * insertAtIndex() test
+     * ======================
+     */
+
+    public static void testInsertAtIndexWithEmptyListAtIndexZero(String funcName, int testNumber) {
+        SinglyImplementation list = new SinglyImplementation();
+
+        if (!list.insertAtIndex(0, 2) || list.getSize() != 1 || list.getFirstNode().data != 2)
+            failTest(funcName, testNumber);
+        else
+            passTest(funcName, testNumber);
+    }
+
+    public static void testInsertAtIndexWithNonEmptyListAtIndexZero(String funcName, int testNumber) {
+        SinglyImplementation list = new SinglyImplementation(2);
+
+        list.insertLast(9);
+        list.insertLast(7);
+
+        if (!list.insertAtIndex(0, 5) || list.getSize() != 4 || list.getFirstNode().data != 5)
+            failTest(funcName, testNumber);
+        else if (list.getFirstNode().nextNode.data != 2)
+            failTest(funcName, testNumber);
+        else
+            passTest(funcName, testNumber);
+    }
+
+    public static void testInsertAtIndexWithInvalidIndexes(String funcName, int testNumber) {
+        SinglyImplementation list = new SinglyImplementation();
+
+        if (list.insertAtIndex(1, 2) || list.insertAtIndex(-1, 2))
+            failTest(funcName, testNumber);
+        else if (list.getSize() != 0 || list.getFirstNode() != null)
+            failTest(funcName, testNumber);
+        else
+            passTest(funcName, testNumber);
+    }
+
+    public static void testInsertAtIndexWithNonEmptyList(String funcName, int testNumber) {
+        SinglyImplementation list = new SinglyImplementation(2);
+
+        list.insertLast(9);
+        list.insertLast(7);
+
+        if (!list.insertAtIndex(1, 5) || !list.insertAtIndex(3, 8) || list.getSize() != 5)
+            failTest(funcName, testNumber);
+        else if (list.getFirstNode().nextNode.data != 5)
+            failTest(funcName, testNumber);
+        else if (list.getFirstNode().nextNode.nextNode.nextNode.data != 8)
+            failTest(funcName, testNumber);
+        else
+            passTest(funcName, testNumber);
+    }
+
+    /*
+     * ======================
+     * deleteFirstNode() test
+     * ======================
+     */
+
+    public static void testDeleteFirstOnEmptyList(String funcName, int testNumber) {
+        SinglyImplementation list = new SinglyImplementation();
+
+        SinglyImplementation.Node deletedNode = list.deleteFirstNode();
+
+        if (list.getSize() != 0 || deletedNode != null)
+            failTest(funcName, testNumber);
+        else
+            passTest(funcName, testNumber);
+    }
+
+    public static void testDeleteFirstOnListWithSingleNode(String funcName, int testNumber) {
+        SinglyImplementation list = new SinglyImplementation(2);
+        SinglyImplementation.Node headToRemove = list.getFirstNode();
+        SinglyImplementation.Node deletedNode = list.deleteFirstNode();
+
+        if (list.getSize() != 0 || list.getFirstNode() != null || deletedNode != headToRemove)
+            failTest(funcName, testNumber);
+        else
+            passTest(funcName, testNumber);
+    }
+
+    public static void testDeleteFirstOnListWithMultipleNodes(String funcName, int testNumber) {
+        SinglyImplementation list = new SinglyImplementation(2);
+
+        list.insertFirst(3);
+        list.insertFirst(4);
+        list.insertFirst(5);
+
+        SinglyImplementation.Node headToRemove = list.getFirstNode();
+        SinglyImplementation.Node deletedNode = list.deleteFirstNode();
+        SinglyImplementation.Node newHead = list.getFirstNode();
+        SinglyImplementation.Node tail = list.getLastNode();
+
+        if (list.getSize() != 3 || deletedNode != headToRemove)
+            failTest(funcName, testNumber);
+        else if (newHead.data != 4 || newHead.nextNode.data != 3 || tail.data != 2)
+            failTest(funcName, testNumber);
+        else
+            passTest(funcName, testNumber);
+    }
+
+    /*
+     * ======================
+     * deleteLastNode() test
+     * ======================
+     */
+
+    public static void testDeleteLastOnEmptyList(String funcName, int testNumber) {
+        SinglyImplementation list = new SinglyImplementation();
+
+        SinglyImplementation.Node deletedNode = list.deleteLastNode();
+
+        if (list.getSize() != 0 || deletedNode != null)
+            failTest(funcName, testNumber);
+        else
+            passTest(funcName, testNumber);
+    }
+
+    public static void testDeleteLastOnListWithSingleNode(String funcName, int testNumber) {
+        SinglyImplementation list = new SinglyImplementation(2);
+        SinglyImplementation.Node lastNodeToRemove = list.getLastNode();
+        SinglyImplementation.Node deletedNode = list.deleteLastNode();
+
+        if (list.getSize() != 0 || list.getFirstNode() != null || deletedNode != lastNodeToRemove)
+            failTest(funcName, testNumber);
+        else
+            passTest(funcName, testNumber);
+    }
+
+    public static void testDeleteLastOnListWithMultipleNodes(String funcName, int testNumber) {
+        SinglyImplementation list = new SinglyImplementation(2);
+
+        list.insertFirst(3);
+        list.insertFirst(4);
+        list.insertFirst(5);
+
+        SinglyImplementation.Node lastNodeToRemove = list.getLastNode();
+        SinglyImplementation.Node deletedNode = list.deleteLastNode();
+        SinglyImplementation.Node head = list.getFirstNode();
+        SinglyImplementation.Node newTail = list.getLastNode();
+
+        if (list.getSize() != 3 || deletedNode.data != 2 || deletedNode != lastNodeToRemove)
+            failTest(funcName, testNumber);
+        else if (head.data != 5 || head.nextNode.data != 4 || newTail.data != 3)
+            failTest(funcName, testNumber);
+        else
+            passTest(funcName, testNumber);
+    }
+
+    /*
+     * ======================
+     * deleteNodeAtIndex() test
+     * ======================
+     */
+
+    public static void testDeleteNodeAtIndexWithInvalidIndexes(String funcName, int testNumber) {
+        SinglyImplementation list = new SinglyImplementation();
+        SinglyImplementation.Node nodeDeleted1 = list.deleteNodeAtIndex(0);
+
+        list.insertFirst(2);
+        list.insertFirst(3);
+
+        SinglyImplementation.Node nodeDeleted2 = list.deleteNodeAtIndex(3);
+        SinglyImplementation.Node nodeDeleted3 = list.deleteNodeAtIndex(-1);
+
+        if (list.getSize() != 2 || nodeDeleted1 != null || nodeDeleted2 != null || nodeDeleted3 != null)
+            failTest(funcName, testNumber);
+        else
+            passTest(funcName, testNumber);
+    }
+
+    public static void testDeleteNodeAtIndexWithIndexOfHead(String funcName, int testNumber) {
+        SinglyImplementation list = new SinglyImplementation(2);
+        SinglyImplementation.Node head = list.getFirstNode();
+        SinglyImplementation.Node nodeDeleted = list.deleteNodeAtIndex(0);
+
+        if (list.getSize() != 0 || nodeDeleted != head)
+            failTest(funcName, testNumber);
+        else
+            passTest(funcName, testNumber);
+    }
+
+    public static void testDeleteNodeAtIndexWithIndexOfLastNode(String funcName, int testNumber) {
+        SinglyImplementation list = new SinglyImplementation(2);
+
+        list.insertLast(3);
+        list.insertLast(4);
+        list.insertLast(5);
+
+        SinglyImplementation.Node lastNode = list.getLastNode();
+        SinglyImplementation.Node nodeDeleted = list.deleteNodeAtIndex(3);
+
+        if (list.getSize() != 3 || nodeDeleted != lastNode)
+            failTest(funcName, testNumber);
+        else
+            passTest(funcName, testNumber);
+    }
+
+    public static void testDeleteNodeAtIndex(String funcName, int testNumber) {
+        SinglyImplementation list = new SinglyImplementation(2);
+
+        list.insertLast(3);
+        list.insertLast(4);
+        list.insertLast(5);
+
+        SinglyImplementation.Node nodeDeleted1 = list.deleteNodeAtIndex(1);
+        SinglyImplementation.Node nodeDeleted2 = list.deleteNodeAtIndex(1);
+
+        if (list.getSize() != 2 || list.getFirstNode().data != 2 || list.getLastNode().data != 5)
+            failTest(funcName, testNumber);
+        else if (nodeDeleted1.data != 3 || nodeDeleted2.data != 4)
+            failTest(funcName, testNumber);
+        else
+            passTest(funcName, testNumber);
+    }
+
+    /*
+     * ======================
+     * getFirstNode() test
+     * ======================
+     */
+
+    public static void testGetFirstNodeOnEmptyList(String funcName, int testNumber) {
+        SinglyImplementation list = new SinglyImplementation();
+        SinglyImplementation.Node nodeRetrieved = list.getFirstNode();
+
+        if (list.getSize() != 0 || nodeRetrieved != null)
+            failTest(funcName, testNumber);
+        else
+            passTest(funcName, testNumber);
+    }
+
+    public static void testGetFirstNodeOnListWithSingleNode(String funcName, int testNumber) {
+        SinglyImplementation list = new SinglyImplementation(2);
+        SinglyImplementation.Node nodeRetrieved = list.getFirstNode();
+
+        if (list.getSize() != 1 || nodeRetrieved.data != 2)
+            failTest(funcName, testNumber);
+        else
+            passTest(funcName, testNumber);
+    }
+
+    public static void testGetFirstNodeOnListWithMultipleNodes(String funcName, int testNumber) {
+        SinglyImplementation list = new SinglyImplementation(2);
+        SinglyImplementation.Node nodeRetrieved = list.getFirstNode();
+
+        list.insertLast(3);
+        list.insertLast(4);
+        list.insertLast(5);
+
+        if (list.getSize() != 4 || nodeRetrieved.data != 2)
+            failTest(funcName, testNumber);
+        else
+            passTest(funcName, testNumber);
+    }
+
+    /*
+     * ======================
+     * getLastNode() test
+     * ======================
+     */
+
+    public static void testGetLastNodeOnEmptyList(String funcName, int testNumber) {
+        SinglyImplementation list = new SinglyImplementation();
+        SinglyImplementation.Node nodeRetrieved = list.getLastNode();
+
+        if (list.getSize() != 0 || nodeRetrieved != null)
+            failTest(funcName, testNumber);
+        else
+            passTest(funcName, testNumber);
+    }
+
+    public static void testGetLastNodeOnListWithSingleNode(String funcName, int testNumber) {
+        SinglyImplementation list = new SinglyImplementation(2);
+        SinglyImplementation.Node nodeRetrieved = list.getLastNode();
+
+        if (list.getSize() != 1 || nodeRetrieved.data != 2)
+            failTest(funcName, testNumber);
+        else
+            passTest(funcName, testNumber);
+    }
+
+    public static void testGetLastNodeOnListWithMultipleNodes(String funcName, int testNumber) {
+        SinglyImplementation list = new SinglyImplementation(2);
+
+        list.insertLast(3);
+        list.insertLast(4);
+        list.insertLast(5);
+        SinglyImplementation.Node nodeRetrieved = list.getLastNode();
+
+        if (list.getSize() != 4 || nodeRetrieved.data != 5)
+            failTest(funcName, testNumber);
+        else
+            passTest(funcName, testNumber);
+    }
+
+    /*
+     * ======================
+     * getNodeAtIndex() test
+     * ======================
+     */
+
+    public static void testGetNodeAtIndexWithInvalidIndexes(String funcName, int testNumber) {
+        SinglyImplementation list = new SinglyImplementation();
+        SinglyImplementation.Node nodeRetrieved1 = list.getNodeAtIndex(0);
+
+        list.insertFirst(2);
+        list.insertFirst(3);
+
+        SinglyImplementation.Node nodeRetrieved2 = list.getNodeAtIndex(3);
+        SinglyImplementation.Node nodeRetrieved3 = list.getNodeAtIndex(-1);
+
+        if (list.getSize() != 2 || nodeRetrieved1 != null || nodeRetrieved2 != null || nodeRetrieved3 != null)
+            failTest(funcName, testNumber);
+        else
+            passTest(funcName, testNumber);
+    }
+
+    public static void testGetNodeAtIndexWithIndexOfHead(String funcName, int testNumber) {
+        SinglyImplementation list = new SinglyImplementation(2);
+        SinglyImplementation.Node nodeRetrieved = list.getNodeAtIndex(0);
+        SinglyImplementation.Node head = list.getFirstNode();
+
+        if (list.getSize() != 1 || nodeRetrieved != head)
+            failTest(funcName, testNumber);
+        else
+            passTest(funcName, testNumber);
+    }
+
+    public static void testGetNodeAtIndexWithIndexOfLastNode(String funcName, int testNumber) {
+        SinglyImplementation list = new SinglyImplementation(2);
+
+        list.insertLast(3);
+        list.insertLast(4);
+        list.insertLast(5);
+
+        SinglyImplementation.Node nodeRetrieved = list.getNodeAtIndex(3);
+        SinglyImplementation.Node tail = list.getLastNode();
+
+        if (list.getSize() != 4 || nodeRetrieved != tail)
+            failTest(funcName, testNumber);
+        else
+            passTest(funcName, testNumber);
+    }
+
+    public static void testGetNodeAtIndex(String funcName, int testNumber) {
+        SinglyImplementation list = new SinglyImplementation(2);
+
+        list.insertLast(3);
+        list.insertLast(4);
+        list.insertLast(5);
+
+        SinglyImplementation.Node nodeRetrieved1 = list.getNodeAtIndex(1);
+        SinglyImplementation.Node nodeRetrieved2 = list.getNodeAtIndex(2);
+
+        if (list.getSize() != 4 || nodeRetrieved1.data != 3 || nodeRetrieved2.data != 4)
+            failTest(funcName, testNumber);
+        else
+            passTest(funcName, testNumber);
+    }
+
+    /*
+     * ======================
+     * isEmptyList() test
+     * ======================
+     */
+
+    public static void testIsEmptyListWithEmptyList(String funcName, int testNumber) {
+        SinglyImplementation list = new SinglyImplementation();
+
+        if (list.isEmptyList())
+            passTest(funcName, testNumber);
+        else
+            failTest(funcName, testNumber);
+    }
+
+    public static void testIsEmptyListOnSigleNodeList(String funcName, int testNumber) {
+        SinglyImplementation list = new SinglyImplementation(2);
+
+        if (list.isEmptyList())
+            failTest(funcName, testNumber);
+        else
+            passTest(funcName, testNumber);
+    }
+
+    public static void testIsEmptyListOnMultiNodeList(String funcName, int testNumber) {
+        SinglyImplementation list = new SinglyImplementation(2);
+
+        list.insertFirst(4);
+        list.insertFirst(40);
+        list.insertFirst(6);
+        list.insertFirst(33);
+
+        if (list.isEmptyList())
+            failTest(funcName, testNumber);
+        else
+            passTest(funcName, testNumber);
+    }
+
+    /*
+     * ======================
+     * search() test
+     * ======================
+     */
 
     public static void testSearch(String funcName, int testNumber) {
-        SinglyImplementation singly = new SinglyImplementation();
+        SinglyImplementation list = new SinglyImplementation(10);
 
-        singly.insertFirst(10);
-        singly.insertFirst(4);
-        singly.insertFirst(40);
-        singly.insertFirst(6);
-        singly.insertFirst(33);
+        list.insertFirst(4);
+        list.insertFirst(40);
+        list.insertFirst(6);
+        list.insertFirst(33);
 
-        if (singly.search(10) && singly.search(4) && singly.search(40))
+        if (list.search(10) && list.search(4) && list.search(40) && list.search(6) && list.search(33))
+            passTest(funcName, testNumber);
+        else
+            failTest(funcName, testNumber);
+    }
+
+    /*
+     * ======================
+     * testGetSize() test
+     * ======================
+     */
+
+    public static void testGetSize(String funcName, int testNumber) {
+        SinglyImplementation list = new SinglyImplementation();
+
+        if (list.getSize() != 0) {
+            failTest(funcName, testNumber);
+            return;
+        }
+
+        list.insertFirst(4);
+        list.insertFirst(40);
+        list.insertFirst(6);
+        list.insertFirst(33);
+
+        if (list.getSize() != 4) {
+            failTest(funcName, testNumber);
+            return;
+        }
+
+        list.deleteFirstNode();
+        list.deleteLastNode();
+
+        if (list.getSize() == 2)
             passTest(funcName, testNumber);
         else
             failTest(funcName, testNumber);

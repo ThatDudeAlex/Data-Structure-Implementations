@@ -56,6 +56,7 @@ public class CircularSinglyTest {
         CircularSinglyImplementation list = new CircularSinglyImplementation();
 
         list.insertFirst(2);
+        
         CircularSinglyImplementation.Node head = list.getFirstNode();
 
         if (list.getSize() != 1 || head == null)
@@ -83,8 +84,8 @@ public class CircularSinglyTest {
     public static void testInsertFirstOnListWithhMultipleNodes(String funcName, int testNumber) {
         CircularSinglyImplementation list = new CircularSinglyImplementation(2);
 
-        list.insertFirst(9);
-        list.insertFirst(7);
+        list.insertFirst(9); list.insertFirst(7);
+
         CircularSinglyImplementation.Node head = list.getFirstNode();
 
         if (list.getSize() != 3)
