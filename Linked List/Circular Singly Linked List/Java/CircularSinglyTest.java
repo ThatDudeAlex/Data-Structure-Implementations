@@ -6,6 +6,10 @@ public class CircularSinglyTest {
     public static void main(String[] args) {
         int testNumber = 1;
 
+        // Iterates through all the public methods in the class and invokes each one
+        // except main().
+        // This makes calling & adding additional testcases easier
+
         for (Method method : CircularSinglyTest.class.getDeclaredMethods()) {
             if (method.getName() != "main" && Modifier.isPublic(method.getModifiers())) {
                 try {
@@ -16,6 +20,12 @@ public class CircularSinglyTest {
             }
         }
     }
+
+    /*
+     * ======================
+     * List Init test
+     * ======================
+     */
 
     public static void testInitListWithoutParams(String funcName, int testNumber) {
         CircularSinglyImplementation list = new CircularSinglyImplementation();
@@ -35,6 +45,12 @@ public class CircularSinglyTest {
         else
             passTest(funcName, testNumber);
     }
+
+    /*
+     * ======================
+     * insertFirst() test
+     * ======================
+     */
 
     public static void testInsertFirstWithEmptyList(String funcName, int testNumber) {
         CircularSinglyImplementation list = new CircularSinglyImplementation();
@@ -81,6 +97,12 @@ public class CircularSinglyTest {
             passTest(funcName, testNumber);
     }
 
+    /*
+     * ======================
+     * insertLast() test
+     * ======================
+     */
+
     public static void testInsertLasttWithEmptyList(String funcName, int testNumber) {
         CircularSinglyImplementation list = new CircularSinglyImplementation();
 
@@ -125,6 +147,12 @@ public class CircularSinglyTest {
         else
             passTest(funcName, testNumber);
     }
+
+    /*
+     * ======================
+     * insertAtIndex() test
+     * ======================
+     */
 
     public static void testInsertAtIndexWithEmptyListAtIndexZero(String funcName, int testNumber) {
         CircularSinglyImplementation list = new CircularSinglyImplementation();
@@ -176,6 +204,12 @@ public class CircularSinglyTest {
             passTest(funcName, testNumber);
     }
 
+    /*
+     * ======================
+     * deleteFirstNode() test
+     * ======================
+     */
+
     public static void testDeleteFirstOnEmptyList(String funcName, int testNumber) {
         CircularSinglyImplementation list = new CircularSinglyImplementation();
 
@@ -219,6 +253,12 @@ public class CircularSinglyTest {
             passTest(funcName, testNumber);
     }
 
+    /*
+     * ======================
+     * deleteLastNode() test
+     * ======================
+     */
+
     public static void testDeleteLastOnEmptyList(String funcName, int testNumber) {
         CircularSinglyImplementation list = new CircularSinglyImplementation();
 
@@ -261,6 +301,12 @@ public class CircularSinglyTest {
         else
             passTest(funcName, testNumber);
     }
+
+    /*
+     * ======================
+     * deleteNodeAtIndex() test
+     * ======================
+     */
 
     public static void testDeleteNodeAtIndexWithInvalidIndexes(String funcName, int testNumber) {
         CircularSinglyImplementation list = new CircularSinglyImplementation();
@@ -323,6 +369,12 @@ public class CircularSinglyTest {
             passTest(funcName, testNumber);
     }
 
+    /*
+     * ======================
+     * getFirstNode() test
+     * ======================
+     */
+
     public static void testGetFirstNodeOnEmptyList(String funcName, int testNumber) {
         CircularSinglyImplementation list = new CircularSinglyImplementation();
         CircularSinglyImplementation.Node nodeRetrieved = list.getFirstNode();
@@ -357,6 +409,12 @@ public class CircularSinglyTest {
             passTest(funcName, testNumber);
     }
 
+    /*
+     * ======================
+     * getLastNode() test
+     * ======================
+     */
+
     public static void testGetLastNodeOnEmptyList(String funcName, int testNumber) {
         CircularSinglyImplementation list = new CircularSinglyImplementation();
         CircularSinglyImplementation.Node nodeRetrieved = list.getLastNode();
@@ -390,6 +448,12 @@ public class CircularSinglyTest {
         else
             passTest(funcName, testNumber);
     }
+
+    /*
+     * ======================
+     * getNodeAtIndex() test
+     * ======================
+     */
 
     public static void testGetNodeAtIndexWithInvalidIndexes(String funcName, int testNumber) {
         CircularSinglyImplementation list = new CircularSinglyImplementation();
@@ -450,19 +514,11 @@ public class CircularSinglyTest {
             passTest(funcName, testNumber);
     }
 
-    public static void testSearch(String funcName, int testNumber) {
-        CircularSinglyImplementation list = new CircularSinglyImplementation(10);
-
-        list.insertFirst(4);
-        list.insertFirst(40);
-        list.insertFirst(6);
-        list.insertFirst(33);
-
-        if (list.search(10) && list.search(4) && list.search(40) && list.search(6) && list.search(33))
-            passTest(funcName, testNumber);
-        else
-            failTest(funcName, testNumber);
-    }
+    /*
+     * ======================
+     * isEmptyList() test
+     * ======================
+     */
 
     public static void testIsEmptyListWithEmptyList(String funcName, int testNumber) {
         CircularSinglyImplementation list = new CircularSinglyImplementation();
@@ -495,6 +551,32 @@ public class CircularSinglyTest {
         else
             passTest(funcName, testNumber);
     }
+
+    /*
+     * ======================
+     * search() test
+     * ======================
+     */
+
+    public static void testSearch(String funcName, int testNumber) {
+        CircularSinglyImplementation list = new CircularSinglyImplementation(10);
+
+        list.insertFirst(4);
+        list.insertFirst(40);
+        list.insertFirst(6);
+        list.insertFirst(33);
+
+        if (list.search(10) && list.search(4) && list.search(40) && list.search(6) && list.search(33))
+            passTest(funcName, testNumber);
+        else
+            failTest(funcName, testNumber);
+    }
+
+    /*
+     * ======================
+     * testGetSize() test
+     * ======================
+     */
 
     public static void testGetSize(String funcName, int testNumber) {
         CircularSinglyImplementation list = new CircularSinglyImplementation();

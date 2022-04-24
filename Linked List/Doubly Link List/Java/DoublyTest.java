@@ -6,6 +6,9 @@ public class DoublyTest {
     public static void main(String[] args) {
         int testNumber = 1;
 
+        // Iterates through all the public methods in the class and invokes each one except main().
+        // This makes calling & adding additional testcases easier
+        
         for (Method method : DoublyTest.class.getDeclaredMethods()) {
             if (method.getName() != "main" && Modifier.isPublic(method.getModifiers())) {
                 try {
