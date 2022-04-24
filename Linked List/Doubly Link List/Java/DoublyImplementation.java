@@ -120,7 +120,7 @@ public class DoublyImplementation {
             this.head = this.tail = null;
         } else {
             this.head = this.head.nextNode;
-            deletedHead.nextNode = null;
+            this.head.prevNode = deletedHead.nextNode = null;
         }
         this.size--;
         return deletedHead;
@@ -145,7 +145,7 @@ public class DoublyImplementation {
             this.tail = this.head = null;
         } else {
             this.tail.prevNode.nextNode = this.tail.nextNode;
-            deletedTailNode.nextNode = null;
+            deletedTailNode.prevNode = null;
         }
         this.size--;
         return deletedTailNode;

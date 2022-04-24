@@ -225,7 +225,7 @@ public class CircularSinglyTest {
     }
 
      public static void testDeleteFirstOnListWithSingleNode() {
-        String funcName = "testDeleteFirstOnEmptyList";
+        String funcName = "testDeleteFirstOnListWithSingleNode";
         CircularSinglyImplementation  list = new CircularSinglyImplementation(2);
         CircularSinglyImplementation.Node headToRemove = list.getFirstNode();
         CircularSinglyImplementation.Node deletedNode = list.deleteFirstNode();
@@ -520,7 +520,19 @@ public class CircularSinglyTest {
             passTest(funcName);
     }
 
-     public static void testGetSize() {
+     public static void testIsEmptyListOnMultiNodeList() {
+        String funcName = "testIsEmptyListOnMultiNodeList";
+        CircularSinglyImplementation  list = new CircularSinglyImplementation(2);
+
+        list.insertFirst(4); list.insertFirst(40); list.insertFirst(6); list.insertFirst(33);
+
+        if (list.isEmptyList())
+            failTest(funcName);
+        else
+            passTest(funcName);
+    }
+
+    public static void testGetSize() {
         String funcName = "testGetSize";
         CircularSinglyImplementation  list = new CircularSinglyImplementation();
 
@@ -543,18 +555,6 @@ public class CircularSinglyTest {
             passTest(funcName);
         else 
             failTest(funcName);
-    }
-
-     public static void testIsEmptyListOnMultiNodeList() {
-        String funcName = "testIsEmptyListOnMultiNodeList";
-        CircularSinglyImplementation  list = new CircularSinglyImplementation(2);
-
-        list.insertFirst(4); list.insertFirst(40); list.insertFirst(6); list.insertFirst(33);
-
-        if (list.isEmptyList())
-            failTest(funcName);
-        else
-            passTest(funcName);
     }
 
      private static void failTest(String funcName) {
