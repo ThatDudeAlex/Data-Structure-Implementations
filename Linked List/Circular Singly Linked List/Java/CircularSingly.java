@@ -1,19 +1,18 @@
 /**
- * An implementation of a standard Doubly Linked List.
+ * An implementation of a standard Circular Singly Linked List.
  * 
  * @author Alex Nunez 
  */
-public class DoublyImplementation {    
-    private Node head;
-    private Node tail;
+
+public class CircularSingly {
+    private Node last;
     private int size;
 
     /**
      * Initializes an empty list
      */
-    DoublyImplementation() {
-        this.head = null;
-        this.tail = null;
+    CircularSingly() {
+        this.last = null;
         this.size = 0;
     }
 
@@ -22,48 +21,53 @@ public class DoublyImplementation {
      * 
      * @param data the value the {@code Node} will hold
      */
-    DoublyImplementation(int data) {
+    CircularSingly(int data) {
         initFirtstNodeInList(data);
     }
 
     /**
      * <pre>
-     * Inserts a new node at the beginning of the list
+     * Inserts a new {@code Node} at the beginning of the list
      * 
-     * Runtime: O(1)
+     * Runtime: O(1) : because only rearranging a few pointers is required
      * </pre>
      * 
-     * @param data The value that the new node will hold
+     * @return {@code true} to show the {@code Node} was inserted
      */
     public boolean insertFirst(int data) {
         if (isEmptyList())
             return initFirtstNodeInList(data);
+        
+        Node newHead =  new Node(data);
+        Node lastNode = this.last;
 
-        Node newNode =  new Node(data);
-        newNode.nextNode = this.head;
-        this.head = head.prevNode = newNode;
-
+        newHead.nextNode = lastNode.nextNode;
+        lastNode.nextNode = newHead;
+    
         this.size++;
         return true;
     }
 
     /**
      * <pre>
-     * Inserts a new node at the end of the list
+     * Inserts a new {@code Node} at the end of the list
      * 
-     * Runtime: O(1)
+     * Runtime: O(1) : because only rearranging a few pointers is required
      * </pre>
      * 
-     * @param data The value that the new node will hold
+     * @return {@code true} to show the {@code Node} was inserted
      */
     public boolean insertLast(int data) {
         if (isEmptyList()) 
             return initFirtstNodeInList(data);
+       
+        Node newLastNode =  new Node(data);
+        Node lastNode = this.last;
 
-        Node newNode =  new Node(data);
-        newNode.prevNode = tail;
-        this.tail = this.tail.nextNode = newNode;
-
+        newLastNode.nextNode = lastNode.nextNode;
+        lastNode.nextNode = newLastNode;
+        this.last = newLastNode;
+        
         this.size++;
         return true;
     }
@@ -79,20 +83,23 @@ public class DoublyImplementation {
      *  returns {@code false}
      */
     public boolean insertAtIndex(int index, int data) {
-        if (isEmptyList() && index == 0)
+        if (isEmptyList() && index == 0) 
             return initFirtstNodeInList(data);
-        else if (index == 0)
+        else if (index == 0) 
             return insertFirst(data);
         else if (isOutOfBoundsIndex(index))
             return false;
         
-        Node currNodeAtIndex = getNodeAtIndex(index);
-        Node prevNode = currNodeAtIndex.prevNode;
+        Node prevHead = this.last;
+        Node currHead = this.last.nextNode;
         Node newNode = new Node(data);
 
-        prevNode.nextNode = currNodeAtIndex.prevNode = newNode;
-        newNode.nextNode = currNodeAtIndex;
-        newNode.prevNode = prevNode;
+        for (int i = 0; i < index; i++) {
+            prevHead = currHead;
+            currHead = currHead.nextNode;
+        }
+        prevHead.nextNode = newNode;
+        newNode.nextNode = currHead;
         
         this.size++;
         return true;
@@ -111,13 +118,15 @@ public class DoublyImplementation {
         if (isEmptyList())
             return null;
 
-        Node deletedHead = this.head;
+        Node deletedHead = this.last.nextNode;
 
         if (this.size == 1) {
-            this.head = this.tail = null;
+            deletedHead.nextNode = null;
+            this.last = null;
         } else {
-            this.head = this.head.nextNode;
-            this.head.prevNode = deletedHead.nextNode = deletedHead.prevNode = null;
+            Node lastNode = this.last;
+            lastNode.nextNode = deletedHead.nextNode;
+            deletedHead.nextNode = null;
         }
         this.size--;
         return deletedHead;
@@ -127,7 +136,7 @@ public class DoublyImplementation {
      * <pre>
      * Deletes the last {@code Node} in the linked list
      * 
-     * Runtime: O(1) : because only rearranging a few pointers is required
+     * Runtime: O(N) : because it needs to iterate through the list
      * </pre>
      * 
      * @return The last {@code Node} in the list of type {@code CircularSinglyImplementation.Node}
@@ -136,20 +145,24 @@ public class DoublyImplementation {
         if (isEmptyList())
             return null;
 
-        Node deletedTailNode = this.tail;
+        Node deletedLastNode = null;
 
         if (this.size == 1) {
-            this.tail = this.head = null;
+            deletedLastNode = this.last;
+            deletedLastNode.nextNode = null;
+            this.last = null;
         } else {
-            this.tail.prevNode.nextNode = this.tail.nextNode;
-            this.tail = this.tail.prevNode;
-            deletedTailNode.prevNode = deletedTailNode.nextNode = null;
+            Node newLastNode = getNodeAtIndex(this.size - 2);
+            deletedLastNode = this.last;
+            newLastNode.nextNode = deletedLastNode.nextNode;
+            deletedLastNode.nextNode = null;
+            this.last = newLastNode;
         }
         this.size--;
-        return deletedTailNode;
+        return deletedLastNode;
     }
 
-   /**
+    /**
      * <pre>
      * Deletes the {@code Node} located at the given index if it exist
      * 
@@ -166,16 +179,21 @@ public class DoublyImplementation {
             return null;
         else if (index == 0) 
             return deleteFirstNode();
-        else if (index == this.size - 1) 
+        else if (index == this.size - 1)
             return deleteLastNode();
         
-        Node deletedNode = getNodeAtIndex(index);
-        deletedNode.prevNode.nextNode = deletedNode.nextNode;
-        deletedNode.nextNode.prevNode = deletedNode.prevNode;
-        deletedNode.prevNode = deletedNode.nextNode = null;
-        
+        Node prevHead = this.last;
+        Node currHead = this.last.nextNode;
+
+        for (int i = 0; i < index; i++) {
+            prevHead = currHead;
+            currHead = currHead.nextNode;
+        }
+        prevHead.nextNode = currHead.nextNode;
+        currHead.nextNode = null;
+
         this.size--;
-        return deletedNode;
+        return currHead;
     }
 
     /**
@@ -189,10 +207,12 @@ public class DoublyImplementation {
      * The node will be of type {@code CircularSinglyImplementation.Node}
      */
     public Node getFirstNode() {
-        return this.head;
+        if (isEmptyList())
+            return null;
+        return this.last.nextNode;
     }
 
-   /**
+    /**
      * <pre>
      * Returns the last node of the list, or null if the list is empty
      * 
@@ -203,7 +223,7 @@ public class DoublyImplementation {
      * The node will be of type {@code CircularSinglyImplementation.Node}
      */
     public Node getLastNode() {
-        return this.tail;
+        return this.last;
     }
 
     /**
@@ -218,25 +238,16 @@ public class DoublyImplementation {
      * @return The {@code Node} located at the given index
      */
     public Node getNodeAtIndex(int index) {
-        Node currHead = (index <= (this.size / 2)) ? this.head : this.tail;
-
         if (isOutOfBoundsIndex(index) || isEmptyList()) 
             return null;
-        else if (index == 0) 
-            return this.head;   // if is head index returns head
-        else if (index == this.size - 1) 
-            return this.tail;   // if is tail index returns tail
-        
-        // If the input index is is at the lower half of the list, searches the list by starting at the head and 
-        // moves forward. If the Input index is at the upper half of the list, searches the list by starting at
-        // the tail and moving backwards. This helps speed up the search by giving a Runtime of 1/2 O(N) = O(N)
+        else if (index == 0)
+            return getFirstNode();
 
-        if (currHead == this.head) 
-            for (int i = 1; i <= index; i++)
-                currHead = currHead.nextNode;
-        else 
-            for (int i = this.size - 2; i >= index; i--)
-                currHead = currHead.prevNode;
+        Node currHead = this.last;
+
+        // Starts at i = -1 to because we start at the end of the list instead of the beginning
+        for (int i = -1; i < index; i++)
+            currHead = currHead.nextNode;
 
         return currHead;
     }
@@ -257,24 +268,18 @@ public class DoublyImplementation {
         if (isEmptyList())
             return false;
 
-        Node currHead = this.head;
-        Node currTail = this.tail;
+        Node currHead = this.last;
 
-        // Searches the list from both sides simultaneously, helps speed up the search by giving a Runtime of 1/2 O(N) = O(N)
-        for (int i = 0; i <= this.size / 2; i++) {
-            if (currHead.data == value || currTail.data == value)
-                return true;
-
+        while (currHead.nextNode != this.last && currHead.data != value)
             currHead = currHead.nextNode;
-            currTail = currTail.prevNode;
-        }
-        return false;
+
+        return currHead.data == value;
     }
 
     // Utility Methods
     // =======================
 
-    /**
+     /**
      * <pre>
      * Returns the current size of the List
      * 
@@ -298,9 +303,9 @@ public class DoublyImplementation {
      * else returns {@code false}
      */
     public boolean isEmptyList() {
-        return this.head == null && this.tail == null;
+        return this.last == null && this.size == 0;
     }
-
+    
     /**
      * <pre>
      * prints the entire list to the console
@@ -309,52 +314,42 @@ public class DoublyImplementation {
      * </pre>
      */
     public void printLinkedList() {
-        if (isEmptyList()) {
+        if (this.last == null) {
             System.out.println("EMPTY LIST");
             return;
         }
 
-        StringBuilder sb = new StringBuilder().append("\n\nNULL <- ");
-        Node currHead = this.head;
+        Node currHead = this.last;
 
         while (currHead != null) {
-            sb.append(printListHelper(currHead));
+            System.out.printf("%d -> ", currHead.data);
             currHead = currHead.nextNode;
         }
-        System.out.println(sb.toString());
-    }
-
-    private String printListHelper(Node currHead) {
-        if (currHead.nextNode == null)
-            return String.format("%d -> NULL\n\n", currHead.data);
-
-        return String.format("%d <-> ", currHead.data);
+        System.out.print("NULL\n\n");
     }
 
     private boolean isOutOfBoundsIndex(int index) {
-        return (index >= getSize() || index < 0);
+        return (index >= this.size || index < 0);
     }
 
     // handles the initialization & configurations of adding the first node into the list
     private boolean initFirtstNodeInList(int data) {
-        this.head = this.tail = new Node(data);
+        this.last = new Node(data);
+        this.last.nextNode = this.last;
         this.size = 1;
         return true;
     }
 
     /**
-     * A standard {@code Doubly Linked List Node}, that holds an integer value and points to 
-     * next & previous {@code Nodes} in the list
+     * A standard {@code Singly Linked List Node}, that holds an integer value and points to next {@code Node} in the list
      */
     class Node {
         int data;
-        Node nextNode = null;
-        Node prevNode = null;
+        Node nextNode;
     
         public Node(int data) {
             this.data = data;
             this.nextNode = null;
-            this.prevNode = null;
         }
     }
 }

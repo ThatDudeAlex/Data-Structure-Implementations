@@ -28,7 +28,7 @@ public class CircularDoublyTest {
      */
 
     public static void testInitListWithoutParams(String funcName, int testNumber) {
-        CircularDoublyImplementation list = new CircularDoublyImplementation();
+        CircularDoubly list = new CircularDoubly();
 
         if (list.getSize() != 0 || list.getFirstNode() != null)
             failTest(funcName, testNumber);
@@ -37,8 +37,8 @@ public class CircularDoublyTest {
     }
 
     public static void testInitListWithParams(String funcName, int testNumber) {
-        CircularDoublyImplementation list = new CircularDoublyImplementation(4);
-        CircularDoublyImplementation.Node lastNode = list.getFirstNode();
+        CircularDoubly list = new CircularDoubly(4);
+        CircularDoubly.Node lastNode = list.getFirstNode();
 
         if (list.getSize() != 1 || lastNode == null || lastNode.data != 4)
             failTest(funcName, testNumber);
@@ -47,8 +47,8 @@ public class CircularDoublyTest {
     }
 
     public static void testInitListWithParamsToVerifyListIsCircularWithSingleNode(String funcName, int testNumber) {
-        CircularDoublyImplementation list = new CircularDoublyImplementation(2);
-        CircularDoublyImplementation.Node lastNode = list.getLastNode();
+        CircularDoubly list = new CircularDoubly(2);
+        CircularDoubly.Node lastNode = list.getLastNode();
 
         if (lastNode.nextNode != lastNode || lastNode.prevNode != lastNode)
             failTest(funcName, testNumber);
@@ -63,11 +63,11 @@ public class CircularDoublyTest {
      */
 
     public static void testInsertFirstWithEmptyList(String funcName, int testNumber) {
-        CircularDoublyImplementation list = new CircularDoublyImplementation();
+        CircularDoubly list = new CircularDoubly();
 
         list.insertFirst(2);
         
-        CircularDoublyImplementation.Node firstNode = list.getFirstNode();
+        CircularDoubly.Node firstNode = list.getFirstNode();
 
         if (list.getSize() != 1 || firstNode == null || firstNode.data != 2)
             failTest(funcName, testNumber);
@@ -76,10 +76,10 @@ public class CircularDoublyTest {
     }
 
     public static void testInsertFirstOnListWithSingleNode(String funcName, int testNumber) {
-        CircularDoublyImplementation list = new CircularDoublyImplementation(2);
+        CircularDoubly list = new CircularDoubly(2);
 
         list.insertFirst(9);
-        CircularDoublyImplementation.Node firstNode = list.getFirstNode();
+        CircularDoubly.Node firstNode = list.getFirstNode();
 
         if (list.getSize() != 2 || firstNode.data != 9 || firstNode.nextNode.data != 2)
             failTest(funcName, testNumber);
@@ -88,11 +88,11 @@ public class CircularDoublyTest {
     }
 
     public static void testInsertFirstOnListWithhMultipleNodes(String funcName, int testNumber) {
-        CircularDoublyImplementation list = new CircularDoublyImplementation(2);
+        CircularDoubly list = new CircularDoubly(2);
 
         list.insertFirst(9); list.insertFirst(7);
 
-        CircularDoublyImplementation.Node firstNode = list.getFirstNode();
+        CircularDoubly.Node firstNode = list.getFirstNode();
 
         if (list.getSize() != 3 || firstNode.data != 7 || firstNode.nextNode.data != 9 || firstNode.nextNode.nextNode.data != 2)
             failTest(funcName, testNumber);
@@ -101,13 +101,13 @@ public class CircularDoublyTest {
     }
 
     public static void testInsertFirstToVerifyPrevAndNextPointersAreCorrect(String funcName, int testNumber) {
-        CircularDoublyImplementation list = new CircularDoublyImplementation(2);
+        CircularDoubly list = new CircularDoubly(2);
 
         list.insertFirst(9); list.insertFirst(7);
 
-        CircularDoublyImplementation.Node firstNode = list.getFirstNode();
-        CircularDoublyImplementation.Node lastNode = list.getLastNode();
-        CircularDoublyImplementation.Node nodeAtIdx1 = list.getNodeAtIndex(1);
+        CircularDoubly.Node firstNode = list.getFirstNode();
+        CircularDoubly.Node lastNode = list.getLastNode();
+        CircularDoubly.Node nodeAtIdx1 = list.getNodeAtIndex(1);
 
         if (firstNode.nextNode != nodeAtIdx1 || nodeAtIdx1.prevNode != firstNode)
             failTest(funcName, testNumber);
@@ -118,10 +118,10 @@ public class CircularDoublyTest {
     }
 
     public static void testInsertFirstToVerifyListIsCircularWithSingleNode(String funcName, int testNumber) {
-        CircularDoublyImplementation list = new CircularDoublyImplementation();
+        CircularDoubly list = new CircularDoubly();
         
         list.insertFirst(2);
-        CircularDoublyImplementation.Node firstNode = list.getLastNode();
+        CircularDoubly.Node firstNode = list.getLastNode();
 
         if (firstNode.nextNode != firstNode || firstNode.prevNode != firstNode)
             failTest(funcName, testNumber);
@@ -130,11 +130,11 @@ public class CircularDoublyTest {
     }
 
     public static void testInsertFirstToVerifyListIsCircularWithTwoNodes(String funcName, int testNumber) {
-        CircularDoublyImplementation list = new CircularDoublyImplementation(2);
+        CircularDoubly list = new CircularDoubly(2);
 
         list.insertFirst(3);
-        CircularDoublyImplementation.Node lastNode = list.getLastNode();
-        CircularDoublyImplementation.Node firstNode = list.getFirstNode();
+        CircularDoubly.Node lastNode = list.getLastNode();
+        CircularDoubly.Node firstNode = list.getFirstNode();
 
         if (lastNode.nextNode != firstNode || firstNode.prevNode != lastNode)
             failTest(funcName, testNumber);
@@ -143,11 +143,11 @@ public class CircularDoublyTest {
     }
 
     public static void testInsertFirstToVerifyListIsCircularWithMultipleNodes(String funcName, int testNumber) {
-        CircularDoublyImplementation list = new CircularDoublyImplementation(2);
+        CircularDoubly list = new CircularDoubly(2);
 
         list.insertFirst(3); list.insertFirst(4);
-        CircularDoublyImplementation.Node lastNode = list.getLastNode();
-        CircularDoublyImplementation.Node firstNode = list.getFirstNode();
+        CircularDoubly.Node lastNode = list.getLastNode();
+        CircularDoubly.Node firstNode = list.getFirstNode();
 
         if (lastNode.nextNode != firstNode || firstNode.prevNode != lastNode)
             failTest(funcName, testNumber);
@@ -162,10 +162,10 @@ public class CircularDoublyTest {
      */
 
     public static void testInsertLasttWithEmptyList(String funcName, int testNumber) {
-        CircularDoublyImplementation list = new CircularDoublyImplementation();
+        CircularDoubly list = new CircularDoubly();
 
         list.insertLast(2);
-        CircularDoublyImplementation.Node firstNode = list.getLastNode();
+        CircularDoubly.Node firstNode = list.getLastNode();
 
         if (list.getSize() != 1 || firstNode == null || firstNode.data != 2)
             failTest(funcName, testNumber);
@@ -174,10 +174,10 @@ public class CircularDoublyTest {
     }
 
     public static void testInsertLastOnListWithSingleNode(String funcName, int testNumber) {
-        CircularDoublyImplementation list = new CircularDoublyImplementation(2);
+        CircularDoubly list = new CircularDoubly(2);
 
         list.insertLast(9);
-        CircularDoublyImplementation.Node firstNode = list.getFirstNode();
+        CircularDoubly.Node firstNode = list.getFirstNode();
 
         if (list.getSize() != 2 || firstNode.data != 2 || firstNode.nextNode.data != 9)
             failTest(funcName, testNumber);
@@ -186,10 +186,10 @@ public class CircularDoublyTest {
     }
 
     public static void testInsertLastOnListWithhMultipleNodes(String funcName, int testNumber) {
-        CircularDoublyImplementation list = new CircularDoublyImplementation(2);
+        CircularDoubly list = new CircularDoubly(2);
 
         list.insertLast(9); list.insertLast(7);
-        CircularDoublyImplementation.Node head = list.getFirstNode();
+        CircularDoubly.Node head = list.getFirstNode();
 
         if (list.getSize() != 3 || head.data != 2 || head.nextNode.data != 9 || head.nextNode.nextNode.data != 7)
             failTest(funcName, testNumber);
@@ -198,13 +198,13 @@ public class CircularDoublyTest {
     }
 
     public static void testInsertLastToVerifyPrevAndNextPointersAreCorrect(String funcName, int testNumber) {
-        CircularDoublyImplementation list = new CircularDoublyImplementation(2);
+        CircularDoubly list = new CircularDoubly(2);
 
         list.insertLast(9); list.insertLast(7);
 
-        CircularDoublyImplementation.Node firstNode = list.getFirstNode();
-        CircularDoublyImplementation.Node lastNode = list.getLastNode();
-        CircularDoublyImplementation.Node nodeAtIdx1 = list.getNodeAtIndex(1);
+        CircularDoubly.Node firstNode = list.getFirstNode();
+        CircularDoubly.Node lastNode = list.getLastNode();
+        CircularDoubly.Node nodeAtIdx1 = list.getNodeAtIndex(1);
 
         if (firstNode.nextNode != nodeAtIdx1 || nodeAtIdx1.prevNode != firstNode)
             failTest(funcName, testNumber);
@@ -215,10 +215,10 @@ public class CircularDoublyTest {
     }
 
     public static void testInsertLastToVerifyListIsCircularWithSingleNode(String funcName, int testNumber) {
-        CircularDoublyImplementation list = new CircularDoublyImplementation();
+        CircularDoubly list = new CircularDoubly();
         
         list.insertLast(2);
-        CircularDoublyImplementation.Node lastNode = list.getLastNode();
+        CircularDoubly.Node lastNode = list.getLastNode();
 
         if (lastNode.nextNode != lastNode || lastNode.prevNode != lastNode)
             failTest(funcName, testNumber);
@@ -227,11 +227,11 @@ public class CircularDoublyTest {
     }
 
     public static void testInsertLastToVerifyListIsCircularWithTwoNodes(String funcName, int testNumber) {
-        CircularDoublyImplementation list = new CircularDoublyImplementation(2);
+        CircularDoubly list = new CircularDoubly(2);
 
         list.insertLast(3);
-        CircularDoublyImplementation.Node lastNode = list.getLastNode();
-        CircularDoublyImplementation.Node firstNode = list.getFirstNode();
+        CircularDoubly.Node lastNode = list.getLastNode();
+        CircularDoubly.Node firstNode = list.getFirstNode();
 
         if (lastNode.nextNode != firstNode || firstNode.prevNode != lastNode)
             failTest(funcName, testNumber);
@@ -240,11 +240,11 @@ public class CircularDoublyTest {
     }
 
     public static void testInsertLastToVerifyListIsCircularWithMultipleNodes(String funcName, int testNumber) {
-        CircularDoublyImplementation list = new CircularDoublyImplementation(2);
+        CircularDoubly list = new CircularDoubly(2);
 
         list.insertFirst(3); list.insertFirst(4);
-        CircularDoublyImplementation.Node lastNode = list.getLastNode();
-        CircularDoublyImplementation.Node firstNode = list.getFirstNode();
+        CircularDoubly.Node lastNode = list.getLastNode();
+        CircularDoubly.Node firstNode = list.getFirstNode();
 
         if (lastNode.nextNode != firstNode || firstNode.prevNode != lastNode)
             failTest(funcName, testNumber);
@@ -259,7 +259,7 @@ public class CircularDoublyTest {
      */
 
     public static void testInsertAtIndexWithEmptyListAtIndexZero(String funcName, int testNumber) {
-        CircularDoublyImplementation list = new CircularDoublyImplementation();
+        CircularDoubly list = new CircularDoubly();
 
         if (!list.insertAtIndex(0, 2) || list.getSize() != 1 || list.getFirstNode().data != 2)
             failTest(funcName, testNumber);
@@ -268,7 +268,7 @@ public class CircularDoublyTest {
     }
 
     public static void testInsertAtIndexWithNonEmptyListAtIndexZero(String funcName, int testNumber) {
-        CircularDoublyImplementation list = new CircularDoublyImplementation(2);
+        CircularDoubly list = new CircularDoubly(2);
 
         list.insertLast(9); list.insertLast(7);
 
@@ -279,7 +279,7 @@ public class CircularDoublyTest {
     }
 
     public static void testInsertAtIndexWithInvalidIndexes(String funcName, int testNumber) {
-        CircularDoublyImplementation list = new CircularDoublyImplementation();
+        CircularDoubly list = new CircularDoubly();
 
         if (list.insertAtIndex(1, 2) || list.insertAtIndex(-1, 2))
             failTest(funcName, testNumber);
@@ -290,7 +290,7 @@ public class CircularDoublyTest {
     }
 
     public static void testInsertAtIndexWithNonEmptyList(String funcName, int testNumber) {
-        CircularDoublyImplementation list = new CircularDoublyImplementation(2);
+        CircularDoubly list = new CircularDoubly(2);
 
         list.insertLast(9); list.insertLast(7);
 
@@ -305,13 +305,13 @@ public class CircularDoublyTest {
     }
 
     public static void testInsertAtIndexToVerifyPrevAndNextPointersAreCorrect(String funcName, int testNumber) {
-        CircularDoublyImplementation list = new CircularDoublyImplementation(2);
+        CircularDoubly list = new CircularDoubly(2);
 
         list.insertAtIndex(0, 9); list.insertAtIndex(1, 7);
 
-        CircularDoublyImplementation.Node firstNode = list.getFirstNode();
-        CircularDoublyImplementation.Node lastNode = list.getLastNode();
-        CircularDoublyImplementation.Node nodeAtIdx1 = list.getNodeAtIndex(1);
+        CircularDoubly.Node firstNode = list.getFirstNode();
+        CircularDoubly.Node lastNode = list.getLastNode();
+        CircularDoubly.Node nodeAtIdx1 = list.getNodeAtIndex(1);
 
         if (firstNode.nextNode != nodeAtIdx1 || nodeAtIdx1.prevNode != firstNode)
             failTest(funcName, testNumber);
@@ -322,10 +322,10 @@ public class CircularDoublyTest {
     }
 
     public static void testInsertAtIndexToVerifyListIsCircularWithSingleNode(String funcName, int testNumber) {
-        CircularDoublyImplementation list = new CircularDoublyImplementation();
+        CircularDoubly list = new CircularDoubly();
         
         list.insertAtIndex(0, 2);
-        CircularDoublyImplementation.Node lastNode = list.getLastNode();
+        CircularDoubly.Node lastNode = list.getLastNode();
 
         if (lastNode.nextNode != lastNode || lastNode.prevNode != lastNode)
             failTest(funcName, testNumber);
@@ -334,11 +334,11 @@ public class CircularDoublyTest {
     }
 
     public static void testInsertAtIndeToVerifyListIsCircularWithTwoNodes(String funcName, int testNumber) {
-        CircularDoublyImplementation list = new CircularDoublyImplementation(2);
+        CircularDoubly list = new CircularDoubly(2);
 
         list.insertAtIndex(0, 3);
-        CircularDoublyImplementation.Node lastNode = list.getLastNode();
-        CircularDoublyImplementation.Node firstNode = list.getFirstNode();
+        CircularDoubly.Node lastNode = list.getLastNode();
+        CircularDoubly.Node firstNode = list.getFirstNode();
 
         if (lastNode.nextNode != firstNode || firstNode.prevNode != lastNode)
             failTest(funcName, testNumber);
@@ -347,11 +347,11 @@ public class CircularDoublyTest {
     }
 
     public static void testInsertAtIndexToVerifyListIsCircularWithMultipleNodes(String funcName, int testNumber) {
-        CircularDoublyImplementation list = new CircularDoublyImplementation(2);
+        CircularDoubly list = new CircularDoubly(2);
 
         list.insertAtIndex(0, 3); list.insertAtIndex(1, 4);
-        CircularDoublyImplementation.Node lastNode = list.getLastNode();
-        CircularDoublyImplementation.Node firstNode = list.getFirstNode();
+        CircularDoubly.Node lastNode = list.getLastNode();
+        CircularDoubly.Node firstNode = list.getFirstNode();
 
         if (lastNode.nextNode != firstNode || firstNode.prevNode != lastNode)
             failTest(funcName, testNumber);
@@ -366,9 +366,9 @@ public class CircularDoublyTest {
      */
 
     public static void testDeleteFirstOnEmptyList(String funcName, int testNumber) {
-        CircularDoublyImplementation list = new CircularDoublyImplementation();
+        CircularDoubly list = new CircularDoubly();
 
-        CircularDoublyImplementation.Node deletedNode = list.deleteFirstNode();
+        CircularDoubly.Node deletedNode = list.deleteFirstNode();
 
         if (list.getSize() != 0 || deletedNode != null)
             failTest(funcName, testNumber);
@@ -377,9 +377,9 @@ public class CircularDoublyTest {
     }
 
     public static void testDeleteFirstOnListWithSingleNode(String funcName, int testNumber) {
-        CircularDoublyImplementation list = new CircularDoublyImplementation(2);
-        CircularDoublyImplementation.Node headToRemove = list.getFirstNode();
-        CircularDoublyImplementation.Node deletedNode = list.deleteFirstNode();
+        CircularDoubly list = new CircularDoubly(2);
+        CircularDoubly.Node headToRemove = list.getFirstNode();
+        CircularDoubly.Node deletedNode = list.deleteFirstNode();
 
         if (list.getSize() != 0 || list.getFirstNode() != null || deletedNode != headToRemove)
             failTest(funcName, testNumber);
@@ -388,14 +388,14 @@ public class CircularDoublyTest {
     }
 
     public static void testDeleteFirstOnListWithMultipleNodes(String funcName, int testNumber) {
-        CircularDoublyImplementation list = new CircularDoublyImplementation(2);
+        CircularDoubly list = new CircularDoubly(2);
 
         list.insertFirst(3); list.insertFirst(4); list.insertFirst(5);
 
-        CircularDoublyImplementation.Node nodeToRemove = list.getFirstNode();
-        CircularDoublyImplementation.Node deletedNode = list.deleteFirstNode();
-        CircularDoublyImplementation.Node firstNode = list.getFirstNode();
-        CircularDoublyImplementation.Node lastNode = list.getLastNode();
+        CircularDoubly.Node nodeToRemove = list.getFirstNode();
+        CircularDoubly.Node deletedNode = list.deleteFirstNode();
+        CircularDoubly.Node firstNode = list.getFirstNode();
+        CircularDoubly.Node lastNode = list.getLastNode();
 
         if (list.getSize() != 3 || deletedNode != nodeToRemove)
             failTest(funcName, testNumber);
@@ -406,15 +406,15 @@ public class CircularDoublyTest {
     }
 
     public static void testDeleteFirstToVerifyPrevAndNextPointersAreCorrect(String funcName, int testNumber) {
-        CircularDoublyImplementation list = new CircularDoublyImplementation(2);
+        CircularDoubly list = new CircularDoubly(2);
 
         list.insertFirst(3); list.insertFirst(4); list.insertFirst(5);
 
         list.deleteFirstNode();
 
-        CircularDoublyImplementation.Node firstNode = list.getFirstNode();
-        CircularDoublyImplementation.Node lastNode = list.getLastNode();
-        CircularDoublyImplementation.Node nodeAtIdx1 = list.getNodeAtIndex(1);
+        CircularDoubly.Node firstNode = list.getFirstNode();
+        CircularDoubly.Node lastNode = list.getLastNode();
+        CircularDoubly.Node nodeAtIdx1 = list.getNodeAtIndex(1);
 
         if (firstNode.nextNode != nodeAtIdx1 || nodeAtIdx1.prevNode != firstNode)
             failTest(funcName, testNumber);
@@ -425,13 +425,13 @@ public class CircularDoublyTest {
     }
 
     public static void testDeleteFirstToVerifyListIsCircularWithTwoNodes(String funcName, int testNumber) {
-        CircularDoublyImplementation list = new CircularDoublyImplementation(2);
+        CircularDoubly list = new CircularDoubly(2);
         list.insertFirst(3);
 
         list.deleteFirstNode();
 
-        CircularDoublyImplementation.Node firstNode = list.getFirstNode();
-        CircularDoublyImplementation.Node lastNode = list.getLastNode();
+        CircularDoubly.Node firstNode = list.getFirstNode();
+        CircularDoubly.Node lastNode = list.getLastNode();
 
         if (lastNode.nextNode != firstNode || firstNode.prevNode != lastNode)
             failTest(funcName, testNumber);
@@ -440,13 +440,13 @@ public class CircularDoublyTest {
     }
 
     public static void testDeleteFirstToVerifyListIsCircularWithMultipleNodes(String funcName, int testNumber) {
-        CircularDoublyImplementation list = new CircularDoublyImplementation(2);
+        CircularDoubly list = new CircularDoubly(2);
         list.insertFirst(3); list.insertFirst(4); list.insertFirst(5);
 
         list.deleteFirstNode();
 
-        CircularDoublyImplementation.Node firstNode = list.getFirstNode();
-        CircularDoublyImplementation.Node lastNode = list.getLastNode();
+        CircularDoubly.Node firstNode = list.getFirstNode();
+        CircularDoubly.Node lastNode = list.getLastNode();
 
         if (lastNode.nextNode != firstNode || firstNode.prevNode != lastNode)
             failTest(funcName, testNumber);
@@ -461,9 +461,9 @@ public class CircularDoublyTest {
      */
 
     public static void testDeleteLastOnEmptyList(String funcName, int testNumber) {
-        CircularDoublyImplementation list = new CircularDoublyImplementation();
+        CircularDoubly list = new CircularDoubly();
 
-        CircularDoublyImplementation.Node deletedNode = list.deleteLastNode();
+        CircularDoubly.Node deletedNode = list.deleteLastNode();
 
         if (list.getSize() != 0 || deletedNode != null)
             failTest(funcName, testNumber);
@@ -472,9 +472,9 @@ public class CircularDoublyTest {
     }
 
     public static void testDeleteLastOnListWithSingleNode(String funcName, int testNumber) {
-        CircularDoublyImplementation list = new CircularDoublyImplementation(2);
-        CircularDoublyImplementation.Node nodeToRemove = list.getLastNode();
-        CircularDoublyImplementation.Node deletedNode = list.deleteLastNode();
+        CircularDoubly list = new CircularDoubly(2);
+        CircularDoubly.Node nodeToRemove = list.getLastNode();
+        CircularDoubly.Node deletedNode = list.deleteLastNode();
 
         if (list.getSize() != 0 || list.getLastNode() != null || deletedNode != nodeToRemove)
             failTest(funcName, testNumber);
@@ -483,11 +483,11 @@ public class CircularDoublyTest {
     }
 
     public static void testDeleteLastOnListWithTwoNodes(String funcName, int testNumber) {
-        CircularDoublyImplementation list = new CircularDoublyImplementation(2);
+        CircularDoubly list = new CircularDoubly(2);
         list.insertLast(3);
 
-        CircularDoublyImplementation.Node nodeToRemove = list.getLastNode();
-        CircularDoublyImplementation.Node deletedNode = list.deleteLastNode();
+        CircularDoubly.Node nodeToRemove = list.getLastNode();
+        CircularDoubly.Node deletedNode = list.deleteLastNode();
 
         if (list.getSize() != 1 || list.getLastNode().data != 2 || deletedNode != nodeToRemove)
             failTest(funcName, testNumber);
@@ -496,14 +496,14 @@ public class CircularDoublyTest {
     }
 
     public static void testDeleteLastOnListWithMultipleNodes(String funcName, int testNumber) {
-        CircularDoublyImplementation list = new CircularDoublyImplementation(2);
+        CircularDoubly list = new CircularDoubly(2);
 
         list.insertFirst(3); list.insertFirst(4); list.insertFirst(5);
 
-        CircularDoublyImplementation.Node firstNode = list.getFirstNode();
-        CircularDoublyImplementation.Node nodeToRemove = list.getLastNode();
-        CircularDoublyImplementation.Node deletedNode = list.deleteLastNode();
-        CircularDoublyImplementation.Node lastNode = list.getLastNode();
+        CircularDoubly.Node firstNode = list.getFirstNode();
+        CircularDoubly.Node nodeToRemove = list.getLastNode();
+        CircularDoubly.Node deletedNode = list.deleteLastNode();
+        CircularDoubly.Node lastNode = list.getLastNode();
 
         if (list.getSize() != 3 || deletedNode.data != 2 || deletedNode != nodeToRemove)
             failTest(funcName, testNumber);
@@ -514,15 +514,15 @@ public class CircularDoublyTest {
     }
 
     public static void testDeleteLastToVerifyPrevAndNextPointersAreCorrect(String funcName, int testNumber) {
-        CircularDoublyImplementation list = new CircularDoublyImplementation(2);
+        CircularDoubly list = new CircularDoubly(2);
 
         list.insertFirst(3); list.insertFirst(4); list.insertFirst(5);
 
         list.deleteLastNode();
 
-        CircularDoublyImplementation.Node firstNode = list.getFirstNode();
-        CircularDoublyImplementation.Node lastNode = list.getLastNode();
-        CircularDoublyImplementation.Node nodeAtIdx1 = list.getNodeAtIndex(1);
+        CircularDoubly.Node firstNode = list.getFirstNode();
+        CircularDoubly.Node lastNode = list.getLastNode();
+        CircularDoubly.Node nodeAtIdx1 = list.getNodeAtIndex(1);
 
         if (firstNode.nextNode != nodeAtIdx1 || nodeAtIdx1.prevNode != firstNode)
             failTest(funcName, testNumber);
@@ -533,13 +533,13 @@ public class CircularDoublyTest {
     }
 
     public static void testDeleteLastToVerifyListIsCircularWithTwoNodes(String funcName, int testNumber) {
-        CircularDoublyImplementation list = new CircularDoublyImplementation(2);
+        CircularDoubly list = new CircularDoubly(2);
         list.insertFirst(3);
 
         list.deleteLastNode();
 
-        CircularDoublyImplementation.Node firstNode = list.getFirstNode();
-        CircularDoublyImplementation.Node lastNode = list.getLastNode();
+        CircularDoubly.Node firstNode = list.getFirstNode();
+        CircularDoubly.Node lastNode = list.getLastNode();
 
         if (lastNode.nextNode != firstNode || firstNode.prevNode != lastNode)
             failTest(funcName, testNumber);
@@ -548,13 +548,13 @@ public class CircularDoublyTest {
     }
 
     public static void testDeleteLastToVerifyListIsCircularWithMultipleNodes(String funcName, int testNumber) {
-        CircularDoublyImplementation list = new CircularDoublyImplementation(2);
+        CircularDoubly list = new CircularDoubly(2);
         list.insertFirst(3); list.insertFirst(4); list.insertFirst(5);
 
         list.deleteLastNode();
 
-        CircularDoublyImplementation.Node firstNode = list.getFirstNode();
-        CircularDoublyImplementation.Node lastNode = list.getLastNode();
+        CircularDoubly.Node firstNode = list.getFirstNode();
+        CircularDoubly.Node lastNode = list.getLastNode();
 
         if (lastNode.nextNode != firstNode || firstNode.prevNode != lastNode)
             failTest(funcName, testNumber);
@@ -569,13 +569,13 @@ public class CircularDoublyTest {
      */
 
     public static void testDeleteNodeAtIndexWithInvalidIndexes(String funcName, int testNumber) {
-        CircularDoublyImplementation list = new CircularDoublyImplementation();
-        CircularDoublyImplementation.Node nodeDeleted1 = list.deleteNodeAtIndex(0);
+        CircularDoubly list = new CircularDoubly();
+        CircularDoubly.Node nodeDeleted1 = list.deleteNodeAtIndex(0);
 
         list.insertFirst(2); list.insertFirst(3);
 
-        CircularDoublyImplementation.Node nodeDeleted2 = list.deleteNodeAtIndex(3);
-        CircularDoublyImplementation.Node nodeDeleted3 = list.deleteNodeAtIndex(-1);
+        CircularDoubly.Node nodeDeleted2 = list.deleteNodeAtIndex(3);
+        CircularDoubly.Node nodeDeleted3 = list.deleteNodeAtIndex(-1);
 
         if (list.getSize() != 2 || nodeDeleted1 != null || nodeDeleted2 != null || nodeDeleted3 != null)
             failTest(funcName, testNumber);
@@ -584,9 +584,9 @@ public class CircularDoublyTest {
     }
 
     public static void testDeleteNodeAtIndexWithIndexOfHead(String funcName, int testNumber) {
-        CircularDoublyImplementation list = new CircularDoublyImplementation(2);
-        CircularDoublyImplementation.Node head = list.getFirstNode();
-        CircularDoublyImplementation.Node nodeDeleted = list.deleteNodeAtIndex(0);
+        CircularDoubly list = new CircularDoubly(2);
+        CircularDoubly.Node head = list.getFirstNode();
+        CircularDoubly.Node nodeDeleted = list.deleteNodeAtIndex(0);
 
         if (list.getSize() != 0 || nodeDeleted != head)
             failTest(funcName, testNumber);
@@ -595,12 +595,12 @@ public class CircularDoublyTest {
     }
 
     public static void testDeleteNodeAtIndexWithIndexOfLastNode(String funcName, int testNumber) {
-        CircularDoublyImplementation list = new CircularDoublyImplementation(2);
+        CircularDoubly list = new CircularDoubly(2);
 
         list.insertLast(3); list.insertLast(4); list.insertLast(5);
 
-        CircularDoublyImplementation.Node lastNode = list.getLastNode();
-        CircularDoublyImplementation.Node nodeDeleted = list.deleteNodeAtIndex(3);
+        CircularDoubly.Node lastNode = list.getLastNode();
+        CircularDoubly.Node nodeDeleted = list.deleteNodeAtIndex(3);
 
         if (list.getSize() != 3 || nodeDeleted != lastNode)
             failTest(funcName, testNumber);
@@ -609,12 +609,12 @@ public class CircularDoublyTest {
     }
 
     public static void testDeleteNodeAtIndex(String funcName, int testNumber) {
-        CircularDoublyImplementation list = new CircularDoublyImplementation(2);
+        CircularDoubly list = new CircularDoubly(2);
 
         list.insertLast(3); list.insertLast(4); list.insertLast(5);
 
-        CircularDoublyImplementation.Node nodeDeleted1 = list.deleteNodeAtIndex(1);
-        CircularDoublyImplementation.Node nodeDeleted2 = list.deleteNodeAtIndex(1);
+        CircularDoubly.Node nodeDeleted1 = list.deleteNodeAtIndex(1);
+        CircularDoubly.Node nodeDeleted2 = list.deleteNodeAtIndex(1);
 
         if (list.getSize() != 2 || list.getFirstNode().data != 2 || list.getLastNode().data != 5)
             failTest(funcName, testNumber);
@@ -625,15 +625,15 @@ public class CircularDoublyTest {
     }
 
     public static void testDeleteNodeAtIndexToVerifyPrevAndNextPointersAreCorrect(String funcName, int testNumber) {
-        CircularDoublyImplementation list = new CircularDoublyImplementation(2);
+        CircularDoubly list = new CircularDoubly(2);
 
         list.insertFirst(3); list.insertFirst(4); list.insertFirst(5); list.insertFirst(6);
 
         list.deleteNodeAtIndex(1); list.deleteNodeAtIndex(2);
 
-        CircularDoublyImplementation.Node firstNode = list.getFirstNode();
-        CircularDoublyImplementation.Node lastNode = list.getLastNode();
-        CircularDoublyImplementation.Node nodeAtIdx1 = list.getNodeAtIndex(1);
+        CircularDoubly.Node firstNode = list.getFirstNode();
+        CircularDoubly.Node lastNode = list.getLastNode();
+        CircularDoubly.Node nodeAtIdx1 = list.getNodeAtIndex(1);
 
         if (firstNode.nextNode != nodeAtIdx1 || nodeAtIdx1.prevNode != firstNode)
             failTest(funcName, testNumber);
@@ -644,13 +644,13 @@ public class CircularDoublyTest {
     }
 
     public static void testDeleteNodeAtIndexToVerifyListIsCircularWithTwoNodes(String funcName, int testNumber) {
-        CircularDoublyImplementation list = new CircularDoublyImplementation(2);
+        CircularDoubly list = new CircularDoubly(2);
         list.insertFirst(3);
 
         list.deleteNodeAtIndex(1);
 
-        CircularDoublyImplementation.Node firstNode = list.getFirstNode();
-        CircularDoublyImplementation.Node lastNode = list.getLastNode();
+        CircularDoubly.Node firstNode = list.getFirstNode();
+        CircularDoubly.Node lastNode = list.getLastNode();
 
         if (lastNode.nextNode != firstNode || firstNode.prevNode != lastNode)
             failTest(funcName, testNumber);
@@ -659,13 +659,13 @@ public class CircularDoublyTest {
     }
 
     public static void testDeleteNodeAtIndexToVerifyListIsCircularWithMultipleNodes(String funcName, int testNumber) {
-        CircularDoublyImplementation list = new CircularDoublyImplementation(2);
+        CircularDoubly list = new CircularDoubly(2);
         list.insertFirst(3); list.insertFirst(4); list.insertFirst(5); list.insertFirst(6);
 
         list.deleteNodeAtIndex(1); list.deleteNodeAtIndex(2);
 
-        CircularDoublyImplementation.Node firstNode = list.getFirstNode();
-        CircularDoublyImplementation.Node lastNode = list.getLastNode();
+        CircularDoubly.Node firstNode = list.getFirstNode();
+        CircularDoubly.Node lastNode = list.getLastNode();
 
         if (lastNode.nextNode != firstNode || firstNode.prevNode != lastNode)
             failTest(funcName, testNumber);
@@ -680,8 +680,8 @@ public class CircularDoublyTest {
      */
 
     public static void testGetFirstNodeOnEmptyList(String funcName, int testNumber) {
-        CircularDoublyImplementation list = new CircularDoublyImplementation();
-        CircularDoublyImplementation.Node nodeRetrieved = list.getFirstNode();
+        CircularDoubly list = new CircularDoubly();
+        CircularDoubly.Node nodeRetrieved = list.getFirstNode();
 
         if (list.getSize() != 0 || nodeRetrieved != null)
             failTest(funcName, testNumber);
@@ -690,8 +690,8 @@ public class CircularDoublyTest {
     }
 
     public static void testGetFirstNodeOnListWithSingleNode(String funcName, int testNumber) {
-        CircularDoublyImplementation list = new CircularDoublyImplementation(2);
-        CircularDoublyImplementation.Node nodeRetrieved = list.getFirstNode();
+        CircularDoubly list = new CircularDoubly(2);
+        CircularDoubly.Node nodeRetrieved = list.getFirstNode();
 
         if (list.getSize() != 1 || nodeRetrieved.data != 2)
             failTest(funcName, testNumber);
@@ -700,8 +700,8 @@ public class CircularDoublyTest {
     }
 
     public static void testGetFirstNodeOnListWithMultipleNodes(String funcName, int testNumber) {
-        CircularDoublyImplementation list = new CircularDoublyImplementation(2);
-        CircularDoublyImplementation.Node nodeRetrieved = list.getFirstNode();
+        CircularDoubly list = new CircularDoubly(2);
+        CircularDoubly.Node nodeRetrieved = list.getFirstNode();
 
         list.insertLast(3);
         list.insertLast(4);
@@ -720,8 +720,8 @@ public class CircularDoublyTest {
      */
 
     public static void testGetLastNodeOnEmptyList(String funcName, int testNumber) {
-        CircularDoublyImplementation list = new CircularDoublyImplementation();
-        CircularDoublyImplementation.Node nodeRetrieved = list.getLastNode();
+        CircularDoubly list = new CircularDoubly();
+        CircularDoubly.Node nodeRetrieved = list.getLastNode();
 
         if (list.getSize() != 0 || nodeRetrieved != null)
             failTest(funcName, testNumber);
@@ -730,8 +730,8 @@ public class CircularDoublyTest {
     }
 
     public static void testGetLastNodeOnListWithSingleNode(String funcName, int testNumber) {
-        CircularDoublyImplementation list = new CircularDoublyImplementation(2);
-        CircularDoublyImplementation.Node nodeRetrieved = list.getLastNode();
+        CircularDoubly list = new CircularDoubly(2);
+        CircularDoubly.Node nodeRetrieved = list.getLastNode();
 
         if (list.getSize() != 1 || nodeRetrieved.data != 2)
             failTest(funcName, testNumber);
@@ -740,12 +740,12 @@ public class CircularDoublyTest {
     }
 
     public static void testGetLastNodeOnListWithMultipleNodes(String funcName, int testNumber) {
-        CircularDoublyImplementation list = new CircularDoublyImplementation(2);
+        CircularDoubly list = new CircularDoubly(2);
 
         list.insertLast(3);
         list.insertLast(4);
         list.insertLast(5);
-        CircularDoublyImplementation.Node nodeRetrieved = list.getLastNode();
+        CircularDoubly.Node nodeRetrieved = list.getLastNode();
 
         if (list.getSize() != 4 || nodeRetrieved.data != 5)
             failTest(funcName, testNumber);
@@ -760,14 +760,14 @@ public class CircularDoublyTest {
      */
 
     public static void testGetNodeAtIndexWithInvalidIndexes(String funcName, int testNumber) {
-        CircularDoublyImplementation list = new CircularDoublyImplementation();
+        CircularDoubly list = new CircularDoubly();
 
-        CircularDoublyImplementation.Node nodeRetrieved1 = list.getNodeAtIndex(0);
+        CircularDoubly.Node nodeRetrieved1 = list.getNodeAtIndex(0);
 
         list.insertFirst(2); list.insertFirst(3);
 
-        CircularDoublyImplementation.Node nodeRetrieved2 = list.getNodeAtIndex(3);
-        CircularDoublyImplementation.Node nodeRetrieved3 = list.getNodeAtIndex(-1);
+        CircularDoubly.Node nodeRetrieved2 = list.getNodeAtIndex(3);
+        CircularDoubly.Node nodeRetrieved3 = list.getNodeAtIndex(-1);
 
         if (list.getSize() != 2 || nodeRetrieved1 != null || nodeRetrieved2 != null || nodeRetrieved3 != null)
             failTest(funcName, testNumber);
@@ -776,9 +776,9 @@ public class CircularDoublyTest {
     }
 
     public static void testGetNodeAtIndexWithIndexOfHead(String funcName, int testNumber) {
-        CircularDoublyImplementation list = new CircularDoublyImplementation(2);
-        CircularDoublyImplementation.Node nodeRetrieved = list.getNodeAtIndex(0);
-        CircularDoublyImplementation.Node head = list.getFirstNode();
+        CircularDoubly list = new CircularDoubly(2);
+        CircularDoubly.Node nodeRetrieved = list.getNodeAtIndex(0);
+        CircularDoubly.Node head = list.getFirstNode();
 
         if (list.getSize() != 1 || nodeRetrieved != head)
             failTest(funcName, testNumber);
@@ -787,14 +787,14 @@ public class CircularDoublyTest {
     }
 
     public static void testGetNodeAtIndexWithIndexOfLastNode(String funcName, int testNumber) {
-        CircularDoublyImplementation list = new CircularDoublyImplementation(2);
+        CircularDoubly list = new CircularDoubly(2);
 
         list.insertLast(3);
         list.insertLast(4);
         list.insertLast(5);
 
-        CircularDoublyImplementation.Node nodeRetrieved = list.getNodeAtIndex(3);
-        CircularDoublyImplementation.Node lastNode = list.getLastNode();
+        CircularDoubly.Node nodeRetrieved = list.getNodeAtIndex(3);
+        CircularDoubly.Node lastNode = list.getLastNode();
 
         if (list.getSize() != 4 || nodeRetrieved != lastNode)
             failTest(funcName, testNumber);
@@ -803,14 +803,14 @@ public class CircularDoublyTest {
     }
 
     public static void testGetNodeAtIndex(String funcName, int testNumber) {
-        CircularDoublyImplementation list = new CircularDoublyImplementation(2);
+        CircularDoubly list = new CircularDoubly(2);
 
         list.insertLast(3);
         list.insertLast(4);
         list.insertLast(5);
 
-        CircularDoublyImplementation.Node nodeRetrieved1 = list.getNodeAtIndex(1);
-        CircularDoublyImplementation.Node nodeRetrieved2 = list.getNodeAtIndex(2);
+        CircularDoubly.Node nodeRetrieved1 = list.getNodeAtIndex(1);
+        CircularDoubly.Node nodeRetrieved2 = list.getNodeAtIndex(2);
 
         if (list.getSize() != 4 || nodeRetrieved1.data != 3 || nodeRetrieved2.data != 4)
             failTest(funcName, testNumber);
@@ -825,7 +825,7 @@ public class CircularDoublyTest {
      */
 
     public static void testIsEmptyListWithEmptyList(String funcName, int testNumber) {
-        CircularDoublyImplementation list = new CircularDoublyImplementation();
+        CircularDoubly list = new CircularDoubly();
 
         if (list.isEmptyList())
             passTest(funcName, testNumber);
@@ -834,7 +834,7 @@ public class CircularDoublyTest {
     }
 
     public static void testIsEmptyListOnSigleNodeList(String funcName, int testNumber) {
-        CircularDoublyImplementation list = new CircularDoublyImplementation(2);
+        CircularDoubly list = new CircularDoubly(2);
 
         if (list.isEmptyList())
             failTest(funcName, testNumber);
@@ -843,7 +843,7 @@ public class CircularDoublyTest {
     }
 
     public static void testIsEmptyListOnMultiNodeList(String funcName, int testNumber) {
-        CircularDoublyImplementation list = new CircularDoublyImplementation(2);
+        CircularDoubly list = new CircularDoubly(2);
 
         list.insertFirst(4);
         list.insertFirst(40);
@@ -863,7 +863,7 @@ public class CircularDoublyTest {
      */
 
     public static void testSearch(String funcName, int testNumber) {
-        CircularDoublyImplementation list = new CircularDoublyImplementation(10);
+        CircularDoubly list = new CircularDoubly(10);
 
         list.insertFirst(4);
         list.insertFirst(40);
@@ -883,7 +883,7 @@ public class CircularDoublyTest {
      */
 
     public static void testGetSize(String funcName, int testNumber) {
-        CircularDoublyImplementation list = new CircularDoublyImplementation();
+        CircularDoubly list = new CircularDoubly();
 
         if (list.getSize() != 0) {
             failTest(funcName, testNumber);

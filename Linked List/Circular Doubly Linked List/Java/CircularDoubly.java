@@ -5,14 +5,14 @@
  * @author Alex Nunez 
  */
 
-public class CircularDoublyImplementation {
+public class CircularDoubly {
     private Node last;
     private int size;
 
     /**
      * Initializes an empty list
      */
-    CircularDoublyImplementation() {
+    CircularDoubly() {
         this.last = null;
         this.size = 0;
     }
@@ -22,7 +22,7 @@ public class CircularDoublyImplementation {
      * 
      * @param data the value the {@code Node} will hold
      */
-    CircularDoublyImplementation(int data) {
+    CircularDoubly(int data) {
         initFirtstNodeInList(data);
     }
 

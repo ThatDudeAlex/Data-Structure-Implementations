@@ -4,7 +4,7 @@
  * @author Alex Nunez
  */
 
-public class SinglyImplementation {
+public class Singly {
     private Node head;
     private Node tail;
     private int size;
@@ -12,7 +12,7 @@ public class SinglyImplementation {
     /**
      * Initializes an empty list
      */
-    SinglyImplementation() {
+    Singly() {
         this.head = null;
         this.tail = null;
         this.size = 0;
@@ -23,7 +23,7 @@ public class SinglyImplementation {
      * 
      * @param data the value the {@code Node} will hold
      */
-    SinglyImplementation(int data) {
+    Singly(int data) {
         initFirtstNodeInList(data);
     }
 

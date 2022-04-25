@@ -27,9 +27,9 @@ public class DoublyTest {
      */
 
     public static void testInitListWithoutParams(String funcName, int testNumber) {
-        DoublyImplementation list = new DoublyImplementation();
-        DoublyImplementation.Node head = list.getFirstNode();
-        DoublyImplementation.Node tail = list.getLastNode();
+        Doubly list = new Doubly();
+        Doubly.Node head = list.getFirstNode();
+        Doubly.Node tail = list.getLastNode();
 
         if (list.getSize() != 0 || head != null || tail != null)
             failTest(funcName, testNumber);
@@ -38,9 +38,9 @@ public class DoublyTest {
     }
 
     public static void testInitListWithParams(String funcName, int testNumber) {
-        DoublyImplementation list = new DoublyImplementation(4);
-        DoublyImplementation.Node head = list.getFirstNode();
-        DoublyImplementation.Node tail = list.getLastNode();
+        Doubly list = new Doubly(4);
+        Doubly.Node head = list.getFirstNode();
+        Doubly.Node tail = list.getLastNode();
 
         if (list.getSize() != 1 || head == null || tail == null)
             failTest(funcName, testNumber);
@@ -57,11 +57,11 @@ public class DoublyTest {
      */
 
     public static void testInsertFirstWithEmptyList(String funcName, int testNumber) {
-        DoublyImplementation list = new DoublyImplementation();
+        Doubly list = new Doubly();
 
         list.insertFirst(4);
-        DoublyImplementation.Node head = list.getFirstNode();
-        DoublyImplementation.Node tail = list.getLastNode();
+        Doubly.Node head = list.getFirstNode();
+        Doubly.Node tail = list.getLastNode();
 
         if (list.getSize() != 1 || head.data != 4 || head == null || tail == null || head != tail)
             failTest(funcName, testNumber);
@@ -70,11 +70,11 @@ public class DoublyTest {
     }
 
     public static void testInsertFirstOnListWithSingleNode(String funcName, int testNumber) {
-        DoublyImplementation list = new DoublyImplementation(2);
+        Doubly list = new Doubly(2);
 
         list.insertFirst(9);
-        DoublyImplementation.Node head = list.getFirstNode();
-        DoublyImplementation.Node tail = list.getLastNode();
+        Doubly.Node head = list.getFirstNode();
+        Doubly.Node tail = list.getLastNode();
 
         if (list.getSize() != 2 || head.data != 9 || tail.data != 2)
             failTest(funcName, testNumber);
@@ -83,13 +83,13 @@ public class DoublyTest {
     }
 
     public static void testInsertFirstOnListWithhMultipleNodes(String funcName, int testNumber) {
-        DoublyImplementation list = new DoublyImplementation(2);
+        Doubly list = new Doubly(2);
 
         list.insertFirst(9);
         list.insertFirst(7);
 
-        DoublyImplementation.Node head = list.getFirstNode();
-        DoublyImplementation.Node tail = list.getLastNode();
+        Doubly.Node head = list.getFirstNode();
+        Doubly.Node tail = list.getLastNode();
 
         if (list.getSize() != 3 || head.data != 7 || head.nextNode.data != 9 || tail.data != 2)
             failTest(funcName, testNumber);
@@ -98,14 +98,14 @@ public class DoublyTest {
     }
 
     public static void testInsertFirstToVerifyPrevAndNextPointersAreCorrect(String funcName, int testNumber) {
-        DoublyImplementation list = new DoublyImplementation(2);
+        Doubly list = new Doubly(2);
 
         list.insertFirst(9);
         list.insertFirst(7);
 
-        DoublyImplementation.Node head = list.getFirstNode();
-        DoublyImplementation.Node tail = list.getLastNode();
-        DoublyImplementation.Node nodeAtIdx1 = list.getNodeAtIndex(1);
+        Doubly.Node head = list.getFirstNode();
+        Doubly.Node tail = list.getLastNode();
+        Doubly.Node nodeAtIdx1 = list.getNodeAtIndex(1);
 
         if (head.prevNode != null || tail.nextNode != null)
             failTest(funcName, testNumber);
@@ -123,11 +123,11 @@ public class DoublyTest {
      */
 
     public static void testInsertLasttWithEmptyList(String funcName, int testNumber) {
-        DoublyImplementation list = new DoublyImplementation();
+        Doubly list = new Doubly();
 
         list.insertLast(2);
-        DoublyImplementation.Node head = list.getFirstNode();
-        DoublyImplementation.Node tail = list.getLastNode();
+        Doubly.Node head = list.getFirstNode();
+        Doubly.Node tail = list.getLastNode();
 
         if (list.getSize() != 1 || head == null || tail == null)
             failTest(funcName, testNumber);
@@ -138,11 +138,11 @@ public class DoublyTest {
     }
 
     public static void testInsertLastOnListWithSingleNode(String funcName, int testNumber) {
-        DoublyImplementation list = new DoublyImplementation(2);
+        Doubly list = new Doubly(2);
 
         list.insertLast(9);
-        DoublyImplementation.Node head = list.getFirstNode();
-        DoublyImplementation.Node tail = list.getLastNode();
+        Doubly.Node head = list.getFirstNode();
+        Doubly.Node tail = list.getLastNode();
 
         if (list.getSize() != 2)
             failTest(funcName, testNumber);
@@ -155,12 +155,12 @@ public class DoublyTest {
     }
 
     public static void testInsertLastOnListWithhMultipleNodes(String funcName, int testNumber) {
-        DoublyImplementation list = new DoublyImplementation(2);
+        Doubly list = new Doubly(2);
 
         list.insertLast(9);
         list.insertLast(7);
-        DoublyImplementation.Node head = list.getFirstNode();
-        DoublyImplementation.Node tail = list.getLastNode();
+        Doubly.Node head = list.getFirstNode();
+        Doubly.Node tail = list.getLastNode();
 
         if (list.getSize() != 3)
             failTest(funcName, testNumber);
@@ -173,14 +173,14 @@ public class DoublyTest {
     }
 
     public static void testInsertLastToVerifyPrevAndNextPointersAreCorrect(String funcName, int testNumber) {
-        DoublyImplementation list = new DoublyImplementation(2);
+        Doubly list = new Doubly(2);
 
         list.insertLast(9);
         list.insertLast(7);
 
-        DoublyImplementation.Node head = list.getFirstNode();
-        DoublyImplementation.Node tail = list.getLastNode();
-        DoublyImplementation.Node nodeAtIdx1 = list.getNodeAtIndex(1);
+        Doubly.Node head = list.getFirstNode();
+        Doubly.Node tail = list.getLastNode();
+        Doubly.Node nodeAtIdx1 = list.getNodeAtIndex(1);
 
         if (head.prevNode != null || tail.nextNode != null)
             failTest(funcName, testNumber);
@@ -198,7 +198,7 @@ public class DoublyTest {
      */
 
     public static void testInsertAtIndexWithEmptyListAtIndexZero(String funcName, int testNumber) {
-        DoublyImplementation list = new DoublyImplementation();
+        Doubly list = new Doubly();
 
         if (!list.insertAtIndex(0, 2) || list.getSize() != 1 || list.getFirstNode().data != 2)
             failTest(funcName, testNumber);
@@ -209,7 +209,7 @@ public class DoublyTest {
     }
 
     public static void testInsertAtIndexWithNonEmptyListAtIndexZero(String funcName, int testNumber) {
-        DoublyImplementation list = new DoublyImplementation(2);
+        Doubly list = new Doubly(2);
 
         list.insertLast(9);
         list.insertLast(7);
@@ -223,7 +223,7 @@ public class DoublyTest {
     }
 
     public static void testInsertAtIndexWithInvalidIndexes(String funcName, int testNumber) {
-        DoublyImplementation list = new DoublyImplementation();
+        Doubly list = new Doubly();
 
         if (list.insertAtIndex(1, 2) || list.insertAtIndex(-1, 2))
             failTest(funcName, testNumber);
@@ -234,7 +234,7 @@ public class DoublyTest {
     }
 
     public static void testInsertAtIndexWithNonEmptyList(String funcName, int testNumber) {
-        DoublyImplementation list = new DoublyImplementation(2);
+        Doubly list = new Doubly(2);
 
         list.insertLast(9);
         list.insertLast(7);
@@ -248,18 +248,18 @@ public class DoublyTest {
     }
 
     public static void testInsertAtIndexToVerifyPrevAndNextPointersAreCorrect(String funcName, int testNumber) {
-        DoublyImplementation list = new DoublyImplementation(2);
+        Doubly list = new Doubly(2);
 
         list.insertLast(9);
         list.insertLast(7);
         list.insertAtIndex(1, 5);
         list.insertAtIndex(3, 8);
 
-        DoublyImplementation.Node head = list.getFirstNode();
-        DoublyImplementation.Node tail = list.getLastNode();
-        DoublyImplementation.Node nodeAtIdx1 = list.getNodeAtIndex(1);
-        DoublyImplementation.Node nodeAtIdx2 = list.getNodeAtIndex(2);
-        DoublyImplementation.Node nodeAtIdx3 = list.getNodeAtIndex(3);
+        Doubly.Node head = list.getFirstNode();
+        Doubly.Node tail = list.getLastNode();
+        Doubly.Node nodeAtIdx1 = list.getNodeAtIndex(1);
+        Doubly.Node nodeAtIdx2 = list.getNodeAtIndex(2);
+        Doubly.Node nodeAtIdx3 = list.getNodeAtIndex(3);
 
         if (head.prevNode != null || tail.nextNode != null)
             failTest(funcName, testNumber);
@@ -282,9 +282,9 @@ public class DoublyTest {
      */
 
     public static void testDeleteFirstOnEmptyList(String funcName, int testNumber) {
-        DoublyImplementation list = new DoublyImplementation();
+        Doubly list = new Doubly();
 
-        DoublyImplementation.Node deletedNode = list.deleteFirstNode();
+        Doubly.Node deletedNode = list.deleteFirstNode();
 
         if (list.getSize() != 0 || deletedNode != null)
             failTest(funcName, testNumber);
@@ -293,9 +293,9 @@ public class DoublyTest {
     }
 
     public static void testDeleteFirstOnListWithSingleNode(String funcName, int testNumber) {
-        DoublyImplementation list = new DoublyImplementation(2);
-        DoublyImplementation.Node nodeToRemove = list.getFirstNode();
-        DoublyImplementation.Node deletedNode = list.deleteFirstNode();
+        Doubly list = new Doubly(2);
+        Doubly.Node nodeToRemove = list.getFirstNode();
+        Doubly.Node deletedNode = list.deleteFirstNode();
 
         if (list.getSize() != 0 || list.getFirstNode() != null || list.getLastNode() != null
                 || deletedNode != nodeToRemove)
@@ -305,15 +305,15 @@ public class DoublyTest {
     }
 
     public static void testDeleteFirstOnListWithMultipleNodes(String funcName, int testNumber) {
-        DoublyImplementation list = new DoublyImplementation(2);
+        Doubly list = new Doubly(2);
 
         list.insertFirst(3);
         list.insertFirst(4);
         list.insertFirst(5);
 
-        DoublyImplementation.Node headToRemove = list.getFirstNode();
-        DoublyImplementation.Node deletedNode = list.deleteFirstNode();
-        DoublyImplementation.Node newHead = list.getFirstNode();
+        Doubly.Node headToRemove = list.getFirstNode();
+        Doubly.Node deletedNode = list.deleteFirstNode();
+        Doubly.Node newHead = list.getFirstNode();
 
         if (list.getSize() != 3 || deletedNode != headToRemove || newHead.data != 4)
             failTest(funcName, testNumber);
@@ -326,16 +326,16 @@ public class DoublyTest {
     }
 
     public static void testDeleteFirstToVerifyPrevAndNextPointersAreCorrect(String funcName, int testNumber) {
-        DoublyImplementation list = new DoublyImplementation(2);
+        Doubly list = new Doubly(2);
 
         list.insertFirst(3);
         list.insertFirst(4);
         list.insertFirst(5);
 
-        DoublyImplementation.Node deletedHead = list.deleteFirstNode();
-        DoublyImplementation.Node newHead = list.getFirstNode();
-        DoublyImplementation.Node tail = list.getLastNode();
-        DoublyImplementation.Node nodeAtIdx1 = list.getNodeAtIndex(1);
+        Doubly.Node deletedHead = list.deleteFirstNode();
+        Doubly.Node newHead = list.getFirstNode();
+        Doubly.Node tail = list.getLastNode();
+        Doubly.Node nodeAtIdx1 = list.getNodeAtIndex(1);
 
         if (newHead.prevNode != null || tail.nextNode != null || deletedHead.prevNode != null
                 || deletedHead.nextNode != null)
@@ -355,9 +355,9 @@ public class DoublyTest {
      */
 
     public static void testDeleteLastOnEmptyList(String funcName, int testNumber) {
-        DoublyImplementation list = new DoublyImplementation();
+        Doubly list = new Doubly();
 
-        DoublyImplementation.Node deletedNode = list.deleteLastNode();
+        Doubly.Node deletedNode = list.deleteLastNode();
 
         if (list.getSize() != 0 || deletedNode != null)
             failTest(funcName, testNumber);
@@ -366,9 +366,9 @@ public class DoublyTest {
     }
 
     public static void testDeleteLastOnListWithSingleNode(String funcName, int testNumber) {
-        DoublyImplementation list = new DoublyImplementation(2);
-        DoublyImplementation.Node tailNodeToRemove = list.getLastNode();
-        DoublyImplementation.Node deletedNode = list.deleteLastNode();
+        Doubly list = new Doubly(2);
+        Doubly.Node tailNodeToRemove = list.getLastNode();
+        Doubly.Node deletedNode = list.deleteLastNode();
 
         if (list.getSize() != 0 || list.getFirstNode() != null || list.getLastNode() != null
                 || deletedNode != tailNodeToRemove)
@@ -378,15 +378,15 @@ public class DoublyTest {
     }
 
     public static void testDeleteLastOnListWithMultipleNodes(String funcName, int testNumber) {
-        DoublyImplementation list = new DoublyImplementation(2);
+        Doubly list = new Doubly(2);
 
         list.insertFirst(3);
         list.insertFirst(4);
         list.insertFirst(5);
 
-        DoublyImplementation.Node head = list.getFirstNode();
-        DoublyImplementation.Node lastNodeToRemove = list.getLastNode();
-        DoublyImplementation.Node deletedNode = list.deleteLastNode();
+        Doubly.Node head = list.getFirstNode();
+        Doubly.Node lastNodeToRemove = list.getLastNode();
+        Doubly.Node deletedNode = list.deleteLastNode();
 
         if (list.getSize() != 3 || deletedNode != lastNodeToRemove)
             failTest(funcName, testNumber);
@@ -399,16 +399,16 @@ public class DoublyTest {
     }
 
     public static void testDeleteLastToVerifyPrevAndNextPointersAreCorrect(String funcName, int testNumber) {
-        DoublyImplementation list = new DoublyImplementation(2);
+        Doubly list = new Doubly(2);
 
         list.insertFirst(3);
         list.insertFirst(4);
         list.insertFirst(5);
 
-        DoublyImplementation.Node head = list.getFirstNode();
-        DoublyImplementation.Node deletedTail = list.deleteLastNode();
-        DoublyImplementation.Node newTail = list.getLastNode();
-        DoublyImplementation.Node nodeAtIdx1 = list.getNodeAtIndex(1);
+        Doubly.Node head = list.getFirstNode();
+        Doubly.Node deletedTail = list.deleteLastNode();
+        Doubly.Node newTail = list.getLastNode();
+        Doubly.Node nodeAtIdx1 = list.getNodeAtIndex(1);
 
         if (head.prevNode != null || newTail.nextNode != null || deletedTail.prevNode != null
                 || deletedTail.nextNode != null)
@@ -428,14 +428,14 @@ public class DoublyTest {
      */
 
     public static void testDeleteNodeAtIndexWithInvalidIndexes(String funcName, int testNumber) {
-        DoublyImplementation list = new DoublyImplementation();
-        DoublyImplementation.Node nodeDeleted1 = list.deleteNodeAtIndex(0);
+        Doubly list = new Doubly();
+        Doubly.Node nodeDeleted1 = list.deleteNodeAtIndex(0);
 
         list.insertFirst(2);
         list.insertFirst(3);
 
-        DoublyImplementation.Node nodeDeleted2 = list.deleteNodeAtIndex(3);
-        DoublyImplementation.Node nodeDeleted3 = list.deleteNodeAtIndex(-1);
+        Doubly.Node nodeDeleted2 = list.deleteNodeAtIndex(3);
+        Doubly.Node nodeDeleted3 = list.deleteNodeAtIndex(-1);
 
         if (list.getSize() != 2 || nodeDeleted1 != null || nodeDeleted2 != null || nodeDeleted3 != null)
             failTest(funcName, testNumber);
@@ -444,9 +444,9 @@ public class DoublyTest {
     }
 
     public static void testDeleteNodeAtIndexWithIndexOfHead(String funcName, int testNumber) {
-        DoublyImplementation list = new DoublyImplementation(2);
-        DoublyImplementation.Node head = list.getFirstNode();
-        DoublyImplementation.Node nodeDeleted = list.deleteNodeAtIndex(0);
+        Doubly list = new Doubly(2);
+        Doubly.Node head = list.getFirstNode();
+        Doubly.Node nodeDeleted = list.deleteNodeAtIndex(0);
 
         if (list.getSize() != 0 || nodeDeleted != head)
             failTest(funcName, testNumber);
@@ -455,14 +455,14 @@ public class DoublyTest {
     }
 
     public static void testDeleteNodeAtIndexWithIndexOfTail(String funcName, int testNumber) {
-        DoublyImplementation list = new DoublyImplementation(2);
+        Doubly list = new Doubly(2);
 
         list.insertLast(3);
         list.insertLast(4);
         list.insertLast(5);
 
-        DoublyImplementation.Node tailNode = list.getLastNode();
-        DoublyImplementation.Node nodeDeleted = list.deleteNodeAtIndex(3);
+        Doubly.Node tailNode = list.getLastNode();
+        Doubly.Node nodeDeleted = list.deleteNodeAtIndex(3);
 
         if (list.getSize() != 3 || nodeDeleted != tailNode)
             failTest(funcName, testNumber);
@@ -471,16 +471,16 @@ public class DoublyTest {
     }
 
     public static void testDeleteNodeAtIndexWithNonEmptyList(String funcName, int testNumber) {
-        DoublyImplementation list = new DoublyImplementation(2);
+        Doubly list = new Doubly(2);
 
         list.insertLast(3);
         list.insertLast(4);
         list.insertLast(5);
 
-        DoublyImplementation.Node nodeDeleted1 = list.deleteNodeAtIndex(1);
-        DoublyImplementation.Node nodeDeleted2 = list.deleteNodeAtIndex(1);
-        DoublyImplementation.Node head = list.getFirstNode();
-        DoublyImplementation.Node tail = list.getLastNode();
+        Doubly.Node nodeDeleted1 = list.deleteNodeAtIndex(1);
+        Doubly.Node nodeDeleted2 = list.deleteNodeAtIndex(1);
+        Doubly.Node head = list.getFirstNode();
+        Doubly.Node tail = list.getLastNode();
 
         if (list.getSize() != 2 || head.data != 2 || tail.data != 5)
             failTest(funcName, testNumber);
@@ -493,19 +493,19 @@ public class DoublyTest {
     }
 
     public static void testDeleteNodeAtIndexToVerifyPrevAndNextPointersAreCorrect(String funcName, int testNumber) {
-        DoublyImplementation list = new DoublyImplementation(2);
+        Doubly list = new Doubly(2);
 
         list.insertLast(3);
         list.insertLast(4);
         list.insertLast(5);
         list.insertLast(6);
 
-        DoublyImplementation.Node nodeDeleted1 = list.deleteNodeAtIndex(1);
-        DoublyImplementation.Node nodeDeleted2 = list.deleteNodeAtIndex(2);
+        Doubly.Node nodeDeleted1 = list.deleteNodeAtIndex(1);
+        Doubly.Node nodeDeleted2 = list.deleteNodeAtIndex(2);
 
-        DoublyImplementation.Node head = list.getFirstNode();
-        DoublyImplementation.Node tail = list.getLastNode();
-        DoublyImplementation.Node nodeAtIdx1 = list.getNodeAtIndex(1);
+        Doubly.Node head = list.getFirstNode();
+        Doubly.Node tail = list.getLastNode();
+        Doubly.Node nodeAtIdx1 = list.getNodeAtIndex(1);
 
         if (head.prevNode != null || tail.nextNode != null)
             failTest(funcName, testNumber);
@@ -528,8 +528,8 @@ public class DoublyTest {
      */
 
     public static void testGetFirstNodeOnEmptyList(String funcName, int testNumber) {
-        DoublyImplementation list = new DoublyImplementation();
-        DoublyImplementation.Node nodeRetrieved = list.getFirstNode();
+        Doubly list = new Doubly();
+        Doubly.Node nodeRetrieved = list.getFirstNode();
 
         if (list.getSize() != 0 || nodeRetrieved != null)
             failTest(funcName, testNumber);
@@ -538,8 +538,8 @@ public class DoublyTest {
     }
 
     public static void testGetFirstNodeOnListWithSingleNode(String funcName, int testNumber) {
-        DoublyImplementation list = new DoublyImplementation(2);
-        DoublyImplementation.Node nodeRetrieved = list.getFirstNode();
+        Doubly list = new Doubly(2);
+        Doubly.Node nodeRetrieved = list.getFirstNode();
 
         if (list.getSize() != 1 || nodeRetrieved.data != 2)
             failTest(funcName, testNumber);
@@ -548,8 +548,8 @@ public class DoublyTest {
     }
 
     public static void testGetFirstNodeOnListWithMultipleNodes(String funcName, int testNumber) {
-        DoublyImplementation list = new DoublyImplementation(2);
-        DoublyImplementation.Node nodeRetrieved = list.getFirstNode();
+        Doubly list = new Doubly(2);
+        Doubly.Node nodeRetrieved = list.getFirstNode();
 
         list.insertLast(3);
         list.insertLast(4);
@@ -568,8 +568,8 @@ public class DoublyTest {
      */
 
     public static void testGetLastNodeOnEmptyList(String funcName, int testNumber) {
-        DoublyImplementation list = new DoublyImplementation();
-        DoublyImplementation.Node nodeRetrieved = list.getLastNode();
+        Doubly list = new Doubly();
+        Doubly.Node nodeRetrieved = list.getLastNode();
 
         if (list.getSize() != 0 || nodeRetrieved != null)
             failTest(funcName, testNumber);
@@ -578,8 +578,8 @@ public class DoublyTest {
     }
 
     public static void testGetLastNodeOnListWithSingleNode(String funcName, int testNumber) {
-        DoublyImplementation list = new DoublyImplementation(2);
-        DoublyImplementation.Node nodeRetrieved = list.getLastNode();
+        Doubly list = new Doubly(2);
+        Doubly.Node nodeRetrieved = list.getLastNode();
 
         if (list.getSize() != 1 || nodeRetrieved.data != 2)
             failTest(funcName, testNumber);
@@ -588,12 +588,12 @@ public class DoublyTest {
     }
 
     public static void testGetLastNodeOnListWithMultipleNodes(String funcName, int testNumber) {
-        DoublyImplementation list = new DoublyImplementation(2);
+        Doubly list = new Doubly(2);
 
         list.insertLast(3);
         list.insertLast(4);
         list.insertLast(5);
-        DoublyImplementation.Node nodeRetrieved = list.getLastNode();
+        Doubly.Node nodeRetrieved = list.getLastNode();
 
         if (list.getSize() != 4 || nodeRetrieved.data != 5)
             failTest(funcName, testNumber);
@@ -608,14 +608,14 @@ public class DoublyTest {
      */
 
     public static void testGetNodeAtIndexWithInvalidIndexes(String funcName, int testNumber) {
-        DoublyImplementation list = new DoublyImplementation();
-        DoublyImplementation.Node nodeRetrieved1 = list.getNodeAtIndex(0);
+        Doubly list = new Doubly();
+        Doubly.Node nodeRetrieved1 = list.getNodeAtIndex(0);
 
         list.insertFirst(2);
         list.insertFirst(3);
 
-        DoublyImplementation.Node nodeRetrieved2 = list.getNodeAtIndex(3);
-        DoublyImplementation.Node nodeRetrieved3 = list.getNodeAtIndex(-1);
+        Doubly.Node nodeRetrieved2 = list.getNodeAtIndex(3);
+        Doubly.Node nodeRetrieved3 = list.getNodeAtIndex(-1);
 
         if (list.getSize() != 2 || nodeRetrieved1 != null || nodeRetrieved2 != null || nodeRetrieved3 != null)
             failTest(funcName, testNumber);
@@ -624,9 +624,9 @@ public class DoublyTest {
     }
 
     public static void testGetNodeAtIndexWithIndexOfHead(String funcName, int testNumber) {
-        DoublyImplementation list = new DoublyImplementation(2);
-        DoublyImplementation.Node nodeRetrieved = list.getNodeAtIndex(0);
-        DoublyImplementation.Node head = list.getFirstNode();
+        Doubly list = new Doubly(2);
+        Doubly.Node nodeRetrieved = list.getNodeAtIndex(0);
+        Doubly.Node head = list.getFirstNode();
 
         if (list.getSize() != 1 || nodeRetrieved != head)
             failTest(funcName, testNumber);
@@ -635,14 +635,14 @@ public class DoublyTest {
     }
 
     public static void testGetNodeAtIndexWithIndexOfLastNode(String funcName, int testNumber) {
-        DoublyImplementation list = new DoublyImplementation(2);
+        Doubly list = new Doubly(2);
 
         list.insertLast(3);
         list.insertLast(4);
         list.insertLast(5);
 
-        DoublyImplementation.Node nodeRetrieved = list.getNodeAtIndex(3);
-        DoublyImplementation.Node lastNode = list.getLastNode();
+        Doubly.Node nodeRetrieved = list.getNodeAtIndex(3);
+        Doubly.Node lastNode = list.getLastNode();
 
         if (list.getSize() != 4 || nodeRetrieved != lastNode)
             failTest(funcName, testNumber);
@@ -651,14 +651,14 @@ public class DoublyTest {
     }
 
     public static void testGetNodeAtIndex(String funcName, int testNumber) {
-        DoublyImplementation list = new DoublyImplementation(2);
+        Doubly list = new Doubly(2);
 
         list.insertLast(3);
         list.insertLast(4);
         list.insertLast(5);
 
-        DoublyImplementation.Node nodeRetrieved1 = list.getNodeAtIndex(1);
-        DoublyImplementation.Node nodeRetrieved2 = list.getNodeAtIndex(2);
+        Doubly.Node nodeRetrieved1 = list.getNodeAtIndex(1);
+        Doubly.Node nodeRetrieved2 = list.getNodeAtIndex(2);
 
         if (list.getSize() != 4 || nodeRetrieved1.data != 3 || nodeRetrieved2.data != 4)
             failTest(funcName, testNumber);
@@ -673,7 +673,7 @@ public class DoublyTest {
      */
 
     public static void testIsEmptyListWithEmptyList(String funcName, int testNumber) {
-        DoublyImplementation list = new DoublyImplementation();
+        Doubly list = new Doubly();
 
         if (list.isEmptyList())
             passTest(funcName, testNumber);
@@ -682,7 +682,7 @@ public class DoublyTest {
     }
 
     public static void testIsEmptyListOnSigleNodeList(String funcName, int testNumber) {
-        DoublyImplementation list = new DoublyImplementation(2);
+        Doubly list = new Doubly(2);
 
         if (list.isEmptyList())
             failTest(funcName, testNumber);
@@ -691,7 +691,7 @@ public class DoublyTest {
     }
 
     public static void testIsEmptyListOnMultiNodeList(String funcName, int testNumber) {
-        DoublyImplementation list = new DoublyImplementation(2);
+        Doubly list = new Doubly(2);
 
         list.insertFirst(4);
         list.insertFirst(40);
@@ -711,7 +711,7 @@ public class DoublyTest {
      */
 
     public static void testSearch(String funcName, int testNumber) {
-        DoublyImplementation list = new DoublyImplementation(10);
+        Doubly list = new Doubly(10);
 
         list.insertFirst(4);
         list.insertFirst(40);
@@ -732,7 +732,7 @@ public class DoublyTest {
 
     public static void testGetSize(String funcName, int testNumber) {
 
-        DoublyImplementation list = new DoublyImplementation();
+        Doubly list = new Doubly();
 
         if (list.getSize() != 0)
             failTest(funcName, testNumber);
