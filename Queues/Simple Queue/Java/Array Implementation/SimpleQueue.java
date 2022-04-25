@@ -1,5 +1,5 @@
 /**
- * An implementation of a standard Doubly Linked List.
+ * An implementation of a Queue using an integer array.
  * 
  * @author Alex Nunez 
  */
