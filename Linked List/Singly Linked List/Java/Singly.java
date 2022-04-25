@@ -1,5 +1,5 @@
 /**
- * An implementation of a standard Singly Linked List.
+ * An implementation of a Singly Linked List.
  * 
  * @author Alex Nunez
  */
@@ -28,16 +28,14 @@ public class Singly {
     }
 
     /**
-     * <pre>
-     * Inserts a new node at the beginning of the list
+     * Inserts a new {@code Node} at the beginning of the list
      * 
-     * Runtime: O(1)
-     * </pre>
+     * @return {@code true} to show the {@code Node} was inserted
      * 
-     * @param data The value that the new node will hold
+     * @Runtime {@code O(1)} - because its not affected by the size of the list
      */
     public boolean insertFirst(int data) {
-        if (isEmptyList())
+        if (isEmpty())
             return initFirtstNodeInList(data);
 
         Node newNode = new Node(data);
@@ -49,16 +47,14 @@ public class Singly {
     }
 
     /**
-     * <pre>
-     * Inserts a new node at the end of the list
+     * Inserts a new {@code Node} at the end of the list
      * 
-     * Runtime: O(1)
-     * </pre>
+     * @return {@code true} to show the {@code Node} was inserted
      * 
-     * @param data The value that the new node will hold
+     * @Runtime {@code O(1)} - because its not affected by the size of the list
      */
     public boolean insertLast(int data) {
-        if (isEmptyList())
+        if (isEmpty())
             return initFirtstNodeInList(data);
 
         this.tail = this.tail.nextNode = new Node(data);
@@ -67,17 +63,15 @@ public class Singly {
     }
 
     /**
-     * <pre>
      * Inserts a new {@code Node} at the given index
      * 
-     * Runtime: O(N) : because it needs to iterate through the list
-     * </pre>
-     * 
      * @return {@code true} if the {@code Node} was inserted in a valid index, else
-     *         returns {@code false}
+     *  returns {@code false}
+     * 
+     * @Runtime {@code O(N)} - because it needs to iterate through the list
      */
     public boolean insertAtIndex(int index, int data) {
-        if (isEmptyList() && index == 0)
+        if (isEmpty() && index == 0)
             return initFirtstNodeInList(data);
         else if (index == 0)
             return insertFirst(data);
@@ -100,44 +94,14 @@ public class Singly {
     }
 
     /**
-     * <pre>
-     * Returns the node at the given index if it exist, else returns null
-     * 
-     * Runtime: O(N)
-     * </pre>
-     * 
-     * @param index the location of a node in the linked list
-     * 
-     * @return The node located at the given index
-     */
-    public Node getNodeAtIndex(int index) {
-        Node currHead = this.head;
-
-        if (isOutOfBoundsIndex(index) || isEmptyList())
-            return null;
-        else if (index == 0)
-            return this.head; // if is head index returns head
-        else if (index == this.size - 1)
-            return this.tail; // if is tail index returns tail
-
-        for (int i = 1; i <= index; i++)
-            currHead = currHead.nextNode;
-
-        return currHead;
-    }
-
-    /**
-     * <pre>
      * Deletes the first {@code Node} in the linked list
      * 
-     * Runtime: O(1) : because only rearranging a few pointers is required
-     * </pre>
+     * @return The first {@code Node} in the list of type {@code Singly.Node}
      * 
-     * @return The first {@code Node} in the list of type
-     *         {@code SinglyImplementation.Node}
+     * @Runtime {@code O(1)} - because its not affected by the size of the list
      */
     public Node deleteFirstNode() {
-        if (isEmptyList())
+        if (isEmpty())
             return null;
 
         Node deletedHead = this.head;
@@ -153,17 +117,14 @@ public class Singly {
     }
 
     /**
-     * <pre>
      * Deletes the last {@code Node} in the linked list
+     *
+     * @return The last {@code Node} in the list of type {@code Singly.Node}
      * 
-     * Runtime: O(N) : because it needs to iterate through the list
-     * </pre>
-     * 
-     * @return The last {@code Node} in the list of type
-     *         {@code SinglyImplementation.Node}
+     * @Runtime {@code O(N)} - because it needs to iterate through the list
      */
     public Node deleteLastNode() {
-        if (isEmptyList())
+        if (isEmpty())
             return null;
 
         Node deletedLastNode = null;
@@ -183,18 +144,17 @@ public class Singly {
     }
 
     /**
-     * <pre>
-     * Deletes the node located at the given index if it exist
+     * Deletes the {@code Node} located at the given index if it exist
      * 
-     * Runtime: O(N)
-     * </pre>
+     * @param index the location of a {@code Node} in the linked list
      * 
-     * @param index the location of a node in the linked list
+     * @return The {@code Node} located at given index if it exitst else returns null. 
+     * The node will be of type {@code Singly.Node}
      * 
-     * @return A boolean stating whether or not a node was deleted
+     *@Runtime {@code O(N)} - because it needs to iterate through the list 
      */
     public Node deleteNodeAtIndex(int index) {
-        if (isOutOfBoundsIndex(index) || isEmptyList())
+        if (isOutOfBoundsIndex(index) || isEmpty())
             return null;
         else if (index == 0)
             return deleteFirstNode();
@@ -215,44 +175,63 @@ public class Singly {
     }
 
     /**
-     * <pre>
      * Returns the head of the list, or null if the list is empty
      * 
-     * Runtime: O(1) : because it just returns a pointer that's readily available
-     * </pre>
+     * @return The first {@code Node} in the list if it exits, else returns null. 
+     * The node will be of type {@code Singly.Node}
      * 
-     * @return The first {@code Node} in the list if it exits, else returns null.
-     *         The node will be of type {@code SinglyImplementation.Node}
+     * @Runtime {@code O(1)} - because it just returns a pointer that's readily available
      */
     public Node getFirstNode() {
         return this.head;
     }
 
-    /**
-     * <pre>
+     /**
      * Returns the last node of the list, or null if the list is empty
      * 
-     * Runtime: O(1) : because it just returns a pointer that's readily available
-     * </pre>
+     * @return The last {@code Node} in the list if it exits, else returns null. 
+     * The node will be of type {@code Singly.Node}
      * 
-     * @return The last {@code Node} in the list if it exits, else returns null.
-     *         The node will be of type {@code SinglyImplementation.Node}
+     * @Runtime {@code O(1)} - because it just returns a pointer that's readily available
      */
     public Node getLastNode() {
         return this.tail;
     }
 
+     /**
+     * Returns the {@code Node} at the given index if it exist, else returns null
+     *
+     * @param index the location of a {@code Node} in the list
+     * 
+     * @return The {@code Node} located at the given index
+     * 
+     * @Runtime {@code O(N)} - because it needs to iterate the list
+     */
+    public Node getNodeAtIndex(int index) {
+        Node currHead = this.head;
+
+        if (isOutOfBoundsIndex(index) || isEmpty())
+            return null;
+        else if (index == 0)
+            return this.head; // if is head index returns head
+        else if (index == this.size - 1)
+            return this.tail; // if is tail index returns tail
+
+        for (int i = 1; i <= index; i++)
+            currHead = currHead.nextNode;
+
+        return currHead;
+    }
+
     /**
-     * <pre>
-     *  
-     * Searches the linked list to see if it contains the given value
+     * Searches the list to see if it contains a {@code Node} with the given value
+     *
+     * @param value to search the list for
      * 
-     * Runtime: O(N)
-     * </pre>
+     * @return {@code true} if the list contains a {@code Node} with the given value,
+     * else returns {@code false}
      * 
-     * @param value to search the linked list for
-     * 
-     * @return Whether or not the value is found in the linked list
+     * @Runtime {@code O(N)} - because it needs to iterate the list
      */
     public boolean search(int value) {
         Node currHead = this.head;
@@ -265,31 +244,6 @@ public class Singly {
 
     /**
      * <pre>
-     * Returns the head of the Linked List, or null if the list is empty
-     * 
-     * Runtime: O(1)
-     * </pre>
-     */
-    public Node getHead() {
-        return this.head;
-    }
-
-    /**
-     * <pre>
-     * Returns the tail of the Linked List, or null if the list is empty
-     * 
-     * Runtime: O(1)
-     * </pre>
-     */
-    public Node getTail() {
-        return this.tail;
-    }
-
-    // Utility Methods
-    // =======================
-
-    /**
-     * <pre>
      * Returns the current size of the List
      * 
      * Runtime: O(1) : because it just returns the value of a private variable
@@ -298,7 +252,7 @@ public class Singly {
      * @
      *   @return the number of {@code Nodes} currently in the list
      */
-    public int getSize() {
+    public int size() {
         return this.size;
     }
 
@@ -312,7 +266,7 @@ public class Singly {
      * @return {@code true} if the list contains no {@code Nodes},
      *         else returns {@code false}
      */
-    public boolean isEmptyList() {
+    public boolean isEmpty() {
         return this.head == null && this.tail == null && this.size == 0;
     }
 
@@ -324,7 +278,7 @@ public class Singly {
      * </pre>
      */
     public void printLinkedList() {
-        if (isEmptyList()) {
+        if (isEmpty()) {
             System.out.println("EMPTY LIST");
             return;
         }
@@ -339,7 +293,7 @@ public class Singly {
     }
 
     private boolean isOutOfBoundsIndex(int index) {
-        return (index >= getSize() || index < 0);
+        return (index >= size() || index < 0);
     }
 
     // handles the initialization & configurations of adding the first node into the

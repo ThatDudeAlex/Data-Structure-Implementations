@@ -1,6 +1,6 @@
 
 /**
- * An implementation of a standard Circular Singly Linked List.
+ * An implementation of a Circular Doubly Linked List.
  * 
  * @author Alex Nunez 
  */
@@ -27,16 +27,14 @@ public class CircularDoubly {
     }
 
     /**
-     * <pre>
      * Inserts a new {@code Node} at the beginning of the list
      * 
-     * Runtime: O(1) : because only rearranging a few pointers is required
-     * </pre>
-     * 
      * @return {@code true} to show the {@code Node} was inserted
+     * 
+     * @Runtime {@code O(1)} - because its not affected by the size of the list
      */
     public boolean insertFirst(int data) {
-        if (isEmptyList())
+        if (isEmpty())
             return initFirtstNodeInList(data);
         
         Node newHead =  new Node(data);
@@ -58,16 +56,14 @@ public class CircularDoubly {
     }
 
     /**
-     * <pre>
      * Inserts a new {@code Node} at the end of the list
      * 
-     * Runtime: O(1) : because only rearranging a few pointers is required
-     * </pre>
-     * 
      * @return {@code true} to show the {@code Node} was inserted
+     * 
+     * @Runtime {@code O(1)} - because its not affected by the size of the list
      */
     public boolean insertLast(int data) {
-        if (isEmptyList()) 
+        if (isEmpty()) 
             return initFirtstNodeInList(data);
        
         Node newLastNode =  new Node(data);
@@ -90,17 +86,15 @@ public class CircularDoubly {
     }
 
     /**
-     * <pre>
      * Inserts a new {@code Node} at the given index
-     * 
-     * Runtime: O(N) : because it needs to iterate through the list
-     * </pre>
      * 
      * @return {@code true} if the {@code Node} was inserted in a valid index, else
      *  returns {@code false}
+     * 
+     * @Runtime {@code O(N)} - because it needs to iterate through the list
      */
     public boolean insertAtIndex(int index, int data) {
-        if (isEmptyList() && index == 0) 
+        if (isEmpty() && index == 0) 
             return initFirtstNodeInList(data);
         else if (index == 0) 
             return insertFirst(data);
@@ -125,16 +119,14 @@ public class CircularDoubly {
     }
 
     /**
-     * <pre>
      * Deletes the first {@code Node} in the linked list
      * 
-     * Runtime: O(1) : because only rearranging a few pointers is required
-     * </pre>
+     * @return The first {@code Node} in the list of type {@code CircularDoubly.Node}
      * 
-     * @return The first {@code Node} in the list of type {@code CircularSinglyImplementation.Node}
+     * @Runtime {@code O(1)} - because its not affected by the size of the list
      */
     public Node deleteFirstNode() {
-        if (isEmptyList())
+        if (isEmpty())
             return null;
         else if (this.size == 1)
             return handleNodeRemoval();
@@ -151,16 +143,14 @@ public class CircularDoubly {
     }
 
     /**
-     * <pre>
      * Deletes the last {@code Node} in the linked list
+     *
+     * @return The last {@code Node} in the list of type {@code CircularDoubly.Node}
      * 
-     * Runtime: O(N) : because it needs to iterate through the list
-     * </pre>
-     * 
-     * @return The last {@code Node} in the list of type {@code CircularSinglyImplementation.Node}
+     * @Runtime {@code O(N)} - because it needs to iterate through the list
      */
     public Node deleteLastNode() {
-        if (isEmptyList())
+        if (isEmpty())
             return null;
         else if (this.size == 1) 
             return handleNodeRemoval();
@@ -178,19 +168,17 @@ public class CircularDoubly {
     }
 
     /**
-     * <pre>
      * Deletes the {@code Node} located at the given index if it exist
-     * 
-     * Runtime: O(N) : because it needs to iterate through the list 
-     * </pre>
      * 
      * @param index the location of a {@code Node} in the linked list
      * 
      * @return The {@code Node} located at given index if it exitst else returns null. 
-     * The node will be of type {@code CircularSinglyImplementation.Node}
+     * The node will be of type {@code CircularDoubly.Node}
+     * 
+     *@Runtime {@code O(N)} - because it needs to iterate through the list 
      */
     public Node deleteNodeAtIndex(int index) {
-        if (isOutOfBoundsIndex(index) || isEmptyList())
+        if (isOutOfBoundsIndex(index) || isEmpty())
             return null;
         else if (index == 0) 
             return deleteFirstNode();
@@ -224,6 +212,7 @@ public class CircularDoubly {
      * Handles the removal and cleanup of a {@code Node} in a list of size 2.
      *  
      * @param nodeRemaining the {@code Node} that will remain in the list
+     * 
      * @param nodeToRemove the {@code Node} you want to remove from the list
      * 
      * @return the {@code Node} that was deleted if the list is of size 2, returns null
@@ -253,48 +242,43 @@ public class CircularDoubly {
     }
 
     /**
-     * <pre>
      * Returns the head of the list, or null if the list is empty
      * 
-     * Runtime: O(1) : because it just returns a pointer that's readily available
-     * </pre>
-     * 
      * @return The first {@code Node} in the list if it exits, else returns null. 
-     * The node will be of type {@code CircularSinglyImplementation.Node}
+     * The node will be of type {@code CircularDoubly.Node}
+     * 
+     * @Runtime {@code O(1)} - because it just returns a pointer that's readily available
      */
     public Node getFirstNode() {
-        if (isEmptyList())
+        if (isEmpty())
             return null;
         return this.last.nextNode;
     }
 
     /**
-     * <pre>
      * Returns the last node of the list, or null if the list is empty
      * 
-     * Runtime: O(1) : because it just returns a pointer that's readily available
-     * </pre>
-     * 
      * @return The last {@code Node} in the list if it exits, else returns null. 
-     * The node will be of type {@code CircularSinglyImplementation.Node}
+     * The node will be of type {@code CircularDoubly.Node}
+     * 
+     * @Runtime {@code O(1)} - because it just returns a pointer that's readily available
      */
     public Node getLastNode() {
         return this.last;
     }
 
     /**
-     * <pre>
+     * 
      * Returns the {@code Node} at the given index if it exist, else returns null
-     * 
-     * Runtime: O(N) : because it needs to iterate the list
-     * </pre>
-     * 
+     *
      * @param index the location of a {@code Node} in the list
      * 
      * @return The {@code Node} located at the given index
+     * 
+     * @Runtime {@code O(N)} - because it needs to iterate the list
      */
     public Node getNodeAtIndex(int index) {
-        if (isOutOfBoundsIndex(index) || isEmptyList()) 
+        if (isOutOfBoundsIndex(index) || isEmpty()) 
             return null;
         else if (index == 0)
             return getFirstNode();
@@ -313,19 +297,17 @@ public class CircularDoubly {
     }
 
     /**
-     * <pre> 
      * Searches the list to see if it contains a {@code Node} with the given value
-     * 
-     * Runtime: O(N) : because it needs to iterate the list
-     * </pre>
-     * 
+     *
      * @param value to search the list for
      * 
      * @return {@code true} if the list contains a {@code Node} with the given value,
      * else returns {@code false}
+     * 
+     * @Runtime {@code O(N)} - because it needs to iterate the list
      */
     public boolean search(int value) {
-        if (isEmptyList())
+        if (isEmpty())
             return false;
 
         Node currHead = this.last;
@@ -336,42 +318,33 @@ public class CircularDoubly {
         return currHead.data == value;
     }
 
-    // Utility Methods
-    // =======================
-
      /**
-     * <pre>
      * Returns the current size of the List
      * 
-     * Runtime: O(1) : because it just returns the value of a private variable
-     * </pre>
-     * @
      * @return the number of {@code Nodes} currently in the list
+     * 
+     * @Runtime {@code O(1)} - because it just returns the value of a private variable
      */
-    public int getSize() {
+    public int size() {
         return this.size;
     }
 
     /**
-     * <pre>
      * Returns the current size of the Linked List
-     * 
-     * Runtime: O(1) : because it just does a simple boolean comparison
-     * </pre>
      * 
      * @return {@code true} if the list contains no {@code Nodes},
      * else returns {@code false}
+     * 
+     * @Runtime {@code O(1)} - because it just does a simple boolean comparison
      */
-    public boolean isEmptyList() {
+    public boolean isEmpty() {
         return this.last == null && this.size == 0;
     }
     
     /**
-     * <pre>
      * prints the entire list to the console
      * 
-     * Runtime: O(N) : because it needs to iterate the list
-     * </pre>
+     * @Runtime {@code O(N)} - because it needs to iterate the list
      */
     public void printLinkedList() {
         if (this.last == null) {
@@ -401,7 +374,7 @@ public class CircularDoubly {
     }
 
     /**
-     * A standard {@code Singly Linked List Node}, that holds an integer value and points to next {@code Node} in the list
+     * A standard {@code Doubly Linked List Node}, that holds an integer value and points to next & previous {@code Nodes} in the list
      */
     class Node {
         int data;

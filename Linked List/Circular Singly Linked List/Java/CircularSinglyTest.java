@@ -30,7 +30,7 @@ public class CircularSinglyTest {
     public static void testInitListWithoutParams(String funcName, int testNumber) {
         CircularSingly list = new CircularSingly();
 
-        if (list.getSize() != 0 || list.getFirstNode() != null)
+        if (list.size() != 0 || list.getFirstNode() != null)
             failTest(funcName, testNumber);
         else
             passTest(funcName, testNumber);
@@ -40,7 +40,7 @@ public class CircularSinglyTest {
         CircularSingly list = new CircularSingly(4);
         CircularSingly.Node head = list.getFirstNode();
 
-        if (list.getSize() != 1 || head == null || head.nextNode != head)
+        if (list.size() != 1 || head == null || head.nextNode != head)
             failTest(funcName, testNumber);
         else
             passTest(funcName, testNumber);
@@ -59,7 +59,7 @@ public class CircularSinglyTest {
         
         CircularSingly.Node head = list.getFirstNode();
 
-        if (list.getSize() != 1 || head == null)
+        if (list.size() != 1 || head == null)
             failTest(funcName, testNumber);
         else if (head.data != 2 || head.nextNode != head)
             failTest(funcName, testNumber);
@@ -73,7 +73,7 @@ public class CircularSinglyTest {
         list.insertFirst(9);
         CircularSingly.Node head = list.getFirstNode();
 
-        if (list.getSize() != 2)
+        if (list.size() != 2)
             failTest(funcName, testNumber);
         else if (head.data != 9 || head.nextNode.data != 2 || head.nextNode.nextNode != head)
             failTest(funcName, testNumber);
@@ -88,7 +88,7 @@ public class CircularSinglyTest {
 
         CircularSingly.Node head = list.getFirstNode();
 
-        if (list.getSize() != 3)
+        if (list.size() != 3)
             failTest(funcName, testNumber);
         else if (head.data != 7 || head.nextNode.data != 9 || head.nextNode.nextNode.data != 2)
             failTest(funcName, testNumber);
@@ -110,7 +110,7 @@ public class CircularSinglyTest {
         list.insertLast(2);
         CircularSingly.Node head = list.getFirstNode();
 
-        if (list.getSize() != 1 || head == null)
+        if (list.size() != 1 || head == null)
             failTest(funcName, testNumber);
         else if (head.data != 2 || head.nextNode != head)
             failTest(funcName, testNumber);
@@ -124,7 +124,7 @@ public class CircularSinglyTest {
         list.insertLast(9);
         CircularSingly.Node head = list.getFirstNode();
 
-        if (list.getSize() != 2)
+        if (list.size() != 2)
             failTest(funcName, testNumber);
         else if (head.data != 2 || head.nextNode.data != 9 || head.nextNode.nextNode != head)
             failTest(funcName, testNumber);
@@ -139,7 +139,7 @@ public class CircularSinglyTest {
         list.insertLast(7);
         CircularSingly.Node head = list.getFirstNode();
 
-        if (list.getSize() != 3)
+        if (list.size() != 3)
             failTest(funcName, testNumber);
         else if (head.data != 2 || head.nextNode.data != 9 || head.nextNode.nextNode.data != 7)
             failTest(funcName, testNumber);
@@ -158,7 +158,7 @@ public class CircularSinglyTest {
     public static void testInsertAtIndexWithEmptyListAtIndexZero(String funcName, int testNumber) {
         CircularSingly list = new CircularSingly();
 
-        if (!list.insertAtIndex(0, 2) || list.getSize() != 1 || list.getFirstNode().data != 2)
+        if (!list.insertAtIndex(0, 2) || list.size() != 1 || list.getFirstNode().data != 2)
             failTest(funcName, testNumber);
         else
             passTest(funcName, testNumber);
@@ -170,7 +170,7 @@ public class CircularSinglyTest {
         list.insertLast(9);
         list.insertLast(7);
 
-        if (!list.insertAtIndex(0, 5) || list.getSize() != 4 || list.getFirstNode().data != 5)
+        if (!list.insertAtIndex(0, 5) || list.size() != 4 || list.getFirstNode().data != 5)
             failTest(funcName, testNumber);
         else if (list.getLastNode().nextNode.data != 5)
             failTest(funcName, testNumber);
@@ -183,7 +183,7 @@ public class CircularSinglyTest {
 
         if (list.insertAtIndex(1, 2) || list.insertAtIndex(-1, 2))
             failTest(funcName, testNumber);
-        else if (list.getSize() != 0 || list.getFirstNode() != null)
+        else if (list.size() != 0 || list.getFirstNode() != null)
             failTest(funcName, testNumber);
         else
             passTest(funcName, testNumber);
@@ -195,7 +195,7 @@ public class CircularSinglyTest {
         list.insertLast(9);
         list.insertLast(7);
 
-        if (!list.insertAtIndex(1, 5) || !list.insertAtIndex(3, 8) || list.getSize() != 5)
+        if (!list.insertAtIndex(1, 5) || !list.insertAtIndex(3, 8) || list.size() != 5)
             failTest(funcName, testNumber);
         else if (list.getFirstNode().nextNode.data != 5)
             failTest(funcName, testNumber);
@@ -216,7 +216,7 @@ public class CircularSinglyTest {
 
         CircularSingly.Node deletedNode = list.deleteFirstNode();
 
-        if (list.getSize() != 0 || deletedNode != null)
+        if (list.size() != 0 || deletedNode != null)
             failTest(funcName, testNumber);
         else
             passTest(funcName, testNumber);
@@ -227,7 +227,7 @@ public class CircularSinglyTest {
         CircularSingly.Node headToRemove = list.getFirstNode();
         CircularSingly.Node deletedNode = list.deleteFirstNode();
 
-        if (list.getSize() != 0 || list.getFirstNode() != null || deletedNode != headToRemove)
+        if (list.size() != 0 || list.getFirstNode() != null || deletedNode != headToRemove)
             failTest(funcName, testNumber);
         else
             passTest(funcName, testNumber);
@@ -244,7 +244,7 @@ public class CircularSinglyTest {
         CircularSingly.Node deletedNode = list.deleteFirstNode();
         CircularSingly.Node newHead = list.getFirstNode();
 
-        if (list.getSize() != 3 || deletedNode != headToRemove)
+        if (list.size() != 3 || deletedNode != headToRemove)
             failTest(funcName, testNumber);
         else if (newHead.data != 4 || newHead.nextNode.data != 3 || newHead.nextNode.nextNode.data != 2)
             failTest(funcName, testNumber);
@@ -265,7 +265,7 @@ public class CircularSinglyTest {
 
         CircularSingly.Node deletedNode = list.deleteLastNode();
 
-        if (list.getSize() != 0 || deletedNode != null)
+        if (list.size() != 0 || deletedNode != null)
             failTest(funcName, testNumber);
         else
             passTest(funcName, testNumber);
@@ -276,7 +276,7 @@ public class CircularSinglyTest {
         CircularSingly.Node lastNodeToRemove = list.getLastNode();
         CircularSingly.Node deletedNode = list.deleteLastNode();
 
-        if (list.getSize() != 0 || list.getFirstNode() != null || deletedNode != lastNodeToRemove)
+        if (list.size() != 0 || list.getFirstNode() != null || deletedNode != lastNodeToRemove)
             failTest(funcName, testNumber);
         else
             passTest(funcName, testNumber);
@@ -293,7 +293,7 @@ public class CircularSinglyTest {
         CircularSingly.Node lastNodeToRemove = list.getLastNode();
         CircularSingly.Node deletedNode = list.deleteLastNode();
 
-        if (list.getSize() != 3 || deletedNode.data != 2 || deletedNode != lastNodeToRemove)
+        if (list.size() != 3 || deletedNode.data != 2 || deletedNode != lastNodeToRemove)
             failTest(funcName, testNumber);
         else if (head.data != 5 || head.nextNode.data != 4 || head.nextNode.nextNode.data != 3)
             failTest(funcName, testNumber);
@@ -319,7 +319,7 @@ public class CircularSinglyTest {
         CircularSingly.Node nodeDeleted2 = list.deleteNodeAtIndex(3);
         CircularSingly.Node nodeDeleted3 = list.deleteNodeAtIndex(-1);
 
-        if (list.getSize() != 2 || nodeDeleted1 != null || nodeDeleted2 != null || nodeDeleted3 != null)
+        if (list.size() != 2 || nodeDeleted1 != null || nodeDeleted2 != null || nodeDeleted3 != null)
             failTest(funcName, testNumber);
         else
             passTest(funcName, testNumber);
@@ -330,7 +330,7 @@ public class CircularSinglyTest {
         CircularSingly.Node head = list.getFirstNode();
         CircularSingly.Node nodeDeleted = list.deleteNodeAtIndex(0);
 
-        if (list.getSize() != 0 || nodeDeleted != head)
+        if (list.size() != 0 || nodeDeleted != head)
             failTest(funcName, testNumber);
         else
             passTest(funcName, testNumber);
@@ -346,7 +346,7 @@ public class CircularSinglyTest {
         CircularSingly.Node lastNode = list.getLastNode();
         CircularSingly.Node nodeDeleted = list.deleteNodeAtIndex(3);
 
-        if (list.getSize() != 3 || nodeDeleted != lastNode)
+        if (list.size() != 3 || nodeDeleted != lastNode)
             failTest(funcName, testNumber);
         else
             passTest(funcName, testNumber);
@@ -362,7 +362,7 @@ public class CircularSinglyTest {
         CircularSingly.Node nodeDeleted1 = list.deleteNodeAtIndex(1);
         CircularSingly.Node nodeDeleted2 = list.deleteNodeAtIndex(1);
 
-        if (list.getSize() != 2 || list.getFirstNode().data != 2 || list.getLastNode().data != 5)
+        if (list.size() != 2 || list.getFirstNode().data != 2 || list.getLastNode().data != 5)
             failTest(funcName, testNumber);
         else if (nodeDeleted1.data != 3 || nodeDeleted2.data != 4)
             failTest(funcName, testNumber);
@@ -380,7 +380,7 @@ public class CircularSinglyTest {
         CircularSingly list = new CircularSingly();
         CircularSingly.Node nodeRetrieved = list.getFirstNode();
 
-        if (list.getSize() != 0 || nodeRetrieved != null)
+        if (list.size() != 0 || nodeRetrieved != null)
             failTest(funcName, testNumber);
         else
             passTest(funcName, testNumber);
@@ -390,7 +390,7 @@ public class CircularSinglyTest {
         CircularSingly list = new CircularSingly(2);
         CircularSingly.Node nodeRetrieved = list.getFirstNode();
 
-        if (list.getSize() != 1 || nodeRetrieved.data != 2)
+        if (list.size() != 1 || nodeRetrieved.data != 2)
             failTest(funcName, testNumber);
         else
             passTest(funcName, testNumber);
@@ -404,7 +404,7 @@ public class CircularSinglyTest {
         list.insertLast(4);
         list.insertLast(5);
 
-        if (list.getSize() != 4 || nodeRetrieved.data != 2)
+        if (list.size() != 4 || nodeRetrieved.data != 2)
             failTest(funcName, testNumber);
         else
             passTest(funcName, testNumber);
@@ -420,7 +420,7 @@ public class CircularSinglyTest {
         CircularSingly list = new CircularSingly();
         CircularSingly.Node nodeRetrieved = list.getLastNode();
 
-        if (list.getSize() != 0 || nodeRetrieved != null)
+        if (list.size() != 0 || nodeRetrieved != null)
             failTest(funcName, testNumber);
         else
             passTest(funcName, testNumber);
@@ -430,7 +430,7 @@ public class CircularSinglyTest {
         CircularSingly list = new CircularSingly(2);
         CircularSingly.Node nodeRetrieved = list.getLastNode();
 
-        if (list.getSize() != 1 || nodeRetrieved.data != 2)
+        if (list.size() != 1 || nodeRetrieved.data != 2)
             failTest(funcName, testNumber);
         else
             passTest(funcName, testNumber);
@@ -444,7 +444,7 @@ public class CircularSinglyTest {
         list.insertLast(5);
         CircularSingly.Node nodeRetrieved = list.getLastNode();
 
-        if (list.getSize() != 4 || nodeRetrieved.data != 5)
+        if (list.size() != 4 || nodeRetrieved.data != 5)
             failTest(funcName, testNumber);
         else
             passTest(funcName, testNumber);
@@ -466,7 +466,7 @@ public class CircularSinglyTest {
         CircularSingly.Node nodeRetrieved2 = list.getNodeAtIndex(3);
         CircularSingly.Node nodeRetrieved3 = list.getNodeAtIndex(-1);
 
-        if (list.getSize() != 2 || nodeRetrieved1 != null || nodeRetrieved2 != null || nodeRetrieved3 != null)
+        if (list.size() != 2 || nodeRetrieved1 != null || nodeRetrieved2 != null || nodeRetrieved3 != null)
             failTest(funcName, testNumber);
         else
             passTest(funcName, testNumber);
@@ -477,7 +477,7 @@ public class CircularSinglyTest {
         CircularSingly.Node nodeRetrieved = list.getNodeAtIndex(0);
         CircularSingly.Node head = list.getFirstNode();
 
-        if (list.getSize() != 1 || nodeRetrieved != head)
+        if (list.size() != 1 || nodeRetrieved != head)
             failTest(funcName, testNumber);
         else
             passTest(funcName, testNumber);
@@ -493,7 +493,7 @@ public class CircularSinglyTest {
         CircularSingly.Node nodeRetrieved = list.getNodeAtIndex(3);
         CircularSingly.Node lastNode = list.getLastNode();
 
-        if (list.getSize() != 4 || nodeRetrieved != lastNode)
+        if (list.size() != 4 || nodeRetrieved != lastNode)
             failTest(funcName, testNumber);
         else
             passTest(funcName, testNumber);
@@ -509,7 +509,7 @@ public class CircularSinglyTest {
         CircularSingly.Node nodeRetrieved1 = list.getNodeAtIndex(1);
         CircularSingly.Node nodeRetrieved2 = list.getNodeAtIndex(2);
 
-        if (list.getSize() != 4 || nodeRetrieved1.data != 3 || nodeRetrieved2.data != 4)
+        if (list.size() != 4 || nodeRetrieved1.data != 3 || nodeRetrieved2.data != 4)
             failTest(funcName, testNumber);
         else
             passTest(funcName, testNumber);
@@ -524,7 +524,7 @@ public class CircularSinglyTest {
     public static void testIsEmptyListWithEmptyList(String funcName, int testNumber) {
         CircularSingly list = new CircularSingly();
 
-        if (list.isEmptyList())
+        if (list.isEmpty())
             passTest(funcName, testNumber);
         else
             failTest(funcName, testNumber);
@@ -533,7 +533,7 @@ public class CircularSinglyTest {
     public static void testIsEmptyListOnSigleNodeList(String funcName, int testNumber) {
         CircularSingly list = new CircularSingly(2);
 
-        if (list.isEmptyList())
+        if (list.isEmpty())
             failTest(funcName, testNumber);
         else
             passTest(funcName, testNumber);
@@ -547,7 +547,7 @@ public class CircularSinglyTest {
         list.insertFirst(6);
         list.insertFirst(33);
 
-        if (list.isEmptyList())
+        if (list.isEmpty())
             failTest(funcName, testNumber);
         else
             passTest(funcName, testNumber);
@@ -575,14 +575,14 @@ public class CircularSinglyTest {
 
     /*
      * ======================
-     * testGetSize() test
+     * testsize() test
      * ======================
      */
 
-    public static void testGetSize(String funcName, int testNumber) {
+    public static void testsize(String funcName, int testNumber) {
         CircularSingly list = new CircularSingly();
 
-        if (list.getSize() != 0) {
+        if (list.size() != 0) {
             failTest(funcName, testNumber);
             return;
         }
@@ -592,7 +592,7 @@ public class CircularSinglyTest {
         list.insertFirst(6);
         list.insertFirst(33);
 
-        if (list.getSize() != 4) {
+        if (list.size() != 4) {
             failTest(funcName, testNumber);
             return;
         }
@@ -600,7 +600,7 @@ public class CircularSinglyTest {
         list.deleteFirstNode();
         list.deleteLastNode();
 
-        if (list.getSize() == 2)
+        if (list.size() == 2)
             passTest(funcName, testNumber);
         else
             failTest(funcName, testNumber);

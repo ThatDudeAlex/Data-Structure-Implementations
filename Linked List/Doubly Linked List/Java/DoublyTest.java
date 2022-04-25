@@ -31,7 +31,7 @@ public class DoublyTest {
         Doubly.Node head = list.getFirstNode();
         Doubly.Node tail = list.getLastNode();
 
-        if (list.getSize() != 0 || head != null || tail != null)
+        if (list.size() != 0 || head != null || tail != null)
             failTest(funcName, testNumber);
         else
             passTest(funcName, testNumber);
@@ -42,7 +42,7 @@ public class DoublyTest {
         Doubly.Node head = list.getFirstNode();
         Doubly.Node tail = list.getLastNode();
 
-        if (list.getSize() != 1 || head == null || tail == null)
+        if (list.size() != 1 || head == null || tail == null)
             failTest(funcName, testNumber);
         else if (head.data != 4 || head.prevNode != null || head.nextNode != null || head != tail)
             failTest(funcName, testNumber);
@@ -63,7 +63,7 @@ public class DoublyTest {
         Doubly.Node head = list.getFirstNode();
         Doubly.Node tail = list.getLastNode();
 
-        if (list.getSize() != 1 || head.data != 4 || head == null || tail == null || head != tail)
+        if (list.size() != 1 || head.data != 4 || head == null || tail == null || head != tail)
             failTest(funcName, testNumber);
         else
             passTest(funcName, testNumber);
@@ -76,7 +76,7 @@ public class DoublyTest {
         Doubly.Node head = list.getFirstNode();
         Doubly.Node tail = list.getLastNode();
 
-        if (list.getSize() != 2 || head.data != 9 || tail.data != 2)
+        if (list.size() != 2 || head.data != 9 || tail.data != 2)
             failTest(funcName, testNumber);
         else
             passTest(funcName, testNumber);
@@ -91,7 +91,7 @@ public class DoublyTest {
         Doubly.Node head = list.getFirstNode();
         Doubly.Node tail = list.getLastNode();
 
-        if (list.getSize() != 3 || head.data != 7 || head.nextNode.data != 9 || tail.data != 2)
+        if (list.size() != 3 || head.data != 7 || head.nextNode.data != 9 || tail.data != 2)
             failTest(funcName, testNumber);
         else
             passTest(funcName, testNumber);
@@ -129,7 +129,7 @@ public class DoublyTest {
         Doubly.Node head = list.getFirstNode();
         Doubly.Node tail = list.getLastNode();
 
-        if (list.getSize() != 1 || head == null || tail == null)
+        if (list.size() != 1 || head == null || tail == null)
             failTest(funcName, testNumber);
         else if (head.data != 2 || head.prevNode != null || head.nextNode != null || head != tail)
             failTest(funcName, testNumber);
@@ -144,7 +144,7 @@ public class DoublyTest {
         Doubly.Node head = list.getFirstNode();
         Doubly.Node tail = list.getLastNode();
 
-        if (list.getSize() != 2)
+        if (list.size() != 2)
             failTest(funcName, testNumber);
         else if (head.data != 2 || tail.data != 9)
             failTest(funcName, testNumber);
@@ -162,7 +162,7 @@ public class DoublyTest {
         Doubly.Node head = list.getFirstNode();
         Doubly.Node tail = list.getLastNode();
 
-        if (list.getSize() != 3)
+        if (list.size() != 3)
             failTest(funcName, testNumber);
         else if (head.data != 2 || head.nextNode.data != 9 || tail.data != 7)
             failTest(funcName, testNumber);
@@ -200,7 +200,7 @@ public class DoublyTest {
     public static void testInsertAtIndexWithEmptyListAtIndexZero(String funcName, int testNumber) {
         Doubly list = new Doubly();
 
-        if (!list.insertAtIndex(0, 2) || list.getSize() != 1 || list.getFirstNode().data != 2)
+        if (!list.insertAtIndex(0, 2) || list.size() != 1 || list.getFirstNode().data != 2)
             failTest(funcName, testNumber);
         else if (list.getFirstNode() != list.getLastNode())
             failTest(funcName, testNumber);
@@ -214,7 +214,7 @@ public class DoublyTest {
         list.insertLast(9);
         list.insertLast(7);
 
-        if (!list.insertAtIndex(0, 5) || list.getSize() != 4 || list.getFirstNode().data != 5)
+        if (!list.insertAtIndex(0, 5) || list.size() != 4 || list.getFirstNode().data != 5)
             failTest(funcName, testNumber);
         else if (list.getFirstNode().nextNode.data != 2 || list.getFirstNode().nextNode.prevNode != list.getFirstNode())
             failTest(funcName, testNumber);
@@ -227,7 +227,7 @@ public class DoublyTest {
 
         if (list.insertAtIndex(1, 2) || list.insertAtIndex(-1, 2))
             failTest(funcName, testNumber);
-        else if (list.getSize() != 0 || list.getFirstNode() != null)
+        else if (list.size() != 0 || list.getFirstNode() != null)
             failTest(funcName, testNumber);
         else
             passTest(funcName, testNumber);
@@ -239,7 +239,7 @@ public class DoublyTest {
         list.insertLast(9);
         list.insertLast(7);
 
-        if (!list.insertAtIndex(1, 5) || !list.insertAtIndex(3, 8) || list.getSize() != 5)
+        if (!list.insertAtIndex(1, 5) || !list.insertAtIndex(3, 8) || list.size() != 5)
             failTest(funcName, testNumber);
         else if (list.getFirstNode().nextNode.data != 5 || list.getFirstNode().nextNode.nextNode.nextNode.data != 8)
             failTest(funcName, testNumber);
@@ -286,7 +286,7 @@ public class DoublyTest {
 
         Doubly.Node deletedNode = list.deleteFirstNode();
 
-        if (list.getSize() != 0 || deletedNode != null)
+        if (list.size() != 0 || deletedNode != null)
             failTest(funcName, testNumber);
         else
             passTest(funcName, testNumber);
@@ -297,7 +297,7 @@ public class DoublyTest {
         Doubly.Node nodeToRemove = list.getFirstNode();
         Doubly.Node deletedNode = list.deleteFirstNode();
 
-        if (list.getSize() != 0 || list.getFirstNode() != null || list.getLastNode() != null
+        if (list.size() != 0 || list.getFirstNode() != null || list.getLastNode() != null
                 || deletedNode != nodeToRemove)
             failTest(funcName, testNumber);
         else
@@ -315,7 +315,7 @@ public class DoublyTest {
         Doubly.Node deletedNode = list.deleteFirstNode();
         Doubly.Node newHead = list.getFirstNode();
 
-        if (list.getSize() != 3 || deletedNode != headToRemove || newHead.data != 4)
+        if (list.size() != 3 || deletedNode != headToRemove || newHead.data != 4)
             failTest(funcName, testNumber);
         else if (newHead.data != 4 || newHead.nextNode.data != 3 || newHead.nextNode.nextNode.data != 2)
             failTest(funcName, testNumber);
@@ -359,7 +359,7 @@ public class DoublyTest {
 
         Doubly.Node deletedNode = list.deleteLastNode();
 
-        if (list.getSize() != 0 || deletedNode != null)
+        if (list.size() != 0 || deletedNode != null)
             failTest(funcName, testNumber);
         else
             passTest(funcName, testNumber);
@@ -370,7 +370,7 @@ public class DoublyTest {
         Doubly.Node tailNodeToRemove = list.getLastNode();
         Doubly.Node deletedNode = list.deleteLastNode();
 
-        if (list.getSize() != 0 || list.getFirstNode() != null || list.getLastNode() != null
+        if (list.size() != 0 || list.getFirstNode() != null || list.getLastNode() != null
                 || deletedNode != tailNodeToRemove)
             failTest(funcName, testNumber);
         else
@@ -388,7 +388,7 @@ public class DoublyTest {
         Doubly.Node lastNodeToRemove = list.getLastNode();
         Doubly.Node deletedNode = list.deleteLastNode();
 
-        if (list.getSize() != 3 || deletedNode != lastNodeToRemove)
+        if (list.size() != 3 || deletedNode != lastNodeToRemove)
             failTest(funcName, testNumber);
         else if (head.data != 5 || head.nextNode.data != 4 || head.nextNode.nextNode.data != 3)
             failTest(funcName, testNumber);
@@ -437,7 +437,7 @@ public class DoublyTest {
         Doubly.Node nodeDeleted2 = list.deleteNodeAtIndex(3);
         Doubly.Node nodeDeleted3 = list.deleteNodeAtIndex(-1);
 
-        if (list.getSize() != 2 || nodeDeleted1 != null || nodeDeleted2 != null || nodeDeleted3 != null)
+        if (list.size() != 2 || nodeDeleted1 != null || nodeDeleted2 != null || nodeDeleted3 != null)
             failTest(funcName, testNumber);
         else
             passTest(funcName, testNumber);
@@ -448,7 +448,7 @@ public class DoublyTest {
         Doubly.Node head = list.getFirstNode();
         Doubly.Node nodeDeleted = list.deleteNodeAtIndex(0);
 
-        if (list.getSize() != 0 || nodeDeleted != head)
+        if (list.size() != 0 || nodeDeleted != head)
             failTest(funcName, testNumber);
         else
             passTest(funcName, testNumber);
@@ -464,7 +464,7 @@ public class DoublyTest {
         Doubly.Node tailNode = list.getLastNode();
         Doubly.Node nodeDeleted = list.deleteNodeAtIndex(3);
 
-        if (list.getSize() != 3 || nodeDeleted != tailNode)
+        if (list.size() != 3 || nodeDeleted != tailNode)
             failTest(funcName, testNumber);
         else
             passTest(funcName, testNumber);
@@ -482,7 +482,7 @@ public class DoublyTest {
         Doubly.Node head = list.getFirstNode();
         Doubly.Node tail = list.getLastNode();
 
-        if (list.getSize() != 2 || head.data != 2 || tail.data != 5)
+        if (list.size() != 2 || head.data != 2 || tail.data != 5)
             failTest(funcName, testNumber);
         else if (nodeDeleted1.data != 3 || nodeDeleted2.data != 4)
             failTest(funcName, testNumber);
@@ -531,7 +531,7 @@ public class DoublyTest {
         Doubly list = new Doubly();
         Doubly.Node nodeRetrieved = list.getFirstNode();
 
-        if (list.getSize() != 0 || nodeRetrieved != null)
+        if (list.size() != 0 || nodeRetrieved != null)
             failTest(funcName, testNumber);
         else
             passTest(funcName, testNumber);
@@ -541,7 +541,7 @@ public class DoublyTest {
         Doubly list = new Doubly(2);
         Doubly.Node nodeRetrieved = list.getFirstNode();
 
-        if (list.getSize() != 1 || nodeRetrieved.data != 2)
+        if (list.size() != 1 || nodeRetrieved.data != 2)
             failTest(funcName, testNumber);
         else
             passTest(funcName, testNumber);
@@ -555,7 +555,7 @@ public class DoublyTest {
         list.insertLast(4);
         list.insertLast(5);
 
-        if (list.getSize() != 4 || nodeRetrieved.data != 2)
+        if (list.size() != 4 || nodeRetrieved.data != 2)
             failTest(funcName, testNumber);
         else
             passTest(funcName, testNumber);
@@ -571,7 +571,7 @@ public class DoublyTest {
         Doubly list = new Doubly();
         Doubly.Node nodeRetrieved = list.getLastNode();
 
-        if (list.getSize() != 0 || nodeRetrieved != null)
+        if (list.size() != 0 || nodeRetrieved != null)
             failTest(funcName, testNumber);
         else
             passTest(funcName, testNumber);
@@ -581,7 +581,7 @@ public class DoublyTest {
         Doubly list = new Doubly(2);
         Doubly.Node nodeRetrieved = list.getLastNode();
 
-        if (list.getSize() != 1 || nodeRetrieved.data != 2)
+        if (list.size() != 1 || nodeRetrieved.data != 2)
             failTest(funcName, testNumber);
         else
             passTest(funcName, testNumber);
@@ -595,7 +595,7 @@ public class DoublyTest {
         list.insertLast(5);
         Doubly.Node nodeRetrieved = list.getLastNode();
 
-        if (list.getSize() != 4 || nodeRetrieved.data != 5)
+        if (list.size() != 4 || nodeRetrieved.data != 5)
             failTest(funcName, testNumber);
         else
             passTest(funcName, testNumber);
@@ -617,7 +617,7 @@ public class DoublyTest {
         Doubly.Node nodeRetrieved2 = list.getNodeAtIndex(3);
         Doubly.Node nodeRetrieved3 = list.getNodeAtIndex(-1);
 
-        if (list.getSize() != 2 || nodeRetrieved1 != null || nodeRetrieved2 != null || nodeRetrieved3 != null)
+        if (list.size() != 2 || nodeRetrieved1 != null || nodeRetrieved2 != null || nodeRetrieved3 != null)
             failTest(funcName, testNumber);
         else
             passTest(funcName, testNumber);
@@ -628,7 +628,7 @@ public class DoublyTest {
         Doubly.Node nodeRetrieved = list.getNodeAtIndex(0);
         Doubly.Node head = list.getFirstNode();
 
-        if (list.getSize() != 1 || nodeRetrieved != head)
+        if (list.size() != 1 || nodeRetrieved != head)
             failTest(funcName, testNumber);
         else
             passTest(funcName, testNumber);
@@ -644,7 +644,7 @@ public class DoublyTest {
         Doubly.Node nodeRetrieved = list.getNodeAtIndex(3);
         Doubly.Node lastNode = list.getLastNode();
 
-        if (list.getSize() != 4 || nodeRetrieved != lastNode)
+        if (list.size() != 4 || nodeRetrieved != lastNode)
             failTest(funcName, testNumber);
         else
             passTest(funcName, testNumber);
@@ -660,7 +660,7 @@ public class DoublyTest {
         Doubly.Node nodeRetrieved1 = list.getNodeAtIndex(1);
         Doubly.Node nodeRetrieved2 = list.getNodeAtIndex(2);
 
-        if (list.getSize() != 4 || nodeRetrieved1.data != 3 || nodeRetrieved2.data != 4)
+        if (list.size() != 4 || nodeRetrieved1.data != 3 || nodeRetrieved2.data != 4)
             failTest(funcName, testNumber);
         else
             passTest(funcName, testNumber);
@@ -675,7 +675,7 @@ public class DoublyTest {
     public static void testIsEmptyListWithEmptyList(String funcName, int testNumber) {
         Doubly list = new Doubly();
 
-        if (list.isEmptyList())
+        if (list.isEmpty())
             passTest(funcName, testNumber);
         else
             failTest(funcName, testNumber);
@@ -684,7 +684,7 @@ public class DoublyTest {
     public static void testIsEmptyListOnSigleNodeList(String funcName, int testNumber) {
         Doubly list = new Doubly(2);
 
-        if (list.isEmptyList())
+        if (list.isEmpty())
             failTest(funcName, testNumber);
         else
             passTest(funcName, testNumber);
@@ -698,7 +698,7 @@ public class DoublyTest {
         list.insertFirst(6);
         list.insertFirst(33);
 
-        if (list.isEmptyList())
+        if (list.isEmpty())
             failTest(funcName, testNumber);
         else
             passTest(funcName, testNumber);
@@ -734,11 +734,11 @@ public class DoublyTest {
 
         Doubly list = new Doubly();
 
-        if (list.getSize() != 0)
+        if (list.size() != 0)
             failTest(funcName, testNumber);
-        else if (list.insertFirst(4) && list.insertFirst(40) && list.insertFirst(6) && list.getSize() != 3)
+        else if (list.insertFirst(4) && list.insertFirst(40) && list.insertFirst(6) && list.size() != 3)
             failTest(funcName, testNumber);
-        else if (list.deleteFirstNode() != null && list.deleteLastNode() != null && list.getSize() == 1)
+        else if (list.deleteFirstNode() != null && list.deleteLastNode() != null && list.size() == 1)
             passTest(funcName, testNumber);
         else
             failTest(funcName, testNumber);
