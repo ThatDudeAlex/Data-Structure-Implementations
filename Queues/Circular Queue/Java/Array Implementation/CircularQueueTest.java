@@ -2,14 +2,14 @@ import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.Method;
 import java.lang.reflect.Modifier;
 
-public class SimpleQueueTest {
+public class CircularQueueTest {
     public static void main(String[] args) {
         int testNumber = 1;
 
         // Iterates through all the public methods in the class and invokes each one except main().
         // This makes calling & adding additional testcases easier
         
-        for (Method method : SimpleQueueTest.class.getDeclaredMethods()) {
+        for (Method method : CircularQueueTest.class.getDeclaredMethods()) {
             if (method.getName() != "main" && Modifier.isPublic(method.getModifiers())) {
                 try {
                     method.invoke(method, new Object[] { method.getName(), testNumber++ });
@@ -27,7 +27,7 @@ public class SimpleQueueTest {
      */
 
     public static void testInitListWithoutParams(String funcName, int testNumber) {
-        SimpleQueue queue = new SimpleQueue(10);
+        CircularQueue queue = new CircularQueue(10);
         Integer front = queue.peek();
 
         if (queue.size() != 0 || front != null)
@@ -37,7 +37,7 @@ public class SimpleQueueTest {
     }
 
     public static void testInitListWithParams(String funcName, int testNumber) {
-        SimpleQueue queue = new SimpleQueue(10, 4);
+        CircularQueue queue = new CircularQueue(10, 4);
         Integer front = queue.peek();
 
         if (queue.size() != 1 || front == null || front != 4)
@@ -53,7 +53,7 @@ public class SimpleQueueTest {
      */
 
     public static void testEnqueueOnEmptyQueue(String funcName, int testNumber) {
-        SimpleQueue queue = new SimpleQueue(10);
+        CircularQueue queue = new CircularQueue(10);
 
         queue.enqueue(2);
         Integer front = queue.peek();
@@ -65,7 +65,7 @@ public class SimpleQueueTest {
     }
 
     public static void testEnqueueOnNonEmptyQueue(String funcName, int testNumber) {
-        SimpleQueue queue = new SimpleQueue(10, 2);
+        CircularQueue queue = new CircularQueue(10, 2);
 
         queue.enqueue(3);
         Integer front = queue.peek();
@@ -83,7 +83,7 @@ public class SimpleQueueTest {
      */
 
     public static void testDequeueOnEmptyQueue(String funcName, int testNumber) {
-        SimpleQueue queue = new SimpleQueue(10);
+        CircularQueue queue = new CircularQueue(10);
         Integer front = queue.dequeue();
 
         if (queue.size() != 0 || front != null)
@@ -93,7 +93,7 @@ public class SimpleQueueTest {
     }
 
     public static void testDequeueOnNonEmptyQueue(String funcName, int testNumber) {
-        SimpleQueue queue = new SimpleQueue(10, 2);
+        CircularQueue queue = new CircularQueue(10, 2);
         queue.enqueue(3);
 
         Integer front1 = queue.dequeue();
@@ -112,7 +112,7 @@ public class SimpleQueueTest {
      */
 
     public static void testIsEmptyOnEmptyQueue(String funcName, int testNumber) {
-        SimpleQueue queue = new SimpleQueue(10);
+        CircularQueue queue = new CircularQueue(10);
 
         if (queue.isEmpty())
             passTest(funcName, testNumber);
@@ -121,7 +121,7 @@ public class SimpleQueueTest {
     }
 
     public static void testIsEmptyOnNonEmptyQueue(String funcName, int testNumber) {
-        SimpleQueue queue = new SimpleQueue(10, 2);
+        CircularQueue queue = new CircularQueue(10, 2);
         queue.enqueue(3);
 
         if (queue.isEmpty())
@@ -137,7 +137,7 @@ public class SimpleQueueTest {
      */
      
     public static void testFrontAndBackPointerWrapAroundQueue(String funcName, int testNumber) {
-        SimpleQueue queue = new SimpleQueue(3, 1);
+        CircularQueue queue = new CircularQueue(3, 1);
         queue.enqueue(2); queue.enqueue(3);
 
         if (!queue.isFull()) 
