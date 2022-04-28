@@ -1,5 +1,5 @@
 /**
- * An implementation of a Stack using a Singly Linked List.
+ * An implementation of a Stack using a Doubly Linked List.
  * 
  * @author Alex Nunez 
  */

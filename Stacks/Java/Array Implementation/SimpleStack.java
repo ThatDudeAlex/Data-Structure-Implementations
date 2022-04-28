@@ -1,5 +1,5 @@
 /**
- * An implementation of a Queue using an integer array.
+ * An implementation of a Stack using an integer array.
  * 
  * @author Alex Nunez 
  */
