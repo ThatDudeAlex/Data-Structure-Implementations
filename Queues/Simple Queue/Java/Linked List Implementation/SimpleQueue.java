@@ -27,13 +27,12 @@ public class SimpleQueue {
     }
 
     /**
-     * <pre>
-     * Inserts a new node at the end of the queue
-     * 
-     * Runtime: O(1)
-     * </pre>
+     * Inserts a new value at the end of the queue
      * 
      * @param data The value that the new node will hold
+     * 
+     * @Runtime {@code O(1)} - because its not affected by the size of the queue, since it just 
+     * directly updates a single index in the queue array
      */
     public boolean enqueue(int data) {
         if (isEmpty()) 
@@ -47,13 +46,12 @@ public class SimpleQueue {
     }
 
     /**
-     * <pre>
      * Removes the head of the queue and returns it. If the queue is empty, it returns null
      * 
-     * Runtime: O(1) : because only rearranging a few pointers is required
-     * </pre>
+     * @return The first {@code element} in the list
      * 
-     * @return The first {@code Node} in the list of type {@code SimpleQueue.Node}
+     * @Runtime {@code O(1)} - because its not affected by the size of the queue, since it just adds +1 
+     * to the value of the front index
      */
     public Integer dequeue() {
         if (isEmpty())
@@ -72,14 +70,11 @@ public class SimpleQueue {
     }
 
     /**
-     * <pre>
      * Returns the head (front) of the queue without removing it.
      * 
-     * Runtime: O(1) : because it just returns a pointer that's readily available
-     * </pre>
+     * @return The first {@code element} in the queue if it exits, else returns null
      * 
-     * @return The first {@code Node} in the queue if it exits, else returns null. 
-     * The node will be of type {@code SimpleQueue.Node}
+     * @Runtime {@code O(1)} - because its not affected by the size of the queue
      */
     public Integer peek() {
         return (isEmpty()) ? null : this.front.data;
@@ -92,27 +87,22 @@ public class SimpleQueue {
     */
 
     /**
-     * <pre>
      * Returns the current size of the queue
      * 
-     * Runtime: O(1) : because it just returns the value of a private variable
-     * </pre>
-     * @
      * @return the number of {@code elements} currently in the queue
+     * 
+     * @Runtime {@code O(1)}
      */
     public int size() {
         return this.size;
     }
 
     /**
-     * <pre>
      * Verifies if the queue is currently empty
      * 
-     * Runtime: O(1) : because it just does a simple boolean comparison
-     * </pre>
+     * @return {@code true} if the queue contains no {@code Values}, else returns {@code false}
      * 
-     * @return {@code true} if the queue contains no {@code Nodes},
-     * else returns {@code false}
+     * @Runtime {@code O(1)} - because it just does a simple boolean comparison
      */
     public boolean isEmpty() {
         return this.front == null && this.back == null && size == 0;

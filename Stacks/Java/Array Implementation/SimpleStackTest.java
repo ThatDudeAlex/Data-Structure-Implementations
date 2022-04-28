@@ -2,14 +2,14 @@ import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.Method;
 import java.lang.reflect.Modifier;
 
-public class SimpleQueueTest {
+public class SimpleStackTest {
     public static void main(String[] args) {
         int testNumber = 1;
 
         // Iterates through all the public methods in the class and invokes each one except main().
         // This makes calling & adding additional testcases easier
         
-        for (Method method : SimpleQueueTest.class.getDeclaredMethods()) {
+        for (Method method : SimpleStackTest.class.getDeclaredMethods()) {
             if (method.getName() != "main" && Modifier.isPublic(method.getModifiers())) {
                 try {
                     method.invoke(method, new Object[] { method.getName(), testNumber++ });
@@ -22,25 +22,25 @@ public class SimpleQueueTest {
 
     /*
      * ======================
-     * Queue Init test
+     * Stack Init test
      * ======================
      */
 
-    public static void testInitQueuetWithoutParams(String funcName, int testNumber) {
-        SimpleQueue queue = new SimpleQueue();
-        Integer front = queue.peek();
+    public static void testInitStackWithoutParams(String funcName, int testNumber) {
+        SimpleStack stack = new SimpleStack(10);
+        Integer top = stack.peek();
 
-        if (queue.size() != 0 || front != null)
+        if (stack.size() != 0 || top != null)
             failTest(funcName, testNumber);
         else
             passTest(funcName, testNumber);
     }
 
-    public static void testInitQueueWithParams(String funcName, int testNumber) {
-        SimpleQueue queue = new SimpleQueue(4);
-        Integer front = queue.peek();
+    public static void testInitStackWithParams(String funcName, int testNumber) {
+        SimpleStack stack = new SimpleStack(10, 4);
+        Integer top = stack.peek();
 
-        if (queue.size() != 1 || front == null || front != 4)
+        if (stack.size() != 1 || top == null || top != 4)
             failTest(funcName, testNumber);
         else
             passTest(funcName, testNumber);
@@ -48,29 +48,29 @@ public class SimpleQueueTest {
 
     /*
      * ======================
-     * enqueue() test
+     * push() test
      * ======================
      */
 
-    public static void testEnqueueOnEmptyQueue(String funcName, int testNumber) {
-        SimpleQueue queue = new SimpleQueue();
+    public static void testPushOnEmptyStack(String funcName, int testNumber) {
+        SimpleStack stack = new SimpleStack(10);
 
-        queue.enqueue(2);
-        Integer front = queue.peek();
+        stack.push(2);
+        Integer top = stack.peek();
 
-        if (queue.size() != 1 || front == null || front != 2)
+        if (stack.size() != 1 || top == null || top != 2)
             failTest(funcName, testNumber);
         else
             passTest(funcName, testNumber);
     }
 
-    public static void testEnqueueOnNonEmptyQueue(String funcName, int testNumber) {
-        SimpleQueue queue = new SimpleQueue(2);
+    public static void testPushOnNonEmptyStack(String funcName, int testNumber) {
+        SimpleStack stack = new SimpleStack(10, 2);
 
-        queue.enqueue(3);
-        Integer front = queue.peek();
+        stack.push(3);
+        Integer top = stack.peek();
 
-        if (queue.size() != 2 || front == null || front != 2)
+        if (stack.size() != 2 || top == null || top != 3)
             failTest(funcName, testNumber);
         else
             passTest(funcName, testNumber);
@@ -78,28 +78,28 @@ public class SimpleQueueTest {
 
     /*
      * ======================
-     * dequeue() test
+     * pop() test
      * ======================
      */
 
-    public static void testDequeueOnEmptyQueue(String funcName, int testNumber) {
-        SimpleQueue queue = new SimpleQueue();
-        Integer front = queue.dequeue();
+    public static void testPopOnEmptyStack(String funcName, int testNumber) {
+        SimpleStack stack = new SimpleStack(10);
+        Integer top = stack.pop();
 
-        if (queue.size() != 0 || front != null)
+        if (stack.size() != 0 || top != null)
             failTest(funcName, testNumber);
         else
             passTest(funcName, testNumber);
     }
 
-    public static void testDequeueOnNonEmptyQueue(String funcName, int testNumber) {
-        SimpleQueue queue = new SimpleQueue(2);
-        queue.enqueue(3);
+    public static void testPopOnNonEmptyStack(String funcName, int testNumber) {
+        SimpleStack stack = new SimpleStack(10, 2);
+        stack.push(3);
 
-        Integer front1 = queue.dequeue();
-        Integer front2 = queue.dequeue();
+        Integer top1 = stack.pop();
+        Integer top2 = stack.pop();
 
-        if (queue.size() != 0 || front1 != 2 || front2 != 3)
+        if (stack.size() != 0 || top1 != 3 || top2 != 2)
             failTest(funcName, testNumber);
         else
             passTest(funcName, testNumber);
@@ -111,24 +111,31 @@ public class SimpleQueueTest {
      * ======================
      */
 
-    public static void testIsEmptyOnEmptyQueue(String funcName, int testNumber) {
-        SimpleQueue queue = new SimpleQueue();
+    public static void testIsEmptyOnEmptyStack(String funcName, int testNumber) {
+        SimpleStack stack = new SimpleStack(10);
 
-        if (queue.isEmpty())
+        if (stack.isEmpty())
             passTest(funcName, testNumber);
         else
             failTest(funcName, testNumber);
     }
 
-    public static void testIsEmptyOnNonEmptyQueue(String funcName, int testNumber) {
-        SimpleQueue queue = new SimpleQueue(2);
-        queue.enqueue(3);
+    public static void testIsEmptyOnNonEmptyStack(String funcName, int testNumber) {
+        SimpleStack stack = new SimpleStack(10, 2);
+        stack.push(3);
 
-        if (queue.isEmpty())
+        if (stack.isEmpty())
             failTest(funcName, testNumber);
         else
             passTest(funcName, testNumber);
     }
+
+    /*
+     * ======================
+     * Pointers test
+     * ======================
+     */
+     
 
     private static void failTest(String funcName, int testNumber) {
         String red = "\u001B[31m";

@@ -30,6 +30,8 @@ public class Singly {
     /**
      * Inserts a new {@code Node} at the beginning of the list
      * 
+     * @param data The int value the node will have
+     * 
      * @return {@code true} to show the {@code Node} was inserted
      * 
      * @Runtime {@code O(1)} - because its not affected by the size of the list
