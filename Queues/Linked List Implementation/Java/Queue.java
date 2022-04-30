@@ -3,7 +3,7 @@
  * 
  * @author Alex Nunez 
  */
-public class CircularQueue {    
+public class Queue {    
     private Node front;
     private Node back;
     private int size;
@@ -11,7 +11,7 @@ public class CircularQueue {
     /**
      * Initializes an empty queue
      */
-    CircularQueue() {
+    Queue() {
         this.front = null;
         this.back = null;
         this.size = 0;
@@ -22,7 +22,7 @@ public class CircularQueue {
      * 
      * @param data the value of the first {@code element} in the queue
      */
-    CircularQueue(int data) {
+    Queue(int data) {
         initFirtstNodeInQueue(data);
     }
 
